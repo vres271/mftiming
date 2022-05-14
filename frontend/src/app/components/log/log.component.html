@@ -1,0 +1,45 @@
+<app-items-controls [app]="app" [itemType]="'log'" ></app-items-controls>
+<div *ngIf="app.log.r.r">
+  <table  class="table mt-2 {{!app.log.ready?'not-ready':'ready'}}">
+    <thead>
+      <tr>
+        <th scope="col" width="30px"><span class="pointer" (click)="refresh()" translate >#</span></th>
+        <th scope="col" translate >log.dt</th>
+        <th scope="col" translate >log.userName</th>
+        <th scope="col" translate >log.ip</th>
+        <th scope="col" translate >log.usessions_id</th>
+        <th scope="col" translate >log.objectTypeName</th>
+        <th scope="col" translate >log.object_name</th>
+        <th scope="col" translate >log.actionTypeName</th>
+        <th scope="col" translate >log.data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of app.log.items | myFilter: app.state.items.log.filter  | asResult : result | slice:0:app.state.items.log.limit ;  index as i;"  class="{{['','','table-danger'][1*item.type]}}">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.dt|date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{item.userName}}</td>
+        <td>{{item.ip}}</td>
+        <td>{{item.usessions_id}}</td>
+        <td translate>types.{{item.objectTypeName}}</td>
+        <td><span title="{{item.object_d?('Deleted: '+(item.object_d |date: 'yyyy-MM-dd HH:mm:ss')):''}}" class="{{item.object_d&&'deleted'}}">{{item.object_name}}</span></td>
+        <td translate>log.action_types.{{item.actionTypeName}}</td>
+        <td>
+          <div *ngIf="item.data" >
+            <div *ngFor="let key of item.data|keys">{{key}}:
+              <span *ngIf="item.data[key]">
+                <span *ngIf="!item.data[key].keys">"{{item.data[key]}}";</span>
+                <span *ngIf="item.data[key].length===2">"{{item.data[key][0]}}" -> "{{item.data[key][1]}}";</span>
+                <div *ngIf="item.data[key].length===undefined">
+                  <div style="margin-left: 20px;" *ngFor="let key2 of item.data[key] | keys">{{key2}}: "{{item.data[key][key2][0]===null?'null':item.data[key][key2][0]}}" -> "{{item.data[key][key2][1]===null?'null':item.data[key][key2][1]}}";</div>
+                </div>
+              </span>
+           </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div  *ngIf="!app.log.r.r" class="alert alert-warning text-center" role="alert" translate>Access_denied_to_this_items</div>>
+<app-items-paginator [state]="app.state.items.log"    [result]="result"></app-items-paginator>

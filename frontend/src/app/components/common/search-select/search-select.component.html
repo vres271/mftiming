@@ -1,16 +1,16 @@
-<div class="select-container" *ngIf="form&&form.controls" >
+<div class="select-container">
   <input 
     type="{{!filterShow?'text':'hidden'}}"
     
     value="{{(refSvc.ready&&refSvc._index.id[form.controls[controlIdKey].value])?refSvc._index.id[form.controls[controlIdKey].value][refNameKey]:''}}" 
     (focus)="filterShow=true"
     class="form-control"  
-    placeholder="{{(!refSvc.ready?'SEARCH-SELECT.Loading_list':'')}}" 
+    placeholder="{{(!refSvc.ready?'SEARCH-SELECT.Loading_list':'')|translate}}" 
   >
   <div class="select-dropdown" *ngIf="filter&&filter.length>0" >
     <!-- <div *ngIf="filter&&filter.length>0&&(result.items.length<1)" class="silver text-center" style="padding: 15px;">Not found</div> -->
     <div *ngIf="!refSvc.ready" class="loading-spinner silver text-center" ><fa-icon [icon]="faCog" [spin]="true"></fa-icon></div>
-    <div *ngIf="refSvc.ready" (click)="form.controls[controlIdKey].setValue(0); filter=''; filterShow=false; srcFilter='';"  class="pointer silver text-center" > -- {{'SEARCH-SELECT.Not selected'}} -- </div>
+    <div *ngIf="refSvc.ready" (click)="form.controls[controlIdKey].setValue(0); filter=''; filterShow=false; srcFilter='';"  class="pointer silver text-center" > -- {{'SEARCH-SELECT.Not selected'|translate}} -- </div>
     <div 
       (click)="form.controls[controlIdKey].setValue(item.id); filter=''; filterShow=false;  srcFilter='';" 
       *ngFor="let item of refSvc.items | myFilter:filter:[refNameKey] " 
@@ -19,7 +19,7 @@
   </div>
   <div *ngIf="filterShow" class="select-filter">
     <div class="form-group">
-      <input type="text"   (func)="filter=srcFilter" (blur)="filterShow=false; " [(ngModel)]="srcFilter" [ngModelOptions]="{standalone: true}" class="form-control"  name="filter" placeholder="{{'SEARCH-SELECT.Search_another_Item'}}">
+      <input type="text" debounce [delay]="400"   (func)="filter=srcFilter" (blur)="filterShow=false; " [(ngModel)]="srcFilter" [ngModelOptions]="{standalone: true}" class="form-control"  name="filter" placeholder="{{'SEARCH-SELECT.Search_another_Item'|translate}}">
     </div>
   </div>
 </div>

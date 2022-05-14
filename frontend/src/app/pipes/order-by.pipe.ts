@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class OrderByPipe implements PipeTransform {
     transform(obj: any, orderFields: any): any {
         if(!orderFields) return obj;
-        orderFields.forEach(function(currentField: any) {
+        orderFields.forEach(function(currentField) {
             var orderType = 'ASC';
 
             if (currentField[0] === '-') {
@@ -15,7 +15,7 @@ export class OrderByPipe implements PipeTransform {
                 orderType = 'DESC';
             }
 
-            obj.sort(function(a: any, b: any) {
+            obj.sort(function(a, b) {
                 if (orderType === 'ASC') {
                     if (a[currentField] < b[currentField]) return -1;
                     if (a[currentField] > b[currentField]) return 1;

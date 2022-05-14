@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output,EventEmitter,ChangeDetectionStrategy }
 })
 export class ItemsImportComponent implements OnInit {
   @Input('app') app: any;
-  @Input('itemType') itemType: string = '';
+  @Input('itemType') itemType: string;
   @Input('options') options: any;
   @Output('parse') onParse: EventEmitter<{items:any[],errors:[any]}> = new EventEmitter<{items:any[],errors:[any]}>();
 
@@ -18,17 +18,15 @@ export class ItemsImportComponent implements OnInit {
   public delitmer:string = '';
   public errors:any = [];
   public validators:any = {
-    required:(value:any, key:any, items:any, index:any)=>{
+    required:(value, key, items, index)=>{
         if(!value) return {class:'danger',msg: 'empty value',type:'error'};
-        return {};
     },
-    uniq:(value:any, key:any, items:any, index:any)=>{
+    uniq:(value, key, items, index)=>{
       if(value) {
         if(index[key]&&index[key][value]) {
           return {class:'danger',msg: 'value not uniq',type:'error'};
         }
       }
-      return {};
     },
   };
 
@@ -39,12 +37,12 @@ export class ItemsImportComponent implements OnInit {
   }
 
   public parseSrcData() {
-    let index:any = {};
+    let index = {};
     this.errors = [];
 
     this.parsedItems = this.srcData.split(/[\n\r]/).map((row,i)=>{
       let arr = row.split(new RegExp(this.delitmer?this.delitmer:/[\t\s,;]/));
-      let item:any = {_state:{}};
+      let item = {_state:{}};
       for(let  key in this.options.fields) {
         let field = this.options.fields[key];
         if(field.src==='value') {
@@ -87,8 +85,8 @@ export class ItemsImportComponent implements OnInit {
     this.onParse.emit({items:items,errors:this.errors});
   }
 
-  public notSkypped(items:any) {
-    return items.filter((item:any)=>(item.src!=='skip'));
+  public notSkypped(items) {
+    return items.filter(item=>(item.src!=='skip'));
   }
 }
 

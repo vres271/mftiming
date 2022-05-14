@@ -1,0 +1,31 @@
+<div *ngIf="app.users.r.r">
+<app-items-controls [app]="app" [itemType]="'users'" ></app-items-controls>
+<table class="mt-2 table {{!app.users.ready?'not-ready':'ready'}}">
+  <thead>
+    <tr>
+      <th scope="col" width="30px">#</th>
+      <th scope="col" width="10px"></th>
+      <th scope="col" translate>users.name</th>
+      <th scope="col" translate>users.ugroupName</th>
+      <th scope="col" translate>users.fullName</th>
+      <th scope="col" translate>users.email</th>
+      <th scope="col" translate>users.phone</th>
+      <th scope="col" width="30px">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of app.users.items | myFilter: app.state.items.users.filter  | asResult : result | slice:0:app.state.items.users.limit ;  index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td><fa-icon *ngIf="item.root" [icon]="faUserLock" class="grey" title="{{'Root user'|translate}}"></fa-icon></td>
+      <td><a  href="" [routerLink]="'/user/'+item.id" (click)="filter=''">{{item.name}}</a></td>
+      <td><a  href="" [routerLink]="'/user-group/'+item.ugroups_id" (click)="filter=''">{{item.ugroupName}}</a></td>
+      <td>{{item.fullName}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.phone}}</td>
+      <td><span class="tomato pointer {{(item.root||!app.users.r.d)&&'disabled'}}" (click)="(!item.root&&app.users.r.d)&&delUser(item);"><fa-icon [icon]="faTrashAlt"></fa-icon></span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div  *ngIf="!app.users.r.r" class="alert alert-warning text-center" role="alert">Access denied. You have no read access to this items</div>
+<app-items-paginator [state]="app.state.items.users"    [result]="result"></app-items-paginator>

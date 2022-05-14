@@ -1,0 +1,18 @@
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle dropdown-no-caret " [routerLinkActive]="'active'" href="#" role="button" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+          <fa-icon class="silver"  [icon]="faTrashAlt"></fa-icon>
+          <sup *ngIf="checkSize()" ><span  class="badge badge-danger">{{trashSize}}</span></sup>
+        </a>
+        <div  class="dropdown-menu" aria-labelledby="navbarDropdown"><!-- [hidden]="!trashSize" -->
+          <div *ngFor="let itemType of app.trash.trashTypes">
+            <a routerLink="/trash/{{itemType}}" *ngIf="app[itemType].trash.length" class="dropdown-item text-capitalize"  title="{{'trash.Show_all_deleted_t'|translate : {t:('types.'+itemType|translate)} }} " href="#" tabindex="-1" aria-disabled="true"><small translate>types.{{itemType}} <sup><span  class="badge badge-danger">{{1*app[itemType].trash.length}}</span></sup></small></a>
+            <div class="dropdown-item pointer" *ngFor="let item of app[itemType].trash" (click)="$event.stopPropagation();">
+              <span class="pointer grey mr-1" title="{{'trash.Restore_this_Item'|translate}}" (click)="restore(item, $event)"><fa-icon [icon]="faTrashRestore"></fa-icon> </span> 
+              <!-- <a  routerLink="/trash/{{itemType}}/{{item.id}}" href="" class="grey">{{item.name}}</a> -->
+              <span  class="grey">{{item.name}}</span>
+            </div>
+          </div>
+          <div *ngIf="trashSize" class="dropdown-divider"></div>
+          <a class="dropdown-item " routerLink="/trash"  translate>trash.All_deleted_Items</a>
+        </div>
+      </li>

@@ -8,7 +8,7 @@ import { Component, OnInit , Input,ChangeDetectionStrategy} from '@angular/core'
 })
 export class ItemsPaginatorComponent implements OnInit {
   @Input('state') s: any;
-  @Input('result') result?: any;
+  @Input('result') result: object;
 
   constructor() { }
 

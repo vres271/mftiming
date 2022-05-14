@@ -1,0 +1,63 @@
+<div class="row mb-2">
+  <div class="col-md-8">
+    <div class="">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link {{!objectType&&'active'}}"  routerLink="/trash" href="" translate>All</a>
+        </li>
+        <li class="nav-item" *ngFor="let type of app.trash.trashTypes">
+          <a class="nav-link {{objectType&&type===objectType&&'active'}} text-capitalize"  routerLink="/trash/{{type}}" href="" translate>types.{{type}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <app-items-controls  [app]="app" [itemType]="'trash'" ></app-items-controls>
+  </div>
+</div>
+
+<div *ngIf="objectType&&app.trash.ready&&app.trash.items[objectType]">
+  <table  class="mt-2 table {{!app.trash.ready?'not-ready':'ready'}}">
+    <thead>
+      <tr>
+        <th scope="col" width="30px">#</th>
+        <th scope="col" width="30px"></th>
+        <th scope="col"  translate>trash.name</th>
+        <th scope="col"  width="230px" translate>trash.d</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of app.trash.items[objectType] | myFilter: app.state.items.trash.filter | orderBy: ['-d']   | asResult : result | slice:0:app.state.items.trash.limit ; index as i;">
+        <th scope="row">{{i+1}}</th>
+        <td ><span class="pointer grey " title="{{'trash.Restore_this_Item'|translate}}" (click)="restore(item)"><fa-icon [icon]="faTrashRestore"></fa-icon></span></td>
+        <td>{{item.name}}</td>
+        <td>{{item.d |date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-items-paginator [state]="app.state.items.trash"    [result]="result"></app-items-paginator>
+</div>
+
+<div *ngIf="!objectType&&app.trash.ready&&app.trash.allItems" >
+<table class="mt-2 table {{!app.trash.ready?'not-ready':'ready'}}">
+  <thead>
+    <tr>
+      <th scope="col" width="30px">#</th>
+      <th scope="col" width="30px"></th>
+      <th scope="col" translate>trash.itemType</th>
+      <th scope="col" translate>trash.name</th>
+      <th scope="col"  width="230px" translate>trash.d</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of app.trash.allItems | myFilter: app.state.items.trash.filter | orderBy: ['-d'] | asResult : result | slice:0:app.state.items.trash.limit ; index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td ><span class="pointer grey " title="{{'trash.Restore_this_Item'|translate}}" (click)="restore(item)"><fa-icon [icon]="faTrashRestore"></fa-icon></span></td>
+      <td  translate>types.{{item.itemType}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.d |date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+    </tr>
+  </tbody>
+</table>
+  <app-items-paginator [state]="app.state.items.trash"    [result]="result"></app-items-paginator>
+</div>

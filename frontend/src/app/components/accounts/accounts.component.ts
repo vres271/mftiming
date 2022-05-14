@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent implements OnInit {
-
+  public itemType = 'accounts';
+  public tableOptions = {
+    delBtn:false
+  };
   constructor(
-    private dbService: NgxIndexedDBService
-    ) { }
+    public app: AppService,
+  ) { }
 
-  ngOnInit(): void {
-    // this.dbService
-    //   .add('people', {
-    //     name: `Bruce Wayne1`,
-    //     email: `bruce@wayne.com`,
-    //   })
-    //   .subscribe((key) => {
-    //     console.log('key: ', key);
-    //   });    
+  ngOnInit() {
   }
+
+
 
 }

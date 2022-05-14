@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  height: 100%;
+  // background-color: #f5f5f5;
+}
+.ready{
+  transition: opacity .5s;
+  opacity: 1;
+}
+.not-ready{
+  transition: opacity .5s;
+  opacity: .2;
+}
+
+.tomato {
+  color: tomato;
+}
+.red {
+  color: tomato;
+}
+.silver {
+  color: silver;
+}
+.grey {
+  color: grey;
+}
+.green {
+  color: green;
+}
+
+
+.pointer{
+  cursor: pointer;
+  &:hover{
+    opacity: .8;
+  }
+}
+
+.disabled{
+  cursor: default;
+  color: silver;
+}
+
+.deleted{
+  cursor: default;
+  color: grey;
+  text-decoration: line-through;
+}
+
+
+/*Forms*/
+
+form{
+  &.ng-dirty{
+    input{
+      &.ng-invalid{
+        background: rgba(190,40,10,.1);
+      }
+    }  
+  }
+}
+
+
+.tree{
+  border: 1px solid #ced4da;
+  border-radius: .25rem;  
+  padding: .375rem .75rem;
+  max-height: 500px;
+  overflow-y: auto;
+  .branch-header{
+    cursor: pointer;
+  }
+  div{
+    padding: 0px;
+    margin-left: 20px;
+    &.inline{
+      display: inline-block;
+      margin-left: 10px;
+    }
+    &.checked{
+      text-decoration: underline;
+    }
+  }
+  label{
+    cursor: pointer;
+    margin-bottom: 0;
+    padding-left: 8px;
+    input[type="checkbox"] {
+      position: relative;
+      top: 3px;
+      left: -4px;
+      &.null{
+        opacity: .5;
+      }
+    }
+    &.disabled{
+      opacity: .5;
+      cursor: default;
+    }
+  }
+}
+
+.dropdown-no-caret:after {
+  content: none;
+}
+
+@-webkit-keyframes blinker {
+  from {
+    color: rgba(250,160,0,1);
+  }
+  to {
+    color: rgba(100,100,100,1);
+  }
+}
+.nav-appevts-log{
+  // margin-top: -20px;
+  // margin-bottom: -20px;
+  max-height: 40px;
+  overflow-y: hidden;
+  .evt-item {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: .1s;
+    -webkit-animation-iteration-count: 10;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-direction: alternate;
+    font-size: 12px;
+    color: rgba(0,0,0,.4);
+    .date{
+      font-size: 10px;
+    }
+  } 
+}
+
+

@@ -11,20 +11,16 @@ import { APIService } from '../services/api.service';
 })
 
 export class Item {
-  public id: number = 0;
-  public name: string = '';
+  public id: number;
+  public name: string;
   public _bckp: any = {};
   public _ready: boolean;
-  public _added: boolean = false;
-  public _parent: any;
+  public _added: boolean;
 
-  constructor( item:Item, parent:ItemService) {
-    this._parent = parent;
+  constructor(item_, public _parent) {
     this._ready =  this._parent._itemService.ready;
-    let _s:any = this;
-    let item_:any = item
     for(var key in item_) {
-      _s[key] = item_[key];
+      this[key] = item_[key];
       this._bckp[key] = item_[key];
     }
   }
@@ -36,7 +32,7 @@ export class Item {
   public set(propName: string, value: any):Observable<Item> {
     return this._parent.set(this, propName, value)
       .pipe(
-        tap((res:any)=>{this._bckp[propName]=res[propName]}),
+        tap(res=>{this._bckp[propName]=res[propName]}),
         map(res=>this),
       );
   }
@@ -56,7 +52,7 @@ export class Item {
   }
 
   public get values():object {
-    let values:any = {};
+    let values = {};
     for(let key in this) {
       if(key[0]!=='_') {values[String(key)]=this[key];}
     }
@@ -69,18 +65,14 @@ export class Item {
 
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-
 export class ItemService {
   public _itemType: string = 'item';
-  public _item: Item|null = null;
+  public _item: Item;
   public ready: boolean = false;
 
   constructor(public api: APIService) { }
 
-  public create(item_:any,parent:any) {
+  public create(item_,parent) {
     console.error('Item.create() must be overridden')
     return new Item(item_,parent)
   }

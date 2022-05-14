@@ -1,0 +1,21 @@
+<h3><span  class="text-capitalize">{{'type.ugroup'|translate}}</span> : {{(userGroup.id?'Edit':'Create')|translate|lowercase }}</h3>
+<form  [formGroup]="userGroupForm" (submit)="onUserGroupFormSubmit()">
+  <fieldset  [disabled]="(userGroup&&!app.ugroups.r.m)||(!userGroup&&!app.ugroups.r.a)" >
+    <div class="row">
+      <div class="col-md-4  col-xl-2">
+        <div class="form-group">
+          <label for="name" translate>ugroups.name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+      </div>
+      <div class="col-md-8  col-xl-10">
+        <div class="form-group">
+          <label for="rights" translate>ugroups.rights</label>
+          <input type="hidden" class="form-control" id="rights" formControlName="rights">
+          <app-input-tree *ngIf="userGroup._ready" [item]="userGroup" [form]="userGroupForm" [sourceTree]="app.core.user.rights" [controlIdKey]="'rights'" ></app-input-tree>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{(userGroup.id?'Save_changes':'Add_new')|translate}}</button>
+  </fieldset>
+</form>

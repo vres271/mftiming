@@ -1,5 +1,5 @@
-<div >
-  <table  class="mt-2 table {{(svc&&!svc.ready)?'not-ready':'ready'}}" id="items-table">
+<div *ngIf="svc.r.r">
+  <table  class="mt-2 table {{!svc.ready?'not-ready':'ready'}}" id="items-table">
     <thead>
       <tr>
         <th *ngIf="options.indexCol" scope="col" width="30px">#</th>
@@ -8,10 +8,10 @@
         <th scope="col" width="30px"></th>
       </tr>
     </thead>
-    <tbody *ngIf="svc">
-        <!-- [ngClass]="[(item._added?'added':''),(item.b?'blocked':'')]"  -->
+    <tbody>
       <tr 
-        
+        [ngClass]="[(item._added?'added':''),(item.b?'blocked':'')]" 
+        title="{{(item.b?('blocked '+(item.b|date : 'yyyy-MM-dd HH:mm:ss')):'')}}"  
         *ngFor="let item of svc.items | myFilter: s.filter | orderBy : options.orderBy | asResult : result | slice:0:s.limit ; index as i;"
         >
         <th *ngIf="options.indexCol" scope="row">{{i+1}}</th>

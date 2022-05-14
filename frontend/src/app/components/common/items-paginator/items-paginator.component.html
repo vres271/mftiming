@@ -1,5 +1,5 @@
 <nav *ngIf="result.items.length-s.limit>0" aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item pointer"><span (click)="s.limit=s.limit*2" class="page-link" >Show_other_n_rows {{(result.items.length-s.limit>=s.limit)?s.limit:(result.items.length-s.limit)}}</span></li>
+    <li class="page-item pointer"><span (click)="s.limit=s.limit*2" class="page-link" >{{'ITEMS-PAGINATOR.Show_other_n_rows' | translate : {n:((result.items.length-s.limit>=s.limit)?s.limit:(result.items.length-s.limit))} }}</span></li>
   </ul>
 </nav>

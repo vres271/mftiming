@@ -1,10 +1,10 @@
 <form>
   <div class="form-row">
     <div *ngIf="addPath" class="col" style="max-width: 62px; min-width: 62px;">  
-      <button  type="button" class="form-control" [disabled]="!svc.r.a" routerLink="/{{addPath}}" class="btn btn-secondary" >Add</button>
+      <button  type="button" class="form-control" [disabled]="!svc.r.a" routerLink="/{{addPath}}" class="btn btn-secondary" translate>Add</button>
     </div>
     <div class="col filter" *ngFor="let inputName of s.filter|keys">
-      <input [(ngModel)]="s.filter[inputName]" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="{{(itemType+'.'+inputName)}}">
+      <input [(ngModel)]="s.filter[inputName]" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="{{(itemType+'.'+inputName)|translate}}">
     </div>
     <div class="col" style="max-width: 51px; min-width: 51px;">
       <button type="button" (click)="resetFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>

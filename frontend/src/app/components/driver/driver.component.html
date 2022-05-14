@@ -1,0 +1,30 @@
+<h3><span  class="text-capitalize">{{'type.driver'|translate}}</span> : {{(driver?'Edit':'Create')|translate|lowercase }}</h3>
+<form  [formGroup]="driverForm" (submit)="onDriverFormSubmit()">
+  <fieldset  [disabled]="(driver&&!app.drivers.r.m)||(!driver&&!app.drivers.r.a)" >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name1" translate>drivers.name1</label>
+          <input type="text" class="form-control" id="name1" formControlName="name1">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name2" translate>drivers.name2</label>
+          <input type="text" class="form-control" id="name2" formControlName="name2">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name3" translate>drivers.name3</label>
+          <input type="text" class="form-control" id="name3" formControlName="name3">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{(driver?'Save_changes':'Add_new')|translate}}</button>
+  </fieldset>
+</form>

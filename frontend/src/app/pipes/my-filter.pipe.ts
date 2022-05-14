@@ -6,7 +6,7 @@ import { of } from 'rxjs';
     pure: false
 })
 export class MyFilterPipe implements PipeTransform {
-    transform(items: any[], filter: any, byKeys: string[]|null = null): any {
+    transform(items: any[], filter: any, byKeys: string[] = null): any {
         if (!items || !filter) {
             return items;
         }

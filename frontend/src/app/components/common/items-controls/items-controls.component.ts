@@ -1,6 +1,6 @@
 import { Component, OnInit , Input, ChangeDetectionStrategy} from '@angular/core';
 import {  faBan, faFileExcel } from '@fortawesome/free-solid-svg-icons';
-// import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 @Component({
   selector: 'app-items-controls',
@@ -11,20 +11,19 @@ import {  faBan, faFileExcel } from '@fortawesome/free-solid-svg-icons';
 })
 export class ItemsControlsComponent implements OnInit {
   @Input('app') app: any;
-  @Input('itemType') itemType: string = '';
+  @Input('itemType') itemType: string;
   faBan = faBan;
   faFileExcel = faFileExcel;
   public svc: any = null;
   public addPath: string = '';
   public s: any;
   public limits: number[] = [];
-  // exportAsConfig: ExportAsConfig = {
-  //   type: 'xlsx', 
-  //   elementIdOrContent: 'items-table'
-  // }
+  exportAsConfig: ExportAsConfig = {
+    type: 'xlsx', 
+    elementIdOrContent: 'items-table'
+  }
 
-  // constructor(private exportAsService: ExportAsService) { }
-  constructor() { }
+  constructor(private exportAsService: ExportAsService) { }
 
   ngOnInit() {
     this.svc = this.app[this.itemType];
@@ -46,9 +45,9 @@ export class ItemsControlsComponent implements OnInit {
 
   public export() {
     // download the file using old school javascript method
-    // this.exportAsService.save(this.exportAsConfig, this.itemType).subscribe(() => {
+    this.exportAsService.save(this.exportAsConfig, this.itemType).subscribe(() => {
       // save started
-    // });
+    });
     // get the data as base64 or json object for json type - this will be helpful in ionic or SSR
     // this.exportAsService.get(this.exportAsConfig).subscribe(content => {
     //   console.log(content);

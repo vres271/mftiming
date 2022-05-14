@@ -8,13 +8,13 @@ import { APIService } from '../services/api.service';
   providedIn: 'root'
 })
 export class CoreService {
-  public session: {sid: string}|null;
+  public session: {sid: string};
   public user: {
     id: number, 
     name: string,
     rights: any,
     super?: boolean,
-  }|null;
+  };
   public ref: any;
   public settings: any;
   public loggedInEvent: Event = new Event('coreloggedIn');
@@ -49,7 +49,7 @@ export class CoreService {
   }
 
 
-  public login(LoginData:any):Observable<any> {
+  public login(LoginData):Observable<any> {
     return this.api.request('POST','core/login', LoginData)
       .pipe(
         catchError(err=>{this.clearSession(); throw err}),
@@ -64,7 +64,7 @@ export class CoreService {
   public logOut():Observable<any> {
     return this.api.request('DELETE','core/logout')
       .pipe(
-        tap((res:any)=>{
+        tap(res=>{
           if(res.logout) this.clearSession();
           return res;
         })
@@ -76,7 +76,7 @@ export class CoreService {
     this.user = null;
   }
 
-  public createSession(res:any):object|null {
+  public createSession(res):object {
     if(res.user) {
       this.user = res.user;
       this.session = {sid:res.sid};
@@ -96,7 +96,7 @@ export class CoreService {
 
   public createRightsAliases(services:any[]) {
     services.forEach((svc:any)=>{
-      if(svc._itemService._itemType&&this.user&&this.user.rights.items[svc._itemService._itemType]) {
+      if(svc._itemService._itemType&&this.user.rights.items[svc._itemService._itemType]) {
         svc.r = this.user.rights.items[svc._itemService._itemType];
       }
     });

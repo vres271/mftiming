@@ -5,10 +5,10 @@ const migrationFactory =()=>{
   // The animal table was added with version 2 but none of the existing tables or data needed
   // to be modified so a migrator for that version is not included.
   return {
-    //1: (db:any, transaction:any) => {
+    // 1: (db:any, transaction:any) => {
     //  const store = transaction.objectStore('people');
     //  store.createIndex('country', 'country', { unique: false });
-    //},
+    // },
 
   };
 }
@@ -45,18 +45,6 @@ export function myDBConfig():DBConfig {
           { name: 'name', keypath: 'name', options: { unique: true } },
           { name: 'from', keypath: 'from', options: { unique: false } },
           { name: 'to', keypath: 'to', options: { unique: false } },
-          { name: 'd', keypath: 'd', options: { unique: false } },
-        ]
-      },
-      {
-        store: 'category',
-        storeConfig: { keyPath: 'id', autoIncrement: true },
-        storeSchema: [
-          { name: 'accountId', keypath: 'accountId', options: { unique: false } },
-          { name: 'seasonId', keypath: 'seasonId', options: { unique: false } },
-          { name: 'name', keypath: 'name', options: { unique: true } },
-          { name: 'ageFrom', keypath: 'ageFrom', options: { unique: false } },
-          { name: 'ageTo', keypath: 'ageTo', options: { unique: false } },
           { name: 'd', keypath: 'd', options: { unique: false } },
         ]
       },

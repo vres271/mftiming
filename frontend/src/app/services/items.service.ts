@@ -13,7 +13,7 @@ import { Indexable } from '../classes/indexable';
 })
 export class ItemsService extends Indexable{
 
-  public override _indexableProps:string[] = ['id','name'];
+  public _indexableProps:string[] = ['id','name'];
   public ready: boolean = false;
   public r: any = {};
   public app:any = null;
@@ -30,8 +30,7 @@ export class ItemsService extends Indexable{
   }
 
   public get itemTypeId() : number {
-    return 1;
-    //return [Object.keys(this.app.ref.object_types)].reduce((obj, key)=>{obj[this.app.ref.object_types[key]] = key; return obj; }, {})[this.itemType];
+    return Object.keys(this.app.ref.object_types).reduce((obj, key)=>{obj[this.app.ref.object_types[key]] = key; return obj; }, {})[this.itemType];
   }
 
   public get(params?: any):Observable<[any]> {
@@ -85,7 +84,7 @@ export class ItemsService extends Indexable{
   public createEventHandler() {
     fromEvent(document, 'appEvent')
       .pipe(
-        filter((event:any)=>{return 1*event.detail.tp===1*this.itemTypeId}),
+        filter((event:CustomEvent)=>{return 1*event.detail.tp===1*this.itemTypeId}),
         )
         .subscribe((event:CustomEvent)=>{
           if(event.detail) {

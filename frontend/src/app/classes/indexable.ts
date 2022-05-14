@@ -8,10 +8,10 @@ export class Indexable {
     this._index = {};
   }
 
-  public createIndex(items:any) {
+  public createIndex(items) {
     this._indexableProps.forEach(prop=>{
       this._index[prop] = {};
-      items.forEach((item:any)=>{
+      items.forEach(item=>{
         if(item[prop]) this._index[prop][item[prop]] = item;
       })
     })

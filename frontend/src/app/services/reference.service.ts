@@ -7,9 +7,9 @@ export class ReferenceService {
 
   constructor() { }
 
-  public set(data:any) {
+  public set(data) {
     for(let key in data) {
-      //this[key] = data[key];
+      this[key] = data[key];
     }
   }
 }

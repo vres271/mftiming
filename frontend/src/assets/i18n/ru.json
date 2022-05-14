@@ -1,0 +1,288 @@
+{
+  "Tags":"Метки"
+  ,"Recievers":"Ресиверы"
+  ,"Distributions":"Раздачи"
+  ,"Drivers":"Водители"
+  ,"Administration":"Администрирование"
+  ,"Users":"Пользователи"
+  ,"User Groups":"Группы пользователей"
+  ,"Queue":"Очередь задач"
+  ,"Log":"Лог"
+  ,"Commands":"Команды"
+  ,"Settings":"Настройки"
+  ,"Accounts":"Аккаунты"
+
+  ,"items":"items"
+  ,"All":"Все"
+  ,"main":"Основное"
+  ,"Disabled":"Отключен"
+  ,"Save changes":"Сохранить изменения"
+  ,"Prev":"Пред."
+  ,"Send":"Отправить"
+  ,"Set":"Set"
+  ,"Messages":"Сообщения"
+  ,"Save_changes":"Сохранить изменения"
+  ,"Add_new":"Создать новый"
+  ,"Add new Items":"Создать новые элементы"
+  ,"Added":"Добавленные"      
+  ,"All_Other":"Остальные"      
+  ,"Root user":"Root-пользователь"      
+  ,"error":"ошибка"      
+  ,"blocked":"заблокировано"      
+  ,"reset":"Сброс"      
+  ,"Yes":"Да"      
+  ,"No":"Нет"      
+  ,"Are you sure":"Вы уверены"      
+  ,"Single Item":"Один элемент"
+  ,"Multiple":"Несколько"
+
+  ,"lng": "Язык"
+  ,"appevts_refresh_interval": "Интервал обновления событий"
+  ,"commands_primary_service": "Первичный сервис отправки команд"
+  ,"commands_secondary_service": "Вторичный сервис отправки команд"
+  ,"Access_denied_to_this_items": "Доступ запрещён. У вас нет доступа на эти элементы"
+
+  ,"Application for...":"Приложение для контроля раздачи топлива с помощью RFID-меток"
+  ,"Waiting for sending command...":"Ожидание отправки команды..."
+  ,"Waiting for request messages...":"Ожидание запроса сообщений..."
+  ,"Command text":"Текст команды"
+
+  ,"row":"строка"
+  ,"field":"поле"
+  ,"errors":"ошибки"
+  ,"error":"ошибка"
+  ,"value not uniq":"значение не уникально"
+  ,"empty value":"пустое значение"
+
+  ,"types":{
+    "users":"пользователи"
+    ,"ugroups":"группы"
+    ,"recievers":"ресиверы"
+    ,"tags":"метки"
+    ,"drivers":"водители"
+    ,"avl_unit":"обьекты"
+    ,"distributions":"раздачи"
+    ,"recievers_tags":"ресивер-метки"
+    ,"command":"команды"
+    ,"commands":"команды"
+    ,"accounts":"аккаунты"
+    ,"rtqueue":"очередь"
+    ,"log":"лог"
+    ,"trash":"корзина"
+    ,"settings":"настройки"
+    ,"hw_types":"типы оборудования"    
+    ,"messages":"сообщения"    
+  }
+  ,"type":{
+    "user":"пользователь"
+    ,"ugroup":"группа"
+    ,"reciever":"ресивер"
+    ,"tag":"метка"
+    ,"driver":"водитель"
+    ,"avl_unit1":"обьект"
+    ,"distribution":"раздача"
+    ,"reciever_tag":"ресивер-метка"
+    ,"account":"аккаунт"
+  }
+
+  ,"ITEMS-TABLE":{
+    "Access_denied":"Доступ запрещён. У вас нет доступа на "
+  }
+
+  ,"ITEMS-PAGINATOR":{
+    "Show_other_n_rows":"Показать остальные {{n}} строк"
+  }
+
+  ,"SEARCH-SELECT":{
+    "Loading_list":"Загрузка списка..."
+    ,"Search_another_Item":"Выбрать элемент"
+    ,"Not selected":"Не выбрано"
+  }
+
+  ,"INPUT-TREE":{
+    "nav":"Навигация"
+    ,"header":"Верхнее"
+    ,"items":"Элементы"
+  }
+
+  ,"ITEMS-IMPORT":{
+    "skip":"Пропустить",
+    "value":"Значение",
+    "column":"Столбец",
+    "delitmer":"Разделитель",
+    "auto":"Авто",
+    "space":"Пробел",
+    "tabulation":"Табуляция",
+    "Enter constant value":"Введите фиксированное значение",
+    "Source data":"Исходные данные",
+    "Parsed Items":"Распознанные элементы"
+  }
+
+  ,"Create":"Создать"
+  ,"Add":"Нов."
+  ,"Edit":"Редактировать"
+  ,"Del":"Удалить"
+
+  ,"tags":{
+    "num":"Номер"
+    ,"rtqerrors":""
+    ,"unitNm":"Объект"
+    ,"driverName":"Водитель"
+    ,"units_id":"Объект"
+    ,"drivers_id":"Водитель"
+    ,"recieverUnitNames":"Объект ресивера"
+    ,"total_limit":"Тотальный лимит"
+    ,"day_limit":"Суточный лимит"
+    ,"total_balance":"Тотальный баланс"
+    ,"day_balance":"Суточный баланс"
+    ,"This tag added to reciever(s)":"Метка добавлена на ресивер(ы)"
+    ,"This tag is not added to any receiver":"Эта метка не добавлена ни на один ресивер"    
+    ,"Reset Tag balance":"Сбросить баланс"
+  }
+
+  ,"recievers":{
+    "name":"Имя"  
+    ,"unitHwName":"Тип оборудования"  
+    ,"unitUid":"UID Объекта" 
+    ,"units_id":"Объект" 
+    ,"tagNums":"Метки" 
+    ,"tz":"Зона"      
+    ,"k":"Коэф. колонки"      
+  }
+
+  ,"distributions":{
+    "dt":"Время"  
+    ,"recieverName":"Ресивер"  
+    ,"tagName":"Метка" 
+    ,"tagDriverName":"Водитель" 
+    ,"amount":"Количество"  
+    ,"total_limit":"Тотальный лимит" 
+    ,"day_limit":"Суточный лимит" 
+    ,"total_balance":"Тотальный баланс" 
+    ,"day_balance":"Суточный баланс" 
+  }
+
+  ,"drivers":{
+    "name":"ФИО"  
+    ,"name1":"Фамилия"  
+    ,"name2":"Имя"  
+    ,"name3":"Отчество"  
+  }
+
+  ,"users":{
+    "name":"Имя"  
+    ,"ugroupName":"Группа"  
+    ,"fullName":"ФИО"  
+    ,"email":"Email" 
+    ,"phone":"Телефон"
+    ,"ugroups_id":"Группа"
+    ,"password":"Пароль"
+    ,"password_confirmation":"Подтверждение пароля"
+    ,"name1":"Фамилия"
+    ,"name2":"Имя"
+    ,"name3":"Отчество"
+    ,"rights":"Права"
+  }
+
+  ,"ugroups":{
+    "name":"Имя"  
+    ,"rights":"Права"  
+  }
+  
+  ,"rtqueue":{
+    "c":"Добавлено" 
+    ,"typeName":"Тип"  
+    ,"recieverName":"Ресивер"  
+    ,"unitNm":"Т/С"  
+    ,"units_imei":"IMEI"  
+    ,"tags_id":"Метка" 
+    ,"tagName":"Метка" 
+    ,"tags_num":"Номер" 
+    ,"value":"Значение" 
+    ,"userName":"Пользователь"  
+    ,"started":"Начато" 
+    ,"finished":"Окончено"  
+    ,"statusName":"Статус"  
+    ,"try":"Попыток" 
+    ,"try_limit":"Лимит"
+    ,"types":{
+      "filling":"Раздача топлива"
+      ,"total_limit_change":"Изменение тотального лимита"
+      ,"day_limit_change":"Изменение суточного лимита"
+      ,"total_balance_change":"Изменение тотального баланса"
+      ,"day_balance_change":"Изменение суточного баланса"
+      ,"tag_set_balance":"Задание баланса метки"
+      ,"tag_set":"Добавление метки"
+      ,"tag_delete":"Удаление метки"
+      , "tag_reset": "Сброс метки"
+      ,"reciever_tz_change":"Смена зоны ресивера"      
+    }
+    ,"statuses":{
+      "waiting":"Ожидание"
+      ,"started":"Начато"
+      ,"success":"Успешно"
+      ,"error":"Ошибка"
+      ,"canceled":"Отменено"      
+    }
+  }
+
+  ,"log":{
+    "dt":"Время"
+    ,"userName":"Пользователь"
+    ,"ip":"IP"
+    ,"usessions_id":"SID"
+    ,"objectTypeName":"Тип"
+    ,"object_name":"Элемент"
+    ,"actionTypeName":"Действие"
+    ,"data":"Данные"
+    ,"action_types":{
+      "add":"Создание"
+      ,"modify":"Изменение"
+      ,"delete":"Удаление"
+      ,"restore":"Восстановление"
+      ,"block":"Блокировка"
+      ,"unblock":"Разблокировка"
+      ,"send":"Отправка"
+      ,"parse":"Парсинг"
+      ,"fill":"Наполнение"
+    }
+  }
+
+  ,"accounts":{
+    "name":"Имя"  
+    ,"wtoken":"Wialon-токен"  
+    ,"Init":"Инициализировать"
+    ,"Trying to init this Account":"Пробуем инициализировать этот аккаунт"
+    ,"Connected to Wialon as":"Подключен к Wialon как"
+    ,"Wialon connect error":"Ошибка подключения к Wialon"
+    ,"Wialon Units list loaded":"Список объектов Wialon загружен"
+    ,"Wialon Units list loading error":"Ошибка загрузки списка объектов Wialon"
+    ,"Wialon Notifications found":"Найдены Wialon уведомления"
+    ,"Wialon Notifications search error":"Ошибка: уведомления Wialon не найдены"
+    ,"FuelLimit notification found":"Найдены уведомления FuelLimit"
+    ,"Used units":"Используемые объекты"
+    ,"items":"элементов"
+  }
+
+  ,"trash":{
+    "name":"Имя"  
+    ,"itemType":"Тип"  
+    ,"d":"Удалён"  
+    ,"All_deleted_Items":"Все удаленные элементы"  
+    ,"Show_all_deleted_t":"Все удаленные {{t}}"  
+    ,"Restore_this_Item":"Восстановить этот элемент"  
+  }
+
+  ,"sign-in":{
+    "Please sign in":"Авторизация"
+    ,"Sign in":"Войти"
+    ,"User Name":"Имя пользователя"
+    ,"Password":"Пароль"
+    ,"errors":{
+      "Empty User Name":"Не указано имя пользователя"
+      ,"Empty Password":"Не указан пароль"
+      ,"Wrong login/password":"Неправильный пароль или имя пользователя"
+    }
+  }
+
+}

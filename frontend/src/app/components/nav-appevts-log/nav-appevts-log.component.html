@@ -1,0 +1,10 @@
+<li *ngIf="app.APPEvents.evtsList.length>0" class="nav-item ">
+  <div class="nav-appevts-log ml-3">
+    <div class="evt-item" *ngFor="let evt of app.APPEvents.evtsList.filter(filterByTypes)  ">
+      <span class="date">{{evt.t|date : 'HH:mm:ss'}}:</span>
+      {{('log.action_types.'+app.ref.action_types[evt.a])|translate}} 
+      {{('types.'+app.ref.object_types[evt.tp])|translate}}
+      <b *ngIf="app[app.ref.object_types[evt.tp]]">{{app[app.ref.object_types[evt.tp]]._index.id[evt.id]?app[app.ref.object_types[evt.tp]]._index.id[evt.id].name:''}}</b> 
+    </div>
+  </div>
+</li>

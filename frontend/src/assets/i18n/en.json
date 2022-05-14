@@ -1,0 +1,288 @@
+{
+  "Tags":"Tags"
+  ,"Recievers":"Recievers"
+  ,"Distributions":"Distributions"
+  ,"Drivers":"Drivers"
+  ,"Administration":"Administration"
+  ,"Users":"Users"
+  ,"User Groups":"User Groups"
+  ,"Queue":"Queue"
+  ,"Log":"Log"
+  ,"Commands":"Commands"
+  ,"Settings":"Settings"
+  ,"Accounts":"Accounts"
+
+  ,"items":"элементы"
+  ,"All":"All"
+  ,"main":"Main"
+  ,"Disabled":"Disabled"
+  ,"Save changes":"Save changes"
+  ,"Prev":"Prev"
+  ,"Send":"Send"
+  ,"Set":"Set"
+  ,"Messages":"Messages"
+  ,"Save_changes":"Save changes"
+  ,"Add_new":"Add new"
+  ,"Add new Items":"Add new Items"
+  ,"Added_Tags":"Added"      
+  ,"All_Other_Tags":"All Other"      
+  ,"Root user":"Root user"      
+  ,"error":"error"      
+  ,"blocked":"blocked"      
+  ,"reset":"Reset"      
+  ,"Yes":"Yes"      
+  ,"No":"No"      
+  ,"Are you sure":"Are you sure"      
+  ,"Single Item":"Single Item"
+  ,"Multiple":"Multiple"
+
+  ,"lng": "Language"
+  ,"appevts_refresh_interval": "Events refresh interval"
+  ,"commands_primary_service": "Commands primary service"
+  ,"commands_secondary_service": "Commands secondary service"
+  ,"Access_denied_to_this_items": "Access denied. You have no read access to this items"
+ 
+  ,"Application for...":"Application for control of fuel distribution by RFID tags"
+  ,"Waiting for sending command...":"Waiting for sending command..."
+  ,"Waiting for request messages...":"Waiting for request messages..."
+  ,"Command text":"Command text"
+
+  ,"row":"row"
+  ,"field":"field"
+  ,"errors":"errors"
+  ,"error":"error"
+  ,"value not uniq":"value not uniq"
+  ,"empty value":"empty value"
+
+  ,"types":{
+    "users":"users"
+    ,"ugroups":"ugroups"
+    ,"recievers":"recievers"
+    ,"tags":"tags"
+    ,"drivers":"drivers"
+    ,"avl_unit":"unit"
+    ,"distributions":"distributions"
+    ,"recievers_tags":"recievers-tags"
+    ,"command":"command"
+    ,"commands":"commands"
+    ,"accounts":"accounts"
+    ,"rtqueue":"queue"
+    ,"log":"log"
+    ,"trash":"trash"
+    ,"settings":"settings"
+    ,"hw_types":"device types"    
+    ,"messages":"messages"    
+  }
+  ,"type":{
+    "user":"user"
+    ,"ugroup":"ugroup"
+    ,"reciever":"reciever"
+    ,"tag":"tag"
+    ,"driver":"driver"
+    ,"avl_unit":"avl_unit"
+    ,"distribution":"distribution"
+    ,"reciever_tag":"reciever-tag"
+    ,"account":"account"
+  }
+
+  ,"ITEMS-TABLE":{
+    "Access_denied":"Access denied. You have no read access to"
+  }
+
+  ,"SEARCH-PAGINATOR":{
+    "Show_other_n_rows":"Show other {{n}} rows"
+  }
+
+  ,"SEARCH-SELECT":{
+    "Loading_list":"Loading list..."
+    ,"Search_another_Item":"Search another Item"
+    ,"Not selected":"Not selected"
+  }
+
+  ,"INPUT-TREE":{
+    "nav":"Navigation"
+    ,"header":"Header"
+    ,"items":"Items"
+  }
+
+  ,"ITEMS-IMPORT":{
+    "skip":"Skip",
+    "value":"Value",
+    "column":"Column",
+    "delitmer":"Delitmer",
+    "auto":"Auto",
+    "space":"Space",
+    "tabulation":"Tabulation",
+    "Enter constant value":"Enter constant value",
+    "Source data":"Source data",
+    "Parsed Items":"Parsed Items"
+  }
+
+  ,"Create":"Create"
+  ,"Add":"New"
+  ,"Edit":"Edit"
+  ,"Del":"Delete"
+
+  ,"tags":{
+    "num":"Num"
+    ,"rtqerrors":""
+    ,"unitNm":"Unit"
+    ,"driverName":"Driver"
+    ,"units_id":"Unit"
+    ,"drivers_id":"Driver"
+    ,"recieverUnitNames":"Reciever's Unit"
+    ,"total_limit":"Total Limit"
+    ,"day_limit":"Day limit"
+    ,"total_balance":"Total Balance"
+    ,"day_balance":"Day Balance"
+    ,"This tag added to reciever(s)":"This tag added to reciever(s)"
+    ,"This tag is not added to any receiver":"This tag is not added to any receiver"    
+    ,"Reset Tag balance":"Reset Tag balance"
+  }
+
+  ,"recievers":{
+    "name":"Name"  
+    ,"unitHwName":"Device Type"  
+    ,"unitUid":"Unit UID" 
+    ,"units_id":"Unit" 
+    ,"tagNums":"Tags" 
+    ,"tz":"Timezone"      
+    ,"k":"Reciever K"      
+  }
+
+  ,"distributions":{
+    "dt":"Time"  
+    ,"recieverName":"Reciever"  
+    ,"tagName":"Tag" 
+    ,"tagDriverName":"Driver" 
+    ,"amount":"Amount"  
+    ,"total_limit":"Total Limit" 
+    ,"day_limit":"Day Limit" 
+    ,"total_balance":"Total Balance" 
+    ,"day_balance":"Day Balance"
+  }
+
+  ,"drivers":{
+    "name":"Fullname"  
+    ,"name1":"Surname"  
+    ,"name2":"Name"  
+    ,"name3":"Middle name"  
+  }
+
+  ,"users":{
+    "name":"Name"  
+    ,"ugroupName":"Group"  
+    ,"fullName":"Fullname"  
+    ,"email":"Email" 
+    ,"phone":"Phone"
+    ,"ugroups_id":"Group"
+    ,"password":"Password"
+    ,"password_confirmation":"Password confirmation"
+    ,"name1":"Surname"
+    ,"name2":"Name"
+    ,"name3":"Middle name"
+    ,"rights":"Rights"
+  }
+
+  ,"ugroups":{
+    "name":"Name"  
+    ,"rights":"Rights"  
+  }
+  
+  ,"rtqueue":{
+    "c":"Created" 
+    ,"typeName":"Type"  
+    ,"recieverName":"Rcvr"  
+    ,"unitNm":"Unit"  
+    ,"units_imei":"IMEI"  
+    ,"tags_id":"Tag" 
+    ,"tagName":"Tag" 
+    ,"tags_num":"Num" 
+    ,"value":"Value" 
+    ,"userName":"User"  
+    ,"started":"Start" 
+    ,"finished":"Finish"  
+    ,"statusName":"Status"  
+    ,"try":"Try" 
+    ,"try_limit":"Limit"
+    ,"types": {
+      "filling": "Fuel Distribution"
+      , "total_limit_change": "Total limit change"
+      , "day_limit_change": "Daily limit change"
+      , "total_balance_change": "Total balance change"
+      , "day_balance_change": "Daily balance change"
+      , "tag_set_balance": "Tag balance set"
+      , "tag_set": "Tag add"
+      , "tag_delete": "Tag delete"
+      , "tag_reset": "Tag reset"
+      , "reciever_tz_change": "Reciever timezone change"
+    }
+    , "statuses": {
+      "waiting": "Waiting"
+      ,"started": "Started"
+      , "success": "Success"
+      , "error": "Error"
+      , "canceled": "Canceled"
+    }  
+  }
+
+  ,"log":{
+    "dt":"Time"
+    ,"userName":"User"
+    ,"ip":"IP"
+    ,"usessions_id":"SID"
+    ,"objectTypeName":"Type"
+    ,"object_name":"Object"
+    ,"actionTypeName":"Action"
+    ,"data":"Data"
+    ,"action_types":{
+      "add":"Add"
+      ,"modify":"Modify"
+      ,"delete":"Delete"
+      ,"restore":"Restore"
+      ,"block":"Block"
+      ,"unblock":"Unblock"
+      ,"send":"Send"
+      ,"parse":"Parse"
+      ,"fill":"Fill"
+    }
+  }
+
+  ,"accounts":{
+    "name":"Name"  
+    ,"wtoken":"Wialon-token"  
+    ,"Init":"Init"  
+    ,"Trying to init this Account":"Trying to init this Account"
+    ,"Connected to Wialon as":"Connected to Wialon as"
+    ,"Wialon connect error":"Wialon connect error"
+    ,"Wialon Units list loaded":"Wialon Units list loaded"
+    ,"Wialon Units list loading error":"Wialon Units list loading error"
+    ,"Wialon Notifications found":"Wialon Notifications found"
+    ,"Wialon Notifications search error":"Wialon Notifications search error"
+    ,"FuelLimit notification found":"FuelLimit notification found"
+    ,"Used units":"Used units"
+    ,"items":"items"
+  }
+ 
+  ,"trash":{
+    "name":"Name"  
+    ,"itemType":"Type"  
+    ,"d":"Deleted"  
+    ,"All_deleted_Items":"All deleted Items"  
+    ,"Show_all_deleted_t":"Show all deleted {{t}}"  
+    ,"Restore_this_Item":"Restore this Item"  
+  }
+
+  ,"sign-in":{
+    "Please sign in":"Please sign in"
+    ,"Sign in":"Sign in"
+    ,"User Name":"User Name"
+    ,"Password":"Password"
+    ,"errors":{
+      "Empty User Name":"Empty User Name"
+      ,"Empty Password":"Empty Password"
+      ,"Wrong login/password":"Wrong login/password"
+    }
+  }
+
+}

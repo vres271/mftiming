@@ -1,0 +1,45 @@
+<div >
+  <table  class="mt-2 table {{(svc&&!svc.ready)?'not-ready':'ready'}}" id="items-table">
+    <thead>
+      <tr>
+        <th *ngIf="options.indexCol" scope="col" width="30px">#</th>
+        <th *ngIf="options.logLink" scope="col" width="30px"></th>
+        <th scope="col" *ngFor="let fieldName of options.fieldNames" translate>{{itemType+'.'+fieldName}}</th>
+        <th scope="col" width="30px"></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="svc">
+        <!-- [ngClass]="[(item._added?'added':''),(item.b?'blocked':'')]"  -->
+      <tr 
+        
+        *ngFor="let item of svc.items | myFilter: s.filter | orderBy : options.orderBy | asResult : result | slice:0:s.limit ; index as i;"
+        >
+        <th *ngIf="options.indexCol" scope="row">{{i+1}}</th>
+        <td *ngIf="options.logLink"><a class="{{!app.log.r.d&&'disabled'}}" href="" [routerLink]="'/log/'+app.ref.object_types[itemType]+'/'+item.id" title="Show log by this item"><fa-icon [icon]="faListAlt"></fa-icon></a></td>
+        <td *ngFor="let fieldName of options.fieldNames; index as i; ">
+          <a 
+            *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='link'" 
+            href="" 
+            [routerLink]="linkPath(item, fieldName)" 
+            title="{{'Edit'|translate}}"
+            >{{item[fieldName]}}</a>
+          <span 
+            *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='icon' && options.fields[fieldName].expr(item)" 
+            [title]="options.fields[fieldName].title" 
+            style="white-space: nowrap;">
+            <fa-icon [icon]="options.fields[fieldName].icon" class="{{options.fields[fieldName].classes}}"></fa-icon>
+            <sup *ngIf="options.fields[fieldName].badge">
+              <span class="badge badge-{{options.fields[fieldName].badge.class}}">{{options.fields[fieldName].badge.expr(item)}}</span>
+            </sup>
+          </span>
+          <span *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='large'" title="{{item[fieldName]}}">{{item[options.fields[fieldName].shortName]}}</span>
+          <span *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='date'" title="{{item[fieldName]|date : options.fields[fieldName].format?options.fields[fieldName].format:'yyyy-MM-dd HH:mm:ss'}}">{{item[fieldName]|date : options.fields[fieldName].format?options.fields[fieldName].format:'yyyy-MM-dd HH:mm:ss'}}</span>
+          <span *ngIf="!(options.fields&&options.fields[fieldName])">{{item[fieldName]}}</span>
+        </td>
+        <td *ngIf="options.delBtn"><span class="tomato pointer {{!(svc.r.d&&!item.b)&&'disabled'}}" (click)="(svc.r.d&&!item.b)&&del(item);" title="{{'Del'|translate}}"><fa-icon [icon]="faTrashAlt"></fa-icon></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div  *ngIf="!svc.r.r" class="alert alert-warning text-center" role="alert">{{'ITEMS-TABLE.Access_denied' | translate}} {{'types.'+itemType| translate}}</div>
+<app-items-paginator [state]="app.state.items[itemType]"     [result]="result"></app-items-paginator>

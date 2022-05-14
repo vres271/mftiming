@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col" *ngFor="let field of options.fields">
+            <label >tags.{{field.name}}</label>
+            <div>
+            <select   [(ngModel)]="field.src"  (change)="parseSrcData()"  class="form-control">
+              <option value="skip" >ITEMS-IMPORT.skip</option>
+              <option value="value" >ITEMS-IMPORT.value</option>
+              <option value="0">{{'ITEMS-IMPORT.column'}} 1</option>
+              <option value="1">{{'ITEMS-IMPORT.column'}} 2</option>
+              <option value="2">{{'ITEMS-IMPORT.column'}} 3</option>
+              <option value="3">{{'ITEMS-IMPORT.column'}} 4</option>
+              <option value="4">{{'ITEMS-IMPORT.column'}} 5</option>
+              <option value="5">{{'ITEMS-IMPORT.column'}} 6</option>
+              <option value="6">{{'ITEMS-IMPORT.column'}} 7</option>
+              <option value="7">{{'ITEMS-IMPORT.column'}} 8</option>
+              <option value="8">{{'ITEMS-IMPORT.column'}} 9</option>
+              <option value="9">{{'ITEMS-IMPORT.column'}} 10</option>
+            </select>        
+            <input *ngIf="field.src==='value'" [(ngModel)]="field.value"  (keyup)="parseSrcData()" (change)="parseSrcData()" type="text" class="form-control mt-1" placeholder="{{'ITEMS-IMPORT.Enter constant value'}}">
+            </div>
+          </div> 
+          <div class="col" style="min-width: 150px; max-width: 150px;">
+            <label >ITEMS-IMPORT.delitmer</label>
+            <select   [(ngModel)]="delitmer"  (change)="parseSrcData()"  class="form-control">
+              <option value="" >ITEMS-IMPORT.auto</option>
+              <option value="\s" >ITEMS-IMPORT.space</option>
+              <option value="\t" >ITEMS-IMPORT.tabulation</option>
+              <option value=",">,</option>
+              <option value=";">;</option>
+            </select>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1" >ITEMS-IMPORT.Source data</label>
+      <textarea class="form-control" (change)="parseSrcData()" (keyup)="parseSrcData()" [(ngModel)]="srcData" id="exampleFormControlTextarea1" rows="10"></textarea>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <label  >ITEMS-IMPORT.Parsed Items</label>
+    <div class="p-1 table-wrapper">
+      <table class="table table-sm" *ngIf="parsedItems&&parsedItems.length">
+        <thead>
+          <tr>
+            <th width="50px"></th>
+            <th *ngFor="let field of notSkypped(options.fields)"  >tags.{{field.name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of parsedItems; index as i;">
+            <td class="silver"><small>{{i+1}}</small></td>
+            <td 
+              *ngFor="let key of item | keys" 
+              class="{{item._state&&item._state[key]&&'table-'+item._state[key].class}} {{key==='_state'&&'hidden'}}"
+              title="{{item._state&&item._state[key]&&item._state[key].msg}}"
+              >{{item[key]}}</td>
+          </tr>
+        </tbody>
+      </table>    
+    </div>
+  </div>
+</div>
+

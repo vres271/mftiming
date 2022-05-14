@@ -1,0 +1,20 @@
+.select-container{
+  position: relative;
+  .select-filter{
+  }
+  .select-dropdown{
+    position: absolute;
+    top: 40px;
+    background: rgba(255,255,255,1);
+    border: 1px solid rgba(0,0,0,.1) ;
+    overflow-y: scroll;
+    max-height: 200px;
+    display: block;
+    padding: 10px;
+    z-index: 100;
+    width: 400px;
+    .loading-spinner {
+      padding: 15px;
+    }
+  }
+}

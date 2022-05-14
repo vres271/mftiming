@@ -1,0 +1,40 @@
+@-webkit-keyframes firstAdd {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.added{
+  -webkit-animation-name: firstAdd;
+  -webkit-animation-duration: .3s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function:ease-in-out;
+  -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes blocked {
+  from {
+    background-position: 0px;    
+  }
+  to {
+    background-position: 109px;
+  }
+}
+
+.blocked{
+  opacity: .3;
+  // background: url('/assets/images/progress_bg3.gif');
+  background: url('/assets/images/blockedBG.png');
+  // background-position: center;
+  background-repeat:  repeat;
+  -webkit-animation-name: blocked;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  // -webkit-animation-direction: alternate;
+ 
+}
+

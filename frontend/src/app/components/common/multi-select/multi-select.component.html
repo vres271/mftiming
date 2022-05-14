@@ -1,0 +1,20 @@
+<fieldset [disabled]="disabled">
+  <div>
+    <div class="form-group select-container">
+      <label for="added_items_{{controlIdKey}}">{{'Added'|translate}} <span  translate>types.{{controlIdKey}}</span></label>
+      <select multiple size="10" class="form-control" *ngIf="refSvc.ready" id="added_items_{{controlIdKey}}" >
+        <option (dblclick)="removeItem(optionItem); "  *ngFor="let optionItem of refSvc.items|inListFilter : form.controls[controlIdKey].value : true"  value="{{optionItem.id}}">{{keyNames(optionItem)}}</option>
+      </select>    
+    </div>
+    <div class=" buttons-container">
+      <button (click)="addItems()" type="button" class="btn btn-light" ><</button>
+      <button (click)="removeItems()" type="button" class="btn btn-light" >></button>
+    </div>
+    <div class="form-group select-container">
+      <label  for="other_items_{{controlIdKey}}">{{'All_Other'|translate}} <span  translate>types.{{controlIdKey}}</span></label>
+      <select multiple size="10" class="form-control" *ngIf="refSvc.ready" id="other_items_{{controlIdKey}}">
+        <option (dblclick)="addItem(optionItem)" *ngFor="let optionItem of refSvc.items|inListFilter : form.controls[controlIdKey].value : false" value="{{optionItem.id}}">{{keyNames(optionItem)}}</option>
+      </select>    
+    </div>
+  </div>
+</fieldset>

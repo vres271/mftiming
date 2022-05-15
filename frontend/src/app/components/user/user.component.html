@@ -4,12 +4,6 @@
     <div class="row">
       <div class="col-md-3 col-xl-2 ">
         <div class="form-group">
-          <label for="ugroups_id" translate>users.ugroups_id</label>
-          <select class="form-control" id="ugroups_id" formControlName="ugroups_id">
-            <option  *ngFor="let item of app.ugroups.items" value="{{item.id}}">{{item.name}}</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label for="name" translate>users.name</label>
           <input type="text" class="form-control" id="name" formControlName="name">
         </div>
@@ -40,31 +34,6 @@
         <div class="form-group">
           <label for="email" translate>users.email</label>
           <input type="email" class="form-control" id="email" formControlName="email">
-        </div>
-      </div>
-      <div class="col-md-3  col-xl-2">
-        <div class="form-group">
-          <label for="name1" translate>users.name1</label>
-          <input type="text" class="form-control" id="name1" formControlName="name1">
-        </div>
-        <div class="form-group">
-          <label for="name2" translate>users.name2</label>
-          <input type="text" class="form-control" id="name2" formControlName="name2">
-        </div>
-        <div class="form-group">
-          <label for="name3" translate>users.name3</label>
-          <input type="text" class="form-control" id="name3" formControlName="name3">
-        </div>
-        <div class="form-group">
-          <label for="phone" translate>users.phone</label>
-          <input type="text" class="form-control" id="phone" formControlName="phone">
-        </div>
-      </div>
-      <div class="col-md-6  col-xl-8">
-        <div class="form-group">
-          <label for="rights" translate>users.rights</label>
-          <input type="hidden" class="form-control" id="rights" formControlName="rights">
-          <app-input-tree *ngIf="user._ready" [item]="user" [form]="userForm" [sourceTree]="app.core.user.rights" [controlIdKey]="'rights'" ></app-input-tree>
         </div>
       </div>
     </div>

@@ -8,30 +8,17 @@ import { APIService } from '../services/api.service';
 })
 
 export class User extends Item{
-  public ugroups_id:number;
-  public password:string;
-  public name1:string;
-  public name2:string;
-  public name3:string;
+  // public ugroups_id:number;
+  public root:boolean;
+  public name:string;
   public email:string;
-  public phone:string;
-  public rights?:object;
+  public d:number=0;
+  // public password:string;
 
   constructor(item_, public _parent) {
     super(item_,_parent);
    }
 
-  public get ugroupName() : string {
-    return (this._parent.app&&this._parent.app.ugroups._index&&this._parent.app.ugroups._index.id&&this._parent.app.ugroups._index.id[this.ugroups_id])?this._parent.app.ugroups._index.id[this.ugroups_id].name:'';
-  }
-
-  public get shortName() : string {
-    return this.name1+' '+(this.name2&&(this.name2[0]+'. '))+(this.name3&&(this.name3[0]+'.'));
-  }
-
-  public get fullName() : string {
-    return this.name1+(this.name2&&(' '+this.name2))+(this.name3&&(' '+this.name3));
-  }
 
 
 }

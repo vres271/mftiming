@@ -16,25 +16,29 @@ export class APIService {
     if(location.host!=='localhost:4200')   this.apiUrl = 'api/';
   }
 
-  public request(type: string, svc: string, params?: Object): Observable<object> {
+  public request(type: string, svc: string, params?: any): Observable<object> {
 
-    console.log(type,svc,params);
-    if(svc==='core/auth') {
-      if(type==='GET') {
+    // console.log(type,svc,params);
+    const arr = svc.split('/');
+    svc = arr[0];
+    const getParams = arr.splice(1);
+    if(svc==='core') {
+      if(type==='GET' && getParams[0]==='auth') {
         return of({
           auth:true,
           ref:{},
           settings :{}  ,       
           user :{
+            root:true,
             name:'user',
             rights:{
               items:{
-                users:{r:true},
-                seasons:{r:true},
-                category:{r:true},
-                race:{r:true},
-                competitors:{r:true},
-                log:{r:true},        
+                users:{r:true,m:true,a:true,d:true},
+                seasons:{r:true,m:true,a:true,d:true},
+                category:{r:true,m:true,a:true,d:true},
+                race:{r:true,m:true,a:true,d:true},
+                competitors:{r:true,m:true,a:true,d:true},
+                log:{r:true,m:true,a:true,d:true},        
               },
               nav:{
                 header:{
@@ -51,20 +55,55 @@ export class APIService {
           sid :'123',       
         }).pipe(delay(1000))
       }
-    } else if (svc==='users') {
+    } else if (svc==='users'||svc==='log') {
       if(type==='GET') {
+        if(!getParams[0]) {
+          return from(this.dbService.getAll(svc))
+            .pipe(
+              map(res=>({items:res.filter((item:any)=>!item.d)})),
+            );
+          } else {
+            const id=Number(getParams[0]);
+            return from(this.dbService.getByKey(svc, id))
+              .pipe(
+                map(res=>({item:res}))
+              );
+          }
 
-      return from(this.dbService.getAll('users'))
-        .pipe(
-          map(res=>({items:res}))
-        );
+      } else if(type==='PUT') {
+        if(!getParams[0]) {
+          } else {
+            const id=Number(getParams[0]);
+            return from(this.dbService.update(svc, params))
+              .pipe(
+                map(res=>({item:res}))
+              );
+          }
 
+      } else if(type==='POST') {
+        if(!getParams[0]) {
+            return from(this.dbService.add(svc, params))
+              .pipe(
+                map(res=>({id:res}))
+              );
+          } else {
+          }
 
-        // return of({
-        //   items:[{id:1,name:'user1'}]
-        // })
+      } else if(type==='DELETE') {
+        if(getParams[0]) {
+          const id=Number(getParams[0]);
+          return from(this.dbService.getByKey(svc, id))
+            .pipe(
+              map((item:any)=>{item.d = Math.round(new Date().getTime()/1000); return item}),
+              switchMap((item:any)=>from(this.dbService.update(svc, item))),
+              map(res=>({deleted:true})),
+            )
+        }
       }
     }
+
+    return of({});
+
     const url = this.apiUrl+svc;
     let httpParams = new  HttpParams();
     if(params) httpParams = httpParams.set('params', JSON.stringify(params))

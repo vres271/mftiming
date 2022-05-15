@@ -5,10 +5,19 @@ const migrationFactory =()=>{
   // The animal table was added with version 2 but none of the existing tables or data needed
   // to be modified so a migrator for that version is not included.
   return {
-    // 1: (db:any, transaction:any) => {
-    //  const store = transaction.objectStore('people');
-    //  store.createIndex('country', 'country', { unique: false });
-    // },
+    7: (db:any, transaction:any) => {
+     const store = transaction.objectStore('competitors');
+     store.createIndex('email', 'email', { unique: false });
+     store.createIndex('phone', 'phone', { unique: false });
+    },
+    8: (db:any, transaction:any) => {
+     const store = transaction.objectStore('users');
+     store.createIndex('email', 'email', { unique: false });
+    },
+    9: (db:any, transaction:any) => {
+     const store = transaction.objectStore('users');
+     store.createIndex('root', 'root', { unique: false });
+    },
 
   };
 }
@@ -16,7 +25,7 @@ const migrationFactory =()=>{
 export function myDBConfig():DBConfig { 
   return{
     name: 'MyDb',
-    version: 6,
+    version: 9,
     objectStoresMeta: [
       {
         store: 'accounts',

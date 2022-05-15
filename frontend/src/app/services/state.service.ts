@@ -15,10 +15,7 @@ export class StateService {
     users:{
       filter: {
         name: '',
-        fullName: '',
-        ugroupName: '',
         email: '',
-        phone: '',
       }
       ,limit: 1*this.default.limit
     },

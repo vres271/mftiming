@@ -18,7 +18,7 @@ export class APIService {
 
   public request(type: string, svc: string, params?: any): Observable<object> {
 
-    // console.log(type,svc,params);
+    //console.log(type,svc,params);
     const arr = svc.split('/');
     svc = arr[0];
     const getParams = arr.splice(1);
@@ -55,18 +55,20 @@ export class APIService {
           sid :'123',       
         }).pipe(delay(1000))
       }
-    } else if (svc==='users'||svc==='log') {
+    } else if (svc==='users'||svc==='log'||svc==='competitors') {
       if(type==='GET') {
         if(!getParams[0]) {
           return from(this.dbService.getAll(svc))
             .pipe(
               map(res=>({items:res.filter((item:any)=>!item.d)})),
+              //tap(v=>console.log(v))
             );
           } else {
             const id=Number(getParams[0]);
             return from(this.dbService.getByKey(svc, id))
               .pipe(
-                map(res=>({item:res}))
+                //tap(v=>console.log(v)),
+                map(res=>({item:res})),
               );
           }
 

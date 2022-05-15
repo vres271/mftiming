@@ -11,7 +11,7 @@ import { TagsService } from '../services/tags.service';
 import { UnitsService } from '../services/units.service';
 import { HWTypesService } from '../services/hwtypes.service';
 import { RecieversService } from '../services/recievers.service';
-import { DriversService } from '../services/drivers.service';
+import { CompetitorsService } from '../services/competitors.service';
 import { LogService } from '../services/log.service';
 import { TrashService } from '../services/trash.service';
 import { StateService } from '../services/state.service';
@@ -31,7 +31,7 @@ export class AppService {
   public ready: boolean = false;
   public addPaths: object =  {
     users: 'user',
-    drivers: 'driver',
+    competitors: 'competitor',
     ugroups: 'user-group',
     tags: 'tag',
     recievers: 'reciever',
@@ -59,7 +59,7 @@ export class AppService {
     public units: UnitsService,
     public hwtypes: HWTypesService,
     public recievers: RecieversService,
-    public drivers: DriversService,
+    public competitors: CompetitorsService,
     public distributions: DistributionsService,
     public rtqueue: RTQueueService,
     ) {
@@ -70,14 +70,14 @@ export class AppService {
     this.units.app = this;
     this.hwtypes.app = this;
     this.recievers.app = this;
-    this.drivers.app = this;
+    this.competitors.app = this;
     this.log.app = this;
     this.trash.app = this;
     this.distributions.app = this;
     this.accounts.app = this;
     this.rtqueue.app = this;
-    this.trash.trashTypes = ['tags','recievers','drivers','users','ugroups'];
-    this.state.createDefaults(['tags','recievers','drivers','users','ugroups','log','trash','distributions','accounts','rtqueue']);
+    this.trash.trashTypes = ['tags','recievers','competitors','users','ugroups'];
+    this.state.createDefaults(['tags','recievers','competitors','users','ugroups','log','trash','distributions','accounts','rtqueue']);
   }
 
   public onAppReady(): Observable<Event> {
@@ -106,12 +106,12 @@ export class AppService {
           this.ref.set(this.core.ref);
         }),
         tap(_=>{this.ready = false;}),
-        tap(_=>{this.core.createRightsAliases([this.users,this.log])}),
+        tap(_=>{this.core.createRightsAliases([this.users,this.log,this.competitors])}),
         switchMap(_=>this.users.get()),
         switchMap(_=>this.ugroups.get().pipe(
           switchMap(_=>this.tags.get()),
           switchMap(_=>this.recievers.get()),
-          switchMap(_=>this.drivers.get()),
+          switchMap(_=>this.competitors.get()),
           switchMap(_=>this.distributions.get()),
           switchMap(_=>this.rtqueue.get()),
           )),

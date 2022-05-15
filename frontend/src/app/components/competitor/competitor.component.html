@@ -1,0 +1,38 @@
+<h3><span  class="text-capitalize">{{'type.competitor'|translate}}</span> : {{(competitor?'Edit':'Create')|translate|lowercase }}</h3>
+<form  [formGroup]="competitorForm" (submit)="onCompetitorFormSubmit()">
+  <fieldset  [disabled]="(competitor&&!app.competitors.r.m)||(!competitor&&!app.competitors.r.a)" >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name" translate>competitors.name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="birdthDate" translate>competitors.birdthDate</label>
+          <input type="text" class="form-control" id="birdthDate" formControlName="birdthDate">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="team" translate>competitors.team</label>
+          <input type="text" class="form-control" id="team" formControlName="team">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="desc" translate>competitors.desc</label>
+          <input type="text" class="form-control" id="desc" formControlName="desc">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{(competitor?'Save_changes':'Add_new')|translate}}</button>
+  </fieldset>
+</form>

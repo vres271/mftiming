@@ -28,6 +28,15 @@ export class StateService {
       }
       ,limit: 1*this.default.limit
     },
+    competitors:{
+      filter: {
+        name: '',
+        birdthDate: '',
+        team: '',
+        desc: '',
+      }
+      ,limit: 1*this.default.limit
+    },
     tags:{
       filter: {
         num: '',

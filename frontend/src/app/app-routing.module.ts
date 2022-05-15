@@ -10,8 +10,8 @@ import { TagsComponent } from './components/tags/tags.component';
 import { TagComponent } from './components/tag/tag.component';
 import { RecieversComponent } from './components/recievers/recievers.component';
 import { RecieverComponent } from './components/reciever/reciever.component';
-import { DriversComponent } from './components/drivers/drivers.component';
-import { DriverComponent } from './components/driver/driver.component';
+import { CompetitorsComponent } from './components/competitors/competitors.component';
+import { CompetitorComponent } from './components/competitor/competitor.component';
 import { LogComponent } from './components/log/log.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { CommandsComponent } from './components/commands/commands.component';
@@ -20,7 +20,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { RTQueueComponent } from './components/rtqueue/rtqueue.component';
-
+ 
 
 const routes: Routes = [
   { path: '',   component: HomeComponent },
@@ -37,9 +37,9 @@ const routes: Routes = [
   { path: 'recievers',   component: RecieversComponent },
   { path: 'reciever',   component: RecieverComponent },
   { path: 'reciever/:recieverId',   component: RecieverComponent },
-  { path: 'drivers',   component: DriversComponent },
-  { path: 'driver',   component: DriverComponent },
-  { path: 'driver/:driverId',   component: DriverComponent },
+  { path: 'competitors',   component: CompetitorsComponent },
+  { path: 'competitor',   component: CompetitorComponent },
+  { path: 'competitor/:competitorId',   component: CompetitorComponent },
   { path: 'log',   component: LogComponent },
   { path: 'log/:objectType/:objectId',   component: LogComponent },
   { path: 'trash',   component: TrashComponent },

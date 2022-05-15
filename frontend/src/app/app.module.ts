@@ -41,8 +41,8 @@ import { HWTypesService } from './services/hwtypes.service';
 import { HWTypeService } from './services/hwtype.service';
 import { RecieversService } from './services/recievers.service';
 import { RecieverService } from './services/reciever.service';
-import { DriversService } from './services/drivers.service';
-import { DriverService } from './services/driver.service';
+import { CompetitorsService } from './services/competitors.service';
+import { CompetitorService } from './services/competitor.service';
 import { LogService } from './services/log.service';
 import { LogItemService } from './services/log-item.service';
 import { CommandsService } from './services/commands.service';
@@ -77,8 +77,8 @@ import { RecieversComponent } from './components/recievers/recievers.component';
 import { RecieverComponent } from './components/reciever/reciever.component';
 import { SearchSelectComponent } from './components/common/search-select/search-select.component';
 import { MultiSelectComponent } from './components/common/multi-select/multi-select.component';
-import { DriversComponent } from './components/drivers/drivers.component';
-import { DriverComponent } from './components/driver/driver.component';
+import { CompetitorsComponent } from './components/competitors/competitors.component';
+import { CompetitorComponent } from './components/competitor/competitor.component';
 import { InputTreeComponent } from './components/common/input-tree/input-tree.component';
 import { LogComponent } from './components/log/log.component';
 import { NavTrashComponent } from './components/nav-trash/nav-trash.component';
@@ -117,8 +117,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SearchSelectComponent,
     MultiSelectComponent,
     AsResultPipe,
-    DriversComponent,
-    DriverComponent,
+    CompetitorsComponent,
+    CompetitorComponent,
     InputTreeComponent,
     LogComponent,
     OrderByPipe,
@@ -173,8 +173,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HWTypeService,
     RecieversService,
     RecieverService,   
-    DriversService,
-    DriverService,   
+    CompetitorsService,
+    CompetitorService,   
     LogService,   
     LogItemService,   
     TrashService,   

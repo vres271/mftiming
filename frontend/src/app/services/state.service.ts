@@ -30,10 +30,14 @@ export class StateService {
     },
     competitors:{
       filter: {
-        name: '',
+        //accountId: '',
+        regDate: '',
+        fullName: '',
         birdthDate: '',
+        categoryId: '',
         team: '',
         desc: '',
+        //d: '',
       }
       ,limit: 1*this.default.limit
     },

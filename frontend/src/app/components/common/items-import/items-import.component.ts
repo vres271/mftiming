@@ -34,6 +34,7 @@ export class ItemsImportComponent implements OnInit {
 
   ngOnInit() {
     //this.parseSrcData();
+    if(this.options&&this.options.delitmer) this.delitmer = this.options.delitmer;
   }
 
   public parseSrcData() {

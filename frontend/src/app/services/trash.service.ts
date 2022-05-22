@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {  map, tap, switchMap} from 'rxjs/operators';
 import { APIService } from '../services/api.service';
-import { DriversService } from '../services/drivers.service';
 
 @Injectable({
   providedIn: 'root'

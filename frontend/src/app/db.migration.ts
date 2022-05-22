@@ -86,8 +86,12 @@ export function myDBConfig():DBConfig {
         storeConfig: { keyPath: 'id', autoIncrement: true },
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
-          { name: 'name', keypath: 'name', options: { unique: true } },
+          { name: 'regDate', keypath: 'regDate', options: { unique: false } },
+          { name: 'name1', keypath: 'name1', options: { unique: false } },
+          { name: 'name2', keypath: 'name2', options: { unique: false } },
+          { name: 'name3', keypath: 'name3', options: { unique: false } },
           { name: 'birdthDate', keypath: 'birdthDate', options: { unique: false } },
+          { name: 'categoryId', keypath: 'categoryId', options: { unique: false } },
           { name: 'team', keypath: 'team', options: { unique: false } },
           { name: 'desc', keypath: 'desc', options: { unique: false } },
           { name: 'd', keypath: 'd', options: { unique: false } },

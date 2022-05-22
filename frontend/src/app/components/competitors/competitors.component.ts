@@ -8,9 +8,16 @@ import { AppService } from '../../services/app.service';
 })
 export class CompetitorsComponent implements OnInit {
   public tableOptions = {
-    fieldNames:['name','birdthDate','team','desc'],
+    fieldNames:[
+      'regDate',
+      'fullName',
+      'birdthDate',
+      'categoryId',
+      'team',
+      'desc',
+    ],
     fields:{
-      name:{type:'link'},
+      fullName:{type:'link'},
     },
   };
   public itemType = 'competitors';

@@ -15,7 +15,20 @@ import { Competitor } from '../../services/competitor.service';
 export class CompetitorComponent implements OnInit {
   public competitor: Competitor|null = null;
   public competitorForm: FormGroup;
-
+  public importOptions: any = {
+    fields:[
+      {name: 'regDate', src: 0, validators: ['required']},
+      {name: 'name1', src: 1, validators: ['required']},
+      {name: 'name2', src: 2, validators: ['required']},
+      {name: 'name3', src: 3, validators: ['required']},
+      {name: 'birdthDate', src: 4, validators: ['required']},
+      {name: 'categoryId', src: 'value', value: ''},
+      {name: 'team', src: 6},        
+    ],
+    delitmer: '\\t',
+  };
+  public multiAddErrors: any = [];
+  public parsedItems: any = {items:[],errors:[]};
 
   constructor(
     public route: ActivatedRoute,
@@ -42,8 +55,12 @@ export class CompetitorComponent implements OnInit {
 
   public initForm(){
     this.competitorForm = this.fb.group({
-      name: ['', [Validators.required,]],
+      regDate: ['', [Validators.required,]],
+      name1: ['', [Validators.required,]],
+      name2: ['', [Validators.required,]],
+      name3: ['', [Validators.required,]],
       birdthDate: ['', [Validators.required,]],
+      categoryId: ['', [Validators.required,]],
       team: ['', []],
       desc: ['', []],
     });
@@ -77,4 +94,17 @@ export class CompetitorComponent implements OnInit {
         this.router.navigate(['competitors']);
      });
   }
+
+  public importItems(items) {
+    this.app.competitors.addMultiple(items)
+      .subscribe(res=>{
+        this.multiAddErrors = res.added.filter(item=>!item.id);
+        this.app.competitors.get()
+          .subscribe()
+        if(this.multiAddErrors.length===0) this.router.navigate(['competitors']);
+      });
+
+  }
+
+
 }

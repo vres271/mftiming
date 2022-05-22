@@ -88,7 +88,12 @@ export class APIService {
               .pipe(
                 map(res=>({id:res}))
               );
-          } else {
+          } else if (getParams[0]==='multiple') {
+            params.forEach(item=>{
+              return from(this.dbService.add(svc, item))
+                .subscribe()              
+            })
+            return of({added: params.map(item=>({id:123}))})
           }
 
       } else if(type==='DELETE') {

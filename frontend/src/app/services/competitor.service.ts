@@ -8,15 +8,27 @@ import { APIService } from '../services/api.service';
 })
 
 export class Competitor extends Item{
-  public name: string;
+  public accountId: number;
+  public regDate: number;
+  public name1: string;
+  public name2: string;
+  public name3: string;
   public birdthDate: number;
+  public categoryId: number;
   public team: string;
   public desc: string;
-  public d: number;
+  public d: string;
+
+
 
   constructor(item_, public _parent) {
     super(item_,_parent);
   }
+
+  public get fullName() : string {
+    return this.name1+' '+this.name2+' '+this.name3;
+  }
+
 
 }
 

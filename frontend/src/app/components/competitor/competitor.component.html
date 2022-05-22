@@ -1,11 +1,70 @@
-<h3><span  class="text-capitalize">{{'type.competitor'|translate}}</span> : {{(competitor?'Edit':'Create')|translate|lowercase }}</h3>
-<form  [formGroup]="competitorForm" (submit)="onCompetitorFormSubmit()">
+<h3>
+  <span  class="text-capitalize">{{'type.competitor'|translate}}</span> : {{(competitor?'Edit':'Create')|translate|lowercase }}
+  <span  *ngIf="!competitor">
+    (<span class="{{importMode?'pointer silver':''}}" (click)="importMode=false" translate>Single Item</span> | 
+    <span  class="{{!importMode?'pointer silver':''}}" (click)="importMode=true" translate>Multiple</span>) 
+  </span>
+
+</h3>
+
+<div *ngIf="importMode">
+  <app-items-import [app]="app" [itemType]="itemType" [options]="importOptions" (parse)="parsedItems=$event"></app-items-import>
+  <div class="row">
+    <div class="col-md-4">
+      <button  type="button" (click)="importItems(parsedItems.items)" [disabled]="!parsedItems.items.length||parsedItems.errors.length||!app.competitors.ready"  class="btn btn-primary btn-block" >{{(competitor?'Save_changes':'Add new Items')|translate}} ({{parsedItems.items.length}})</button> 
+    </div>
+    <div class="col-md-8">
+      <div *ngIf="multiAddErrors.length" class="alert alert-danger" role="alert">
+        <b><span  class="text-capitalize" translate>errors</span>: {{multiAddErrors.length}}</b>
+        <ul>
+          <li *ngFor="let res of multiAddErrors"><span *ngIf="res.error">{{res.error}}</span></li>
+        </ul>
+      </div>
+      <div *ngIf="parsedItems.errors&&parsedItems.errors.length" class="alert alert-danger" role="alert">
+        <b><span  class="text-capitalize" translate>errors</span>: {{parsedItems.errors.length}}</b>
+        <ul>
+          <li *ngFor="let error of parsedItems.errors">
+            <span translate>row</span>: {{error.row}}, 
+            <span translate>field</span>: <span class="font-italic" translate>competitors.{{error.fieldName}}</span>, 
+            <span translate>error</span>: <span class="font-italic" translate>{{error.result.msg}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form  [formGroup]="competitorForm"  *ngIf="!importMode" (submit)="onCompetitorFormSubmit()">
   <fieldset  [disabled]="(competitor&&!app.competitors.r.m)||(!competitor&&!app.competitors.r.a)" >
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label for="name" translate>competitors.name</label>
-          <input type="text" class="form-control" id="name" formControlName="name">
+          <label for="regDate" translate>competitors.regDate</label>
+          <input type="text" class="form-control" id="regDate" formControlName="regDate">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name1" translate>competitors.name1</label>
+          <input type="text" class="form-control" id="name1" formControlName="name1">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name2" translate>competitors.name2</label>
+          <input type="text" class="form-control" id="name2" formControlName="name2">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name3" translate>competitors.name3</label>
+          <input type="text" class="form-control" id="name3" formControlName="name3">
         </div>
       </div>
     </div>
@@ -14,6 +73,14 @@
         <div class="form-group">
           <label for="birdthDate" translate>competitors.birdthDate</label>
           <input type="text" class="form-control" id="birdthDate" formControlName="birdthDate">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="categoryId" translate>competitors.categoryId</label>
+          <input type="text" class="form-control" id="categoryId" formControlName="categoryId">
         </div>
       </div>
     </div>

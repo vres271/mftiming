@@ -30,8 +30,17 @@ import { ItemService } from './services/item.service';
 import { ItemsService } from './services/items.service';
 
 import { UsersService } from './services/users.service';
-import { UserGroupsService } from './services/user-groups.service';
 import { UserService } from './services/user.service';
+import { CompetitorsService } from './services/competitors.service';
+import { CompetitorService } from './services/competitor.service';
+import { CategoriesService } from './services/categories.service';
+import { CategoryService } from './services/category.service';
+
+
+
+
+
+import { UserGroupsService } from './services/user-groups.service';
 import { UserGroupService } from './services/user-group.service';
 import { TagsService } from './services/tags.service';
 import { TagService } from './services/tag.service';
@@ -41,8 +50,8 @@ import { HWTypesService } from './services/hwtypes.service';
 import { HWTypeService } from './services/hwtype.service';
 import { RecieversService } from './services/recievers.service';
 import { RecieverService } from './services/reciever.service';
-import { CompetitorsService } from './services/competitors.service';
-import { CompetitorService } from './services/competitor.service';
+
+
 import { LogService } from './services/log.service';
 import { LogItemService } from './services/log-item.service';
 import { CommandsService } from './services/commands.service';
@@ -79,6 +88,8 @@ import { SearchSelectComponent } from './components/common/search-select/search-
 import { MultiSelectComponent } from './components/common/multi-select/multi-select.component';
 import { CompetitorsComponent } from './components/competitors/competitors.component';
 import { CompetitorComponent } from './components/competitor/competitor.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoryComponent } from './components/category/category.component';
 import { InputTreeComponent } from './components/common/input-tree/input-tree.component';
 import { LogComponent } from './components/log/log.component';
 import { NavTrashComponent } from './components/nav-trash/nav-trash.component';
@@ -119,6 +130,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AsResultPipe,
     CompetitorsComponent,
     CompetitorComponent,
+    CategoriesComponent,
+    CategoryComponent,
     InputTreeComponent,
     LogComponent,
     OrderByPipe,
@@ -175,6 +188,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RecieverService,   
     CompetitorsService,
     CompetitorService,   
+    CategoriesService,
+    CategoryService,   
     LogService,   
     LogItemService,   
     TrashService,   

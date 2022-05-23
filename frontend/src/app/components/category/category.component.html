@@ -1,0 +1,40 @@
+<h3>
+  <span  class="text-capitalize">{{'type.category'|translate}}</span> : {{(category?'Edit':'Create')|translate|lowercase }}
+</h3>
+<form  [formGroup]="itemForm"  *ngIf="!importMode" (submit)="onItemFormSubmit()">
+  <fieldset  [disabled]="(category&&!app.categories.r.m)||(!category&&!app.categories.r.a)" >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="seasonId" translate>categories.seasonId</label>
+          <input type="text" class="form-control" id="seasonId" formControlName="seasonId">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name" translate>categories.name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="ageFrom" translate>categories.ageFrom</label>
+          <input type="text" class="form-control" id="ageFrom" formControlName="ageFrom">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="ageTo" translate>categories.ageTo</label>
+          <input type="text" class="form-control" id="ageTo" formControlName="ageTo">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{(category?'Save_changes':'Add_new')|translate}}</button>
+  </fieldset>
+</form>

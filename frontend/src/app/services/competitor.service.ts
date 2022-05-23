@@ -10,6 +10,7 @@ import { APIService } from '../services/api.service';
 export class Competitor extends Item{
   public accountId: number;
   public regDate: number;
+  public num: number;
   public name1: string;
   public name2: string;
   public name3: string;
@@ -27,6 +28,10 @@ export class Competitor extends Item{
 
   public get fullName() : string {
     return this.name1+' '+this.name2+' '+this.name3;
+  }
+
+  public get categoryName() : string {
+    return (this._parent.app&&this._parent.app.categories._index&&this._parent.app.categories._index.id&&this._parent.app.categories._index.id[this.categoryId])?this._parent.app.categories._index.id[this.categoryId].name:'';
   }
 
 

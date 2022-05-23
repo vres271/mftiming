@@ -12,6 +12,8 @@ import { RecieversComponent } from './components/recievers/recievers.component';
 import { RecieverComponent } from './components/reciever/reciever.component';
 import { CompetitorsComponent } from './components/competitors/competitors.component';
 import { CompetitorComponent } from './components/competitor/competitor.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoryComponent } from './components/category/category.component';
 import { LogComponent } from './components/log/log.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { CommandsComponent } from './components/commands/commands.component';
@@ -40,6 +42,9 @@ const routes: Routes = [
   { path: 'competitors',   component: CompetitorsComponent },
   { path: 'competitor',   component: CompetitorComponent },
   { path: 'competitor/:competitorId',   component: CompetitorComponent },
+  { path: 'categories',   component: CategoriesComponent },
+  { path: 'category',   component: CategoryComponent },
+  { path: 'category/:categoryId',   component: CategoryComponent },
   { path: 'log',   component: LogComponent },
   { path: 'log/:objectType/:objectId',   component: LogComponent },
   { path: 'trash',   component: TrashComponent },

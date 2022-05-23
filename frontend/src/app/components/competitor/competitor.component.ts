@@ -56,11 +56,12 @@ export class CompetitorComponent implements OnInit {
   public initForm(){
     this.competitorForm = this.fb.group({
       regDate: ['', [Validators.required,]],
+      num: ['', []],
       name1: ['', [Validators.required,]],
       name2: ['', [Validators.required,]],
       name3: ['', [Validators.required,]],
       birdthDate: ['', [Validators.required,]],
-      categoryId: ['', [Validators.required,]],
+      categoryId: ['', []],
       team: ['', []],
       desc: ['', []],
     });
@@ -71,7 +72,6 @@ export class CompetitorComponent implements OnInit {
   }
 
   public addCompetitor() {
-    console.log(this.competitorForm)
     this.app.competitors.add(this.competitorForm.value)
       .subscribe(res=>{
         let newUserId = null;

@@ -58,7 +58,7 @@ export function myDBConfig():DBConfig {
         ]
       },
       {
-        store: 'category',
+        store: 'categories',
         storeConfig: { keyPath: 'id', autoIncrement: true },
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
@@ -87,6 +87,7 @@ export function myDBConfig():DBConfig {
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
           { name: 'regDate', keypath: 'regDate', options: { unique: false } },
+          { name: 'num', keypath: 'num', options: { unique: true } },
           { name: 'name1', keypath: 'name1', options: { unique: false } },
           { name: 'name2', keypath: 'name2', options: { unique: false } },
           { name: 'name3', keypath: 'name3', options: { unique: false } },

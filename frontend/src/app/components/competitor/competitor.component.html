@@ -47,6 +47,14 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
+          <label for="num" translate>competitors.num</label>
+          <input type="text" class="form-control" id="num" formControlName="num">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
           <label for="name1" translate>competitors.name1</label>
           <input type="text" class="form-control" id="name1" formControlName="name1">
         </div>
@@ -80,10 +88,19 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="categoryId" translate>competitors.categoryId</label>
-          <input type="text" class="form-control" id="categoryId" formControlName="categoryId">
+          <input type="hidden" class="form-control" id="categoryId" formControlName="categoryId">
+          <app-search-select [item]="item" [refSvc]="app.categories" [form]="competitorForm" [controlIdKey]="'categoryId'"  [refNameKey]="'name'"></app-search-select>
         </div>
       </div>
     </div>
+    <!-- <div class="row"> -->
+      <!-- <div class="col-md-4"> -->
+        <!-- <div class="form-group"> -->
+          <!-- <label for="categoryId" translate>competitors.categoryId</label> -->
+          <!-- <input type="text" class="form-control" id="categoryId" formControlName="categoryId"> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">

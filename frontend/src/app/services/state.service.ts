@@ -32,9 +32,10 @@ export class StateService {
       filter: {
         //accountId: '',
         regDate: '',
+        num: '',
         fullName: '',
         birdthDate: '',
-        categoryId: '',
+        categoryName: '',
         team: '',
         desc: '',
         //d: '',

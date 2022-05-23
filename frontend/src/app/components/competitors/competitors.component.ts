@@ -10,9 +10,10 @@ export class CompetitorsComponent implements OnInit {
   public tableOptions = {
     fieldNames:[
       'regDate',
+      'num',
       'fullName',
       'birdthDate',
-      'categoryId',
+      'categoryName',
       'team',
       'desc',
     ],

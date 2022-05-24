@@ -169,6 +169,23 @@
     ,"name3":"Отчество"  
   }
 
+  ,"competitors":{
+    "accountId":"accountId"
+    ,"regDate":"Дата регистрации"
+    ,"num":"Номер"
+    ,"name1":"Фамилия"
+    ,"name2":"Имя"
+    ,"name3":"Отчество"
+    ,"fullName":"ФИО"
+    ,"birdthDate":"Дата рождения"
+    ,"categoryId":"Категория"
+    ,"categoryName":"Категория"
+    ,"team":"Команда"
+    ,"desc":"Доп."
+    ,"d":"Удален"
+
+  }
+
   ,"users":{
     "name":"Имя"  
     ,"ugroupName":"Группа"  

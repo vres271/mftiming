@@ -1,5 +1,7 @@
 import { Component, OnInit , Input} from '@angular/core';
 import { faTrashAlt, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-items-table',
@@ -32,6 +34,8 @@ export class ItemsTableComponent implements OnInit {
     indexCol:true,
     fields: {name: {type:'link'}}
   };
+  public edit: number[] = [];
+
   constructor() { }
 
   ngOnInit() {
@@ -52,6 +56,21 @@ export class ItemsTableComponent implements OnInit {
 
   public linkPath(item:any, fieldName: string) {
     return this.options.fields&&this.options.fields[fieldName].path?this.options.fields&&('/'+this.options.fields[fieldName].path+'/'+item[this.options.fields[fieldName].idName]):('/'+this.editPath+'/'+item.id)
+  }
+
+  public save(item, fieldName, value) {
+    let bck = '';
+    if(item[fieldName]!==undefined) bck = ''+item[fieldName];
+    item[fieldName] = value.target.value;
+    item.save()
+      .pipe(
+        catchError((res:any)=>{
+          console.log('Save error'); 
+          item[fieldName] = bck;
+          return of(res); 
+        })
+        )
+      .subscribe((res)=>{});
   }
 
 

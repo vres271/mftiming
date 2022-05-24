@@ -1,6 +1,15 @@
+@keyframes anim-appear {
+  0% {opacity: 0; } 
+  50% {opacity: 0; } 
+  100% {opacity: 1;} 
+}
+
 #logo{
-  width: 157px;
-  border-radius: 50%;
-  background: rgba(0,0,0,.05);
   margin: 20px;
+  animation: anim-appear 3s ease-in; 
+
+}
+
+#h{
+  animation: anim-appear 5s ease-in; 
 }

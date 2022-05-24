@@ -16,7 +16,7 @@
         >
         <th *ngIf="options.indexCol" scope="row">{{i+1}}</th>
         <td *ngIf="options.logLink"><a class="{{!app.log.r.d&&'disabled'}}" href="" [routerLink]="'/log/'+app.ref.object_types[itemType]+'/'+item.id" title="Show log by this item"><fa-icon [icon]="faListAlt"></fa-icon></a></td>
-        <td *ngFor="let fieldName of options.fieldNames; index as i; ">
+        <td *ngFor="let fieldName of options.fieldNames; index as i; " >
           <a 
             *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='link'" 
             href="" 
@@ -34,6 +34,7 @@
           </span>
           <span *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='large'" title="{{item[fieldName]}}">{{item[options.fields[fieldName].shortName]}}</span>
           <span *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='date'" title="{{item[fieldName]|date : options.fields[fieldName].format?options.fields[fieldName].format:'yyyy-MM-dd HH:mm:ss'}}">{{item[fieldName]|date : options.fields[fieldName].format?options.fields[fieldName].format:'yyyy-MM-dd HH:mm:ss'}}</span>
+          <span *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='edit'"><input type="text" class="form-control" [ngModel]="item[fieldName]" (change)="save(item, fieldName, $event)"></span>
           <span *ngIf="!(options.fields&&options.fields[fieldName])">{{item[fieldName]}}</span>
         </td>
         <td *ngIf="options.delBtn"><span class="tomato pointer {{!(svc.r.d&&!item.b)&&'disabled'}}" (click)="(svc.r.d&&!item.b)&&del(item);" title="{{'Del'|translate}}"><fa-icon [icon]="faTrashAlt"></fa-icon></span></td>

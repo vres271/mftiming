@@ -18,6 +18,7 @@ export class CompetitorsComponent implements OnInit {
       'desc',
     ],
     fields:{
+      num:{type:'edit'},
       fullName:{type:'link'},
     },
   };

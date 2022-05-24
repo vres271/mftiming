@@ -48,7 +48,13 @@ export class ItemsImportComponent implements OnInit {
         let field = this.options.fields[key];
         if(field.src==='value') {
           if(field.value!==undefined) item[field.name] = field.value.trim()
-        } else if (field.src!=='skip') {
+        } else if (field.relItems && field.relItemsProp) {
+          if(arr[field.src]!==undefined) {
+            if(field.relItems && field.relItems._index && field.relItems._index[field.relItemsProp] && field.relItems._index[field.relItemsProp][arr[field.src].trim()]) {
+              item[field.name] = field.relItems._index[field.relItemsProp][arr[field.src].trim()].id;
+            }
+          }
+        } else {
           if(arr[field.src]!==undefined) item[field.name] = arr[field.src].trim();
         }
         if(field.validators) {

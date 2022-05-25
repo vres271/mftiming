@@ -53,9 +53,9 @@ export class Item {
 
   public get values():object {
     let values = {};
-    for(let key in this) {
-      if(key[0]!=='_') {values[String(key)]=this[key];}
-    }
+    Object.keys(this).forEach((key)=>{
+      if(key[0]!=='_'&&key!=='values') {values[String(key)]=this[key];}
+    })
     return values;
   }
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rfid-limit": {
+    "mftiming": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rfid-limit",
+            "outputPath": "dist/mftiming",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rfid-limit:build"
+            "browserTarget": "mftiming:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rfid-limit:build:production"
+              "browserTarget": "mftiming:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rfid-limit:build"
+            "browserTarget": "mftiming:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rfid-limit:serve"
+            "devServerTarget": "mftiming:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rfid-limit:serve:production"
+              "devServerTarget": "mftiming:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "rfid-limit"
+  "defaultProject": "mftiming"
 }

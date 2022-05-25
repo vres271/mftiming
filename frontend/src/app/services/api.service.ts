@@ -105,6 +105,12 @@ export class APIService {
               switchMap((item:any)=>from(this.dbService.update(svc, item))),
               map(res=>({deleted:true})),
             )
+        } else {
+          return from(this.dbService.clear(svc))
+            .pipe(
+              map(res=>({deleted:res})),
+            )
+
         }
       }
     }

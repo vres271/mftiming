@@ -7,6 +7,9 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./competitors.component.scss']
 })
 export class CompetitorsComponent implements OnInit {
+  public contolsOptions = {
+    clearBtn: true
+  }
   public tableOptions = {
     fieldNames:[
       'regDate',

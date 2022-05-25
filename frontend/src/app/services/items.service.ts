@@ -80,6 +80,10 @@ export class ItemsService extends Indexable{
     this.items = [];
   }
 
+  public clear():Observable<any> {
+    return this.api.request('DELETE', this._itemService._itemType)
+  }
+
 
   public createEventHandler() {
     fromEvent(document, 'appEvent')

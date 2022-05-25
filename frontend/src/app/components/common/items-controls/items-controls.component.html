@@ -14,8 +14,14 @@
         <option *ngFor="let _limit of limits">{{_limit}}</option>
       </select>
     </div>
-    <div class="col" style="max-width: 45px; min-width: 45px;">
+    <div *ngIf="options.exportBtn" class="col" style="max-width: 45px; min-width: 45px;">
       <button type="button" (click)="export()" class="btn btn-light"><fa-icon  [icon]="faFileExcel" class="grey" title="Export table to Excell file (xlsx)"></fa-icon></button>
+    </div>
+    <div *ngIf="options.clearBtn" class="col" >
+      <button *ngIf="!clearDialog" type="button" (click)="clearDialog = true" class="btn btn-light"><fa-icon  [icon]="faTrashAlt" class="tomato" title="Clear table"></fa-icon></button>
+      <button *ngIf="clearDialog" type="button" (click)="clearDialog = false" class="btn btn-outline-secondary">Cancel</button>
+      <button *ngIf="clearDialog" type="button" (click)="clear();" class="btn btn-danger ml-2">Clear</button>
+
     </div>
   </div>
 </form>

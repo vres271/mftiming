@@ -5,14 +5,16 @@ import { catchError, map, tap, retry, retryWhen, concat , take, mergeMap, delay,
 
 import { CoreService } from '../services/core.service';
 
+import { CompetitorsService } from '../services/competitors.service';
+import { CategoriesService } from '../services/categories.service';
+import { RacesService } from '../services/races.service';
+
 import { UsersService } from '../services/users.service';
 import { UserGroupsService } from '../services/user-groups.service';
 import { TagsService } from '../services/tags.service';
 import { UnitsService } from '../services/units.service';
 import { HWTypesService } from '../services/hwtypes.service';
 import { RecieversService } from '../services/recievers.service';
-import { CompetitorsService } from '../services/competitors.service';
-import { CategoriesService } from '../services/categories.service';
 import { LogService } from '../services/log.service';
 import { TrashService } from '../services/trash.service';
 import { StateService } from '../services/state.service';
@@ -34,6 +36,8 @@ export class AppService {
     users: 'user',
     competitors: 'competitor',
     categories: 'category',
+    races: 'race',
+
     ugroups: 'user-group',
     recievers: 'reciever',
     accounts: 'account',
@@ -42,26 +46,25 @@ export class AppService {
 
   constructor(
     public core: CoreService,
-    public users: UsersService,
-    public accounts: AccountsService,
-    public log: LogService,
-    public state: StateService,
-    public APPEvents: APPEventsService,
-    public ref: ReferenceService,
-    public settings: SettingsService,
     public trash: TrashService,
+    public settings: SettingsService,
+    public ref: ReferenceService,
+    public APPEvents: APPEventsService,
+    public state: StateService,
+    public users: UsersService,
+    public categories: CategoriesService,
+    public competitors: CompetitorsService,
+    public races: RacesService,
+
+    public log: LogService,
+
+    public accounts: AccountsService,
     public seasons: TrashService,
-    public category: TrashService,
-    public race: TrashService,
-
-
     public ugroups: UserGroupsService,
     public tags: TagsService,
     public units: UnitsService,
     public hwtypes: HWTypesService,
     public recievers: RecieversService,
-    public competitors: CompetitorsService,
-    public categories: CategoriesService,
     public distributions: DistributionsService,
     public rtqueue: RTQueueService,
     ) {
@@ -74,13 +77,14 @@ export class AppService {
     this.recievers.app = this;
     this.competitors.app = this;
     this.categories.app = this;
+    this.races.app = this;
     this.log.app = this;
     this.trash.app = this;
     this.distributions.app = this;
     this.accounts.app = this;
     this.rtqueue.app = this;
-    this.trash.trashTypes = ['tags','recievers','competitors','categories','users','ugroups'];
-    this.state.createDefaults(['tags','recievers','competitors','categories','users','ugroups','log','trash','distributions','accounts','rtqueue']);
+    this.trash.trashTypes = ['tags','recievers','competitors','categories','races','users','ugroups'];
+    this.state.createDefaults(['tags','recievers','competitors','categories','races','users','ugroups','log','trash','distributions','accounts','rtqueue']);
   }
 
   public onAppReady(): Observable<Event> {
@@ -109,13 +113,14 @@ export class AppService {
           this.ref.set(this.core.ref);
         }),
         tap(_=>{this.ready = false;}),
-        tap(_=>{this.core.createRightsAliases([this.users,this.log,this.competitors,this.categories])}),
+        tap(_=>{this.core.createRightsAliases([this.users,this.log,this.competitors,this.categories,this.races])}),
         switchMap(_=>this.users.get()),
         switchMap(_=>this.ugroups.get().pipe(
           switchMap(_=>this.tags.get()),
           switchMap(_=>this.recievers.get()),
           switchMap(_=>this.competitors.get()),
           switchMap(_=>this.categories.get()),
+          switchMap(_=>this.races.get()),
           switchMap(_=>this.distributions.get()),
           switchMap(_=>this.rtqueue.get()),
           )),

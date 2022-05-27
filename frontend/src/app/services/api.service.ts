@@ -37,6 +37,7 @@ export class APIService {
                 seasons:{r:true,m:true,a:true,d:true},
                 categories:{r:true,m:true,a:true,d:true},
                 race:{r:true,m:true,a:true,d:true},
+                races:{r:true,m:true,a:true,d:true},
                 competitors:{r:true,m:true,a:true,d:true},
                 log:{r:true,m:true,a:true,d:true},        
               },
@@ -46,6 +47,7 @@ export class APIService {
                   seasons: true,
                   category: true,
                   race: true,
+                  races: true,
                   competitors: true,
                   log: true,        
                 }
@@ -55,7 +57,7 @@ export class APIService {
           sid :'123',       
         }).pipe(delay(1000))
       }
-    } else if (svc==='users'||svc==='log'||svc==='competitors'||svc==='categories') {
+    } else if (svc==='users'||svc==='log'||svc==='competitors'||svc==='categories'||svc==='races') {
       if(type==='GET') {
         if(!getParams[0]) {
           return from(this.dbService.getAll(svc))

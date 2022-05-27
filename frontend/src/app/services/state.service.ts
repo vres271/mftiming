@@ -42,6 +42,16 @@ export class StateService {
       }
       ,limit: 1*this.default.limit
     },
+    races:{
+      filter: {
+        //accountId: '',
+        name: '',
+        from: '',
+        to: '',
+        //d: '',
+      }
+      ,limit: 1*this.default.limit
+    },
     tags:{
       filter: {
         num: '',

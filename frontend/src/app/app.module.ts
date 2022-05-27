@@ -35,6 +35,8 @@ import { CompetitorsService } from './services/competitors.service';
 import { CompetitorService } from './services/competitor.service';
 import { CategoriesService } from './services/categories.service';
 import { CategoryService } from './services/category.service';
+import { RacesService } from './services/races.service';
+import { RaceService } from './services/race.service';
 
 
 
@@ -102,6 +104,8 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { AccountComponent } from './components/account/account.component';
 import { RTQueueComponent } from './components/rtqueue/rtqueue.component';
 import { ItemsImportComponent } from './components/common/items-import/items-import.component';
+import { RacesComponent } from './components/races/races.component';
+import { RaceComponent } from './components/race/race.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -148,6 +152,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccountComponent,
     RTQueueComponent,
     ItemsImportComponent,
+    RacesComponent,
+    RaceComponent,
   ],
   imports: [
     BrowserModule,
@@ -177,6 +183,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserGroupsService,
     ItemsService,
     UsersService,
+    CompetitorsService,
+    CompetitorService,   
+    CategoriesService,
+    CategoryService,  
+    RacesService,
+    RaceService,   
+     
     UserGroupService,
     TagsService,
     TagService,
@@ -186,10 +199,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HWTypeService,
     RecieversService,
     RecieverService,   
-    CompetitorsService,
-    CompetitorService,   
-    CategoriesService,
-    CategoryService,   
     LogService,   
     LogItemService,   
     TrashService,   

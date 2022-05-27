@@ -1,0 +1,41 @@
+<h3>
+  <span  class="text-capitalize">{{'type.race'|translate}}</span> : {{(race?'Edit':'Create')|translate|lowercase }}
+</h3>
+
+<form  [formGroup]="itemForm"  *ngIf="!importMode" (submit)="onItemFormSubmit()">
+  <fieldset  [disabled]="(race&&!app.races.r.m)||(!race&&!app.races.r.a)" >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="seasonId" translate>races.seasonId</label>
+          <input type="text" class="form-control" id="seasonId" formControlName="seasonId">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name" translate>races.name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="from" translate>races.from</label>
+          <input type="text" class="form-control" id="from" formControlName="from">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="to" translate>races.to</label>
+          <input type="text" class="form-control" id="to" formControlName="to">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{{(race?'Save_changes':'Add_new')|translate}}</button>
+  </fieldset>
+</form>

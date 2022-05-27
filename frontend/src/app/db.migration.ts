@@ -99,11 +99,11 @@ export function myDBConfig():DBConfig {
         ]
       },
       {
-        store: 'raceEvents',
+        store: 'events',
         storeConfig: { keyPath: 'id', autoIncrement: true },
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
-          { name: 'type', keypath: 'type', options: { unique: false } },
+          { name: 'eventType', keypath: 'eventType', options: { unique: false } },
           { name: 'raceId', keypath: 'raceId', options: { unique: false } },
           { name: 'competitorId', keypath: 'competitorId', options: { unique: false } },
           { name: 't', keypath: 't', options: { unique: false } },

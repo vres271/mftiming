@@ -1,6 +1,38 @@
 <h3>
   <span  class="text-capitalize">{{'type.category'|translate}}</span> : {{(category?'Edit':'Create')|translate|lowercase }}
+  <span  *ngIf="!category">
+    (<span class="{{importMode?'pointer silver':''}}" (click)="importMode=false" translate>Single Item</span> | 
+    <span  class="{{!importMode?'pointer silver':''}}" (click)="importMode=true" translate>Multiple</span>) 
+  </span>
 </h3>
+
+<div *ngIf="importMode">
+  <app-items-import [app]="app" [itemType]="itemType" [options]="importOptions" (parse)="parsedItems=$event"></app-items-import>
+  <div class="row">
+    <div class="col-md-4">
+      <button  type="button" (click)="importItems(parsedItems.items)" [disabled]="!parsedItems.items.length||parsedItems.errors.length||!app.categories.ready"  class="btn btn-primary btn-block" >{{(category?'Save_changes':'Add new Items')|translate}} ({{parsedItems.items.length}})</button> 
+    </div>
+    <div class="col-md-8">
+      <div *ngIf="multiAddErrors.length" class="alert alert-danger" role="alert">
+        <b><span  class="text-capitalize" translate>errors</span>: {{multiAddErrors.length}}</b>
+        <ul>
+          <li *ngFor="let res of multiAddErrors"><span *ngIf="res.error">{{res.error}}</span></li>
+        </ul>
+      </div>
+      <div *ngIf="parsedItems.errors&&parsedItems.errors.length" class="alert alert-danger" role="alert">
+        <b><span  class="text-capitalize" translate>errors</span>: {{parsedItems.errors.length}}</b>
+        <ul>
+          <li *ngFor="let error of parsedItems.errors">
+            <span translate>row</span>: {{error.row}}, 
+            <span translate>field</span>: <span class="font-italic" translate>categories.{{error.fieldName}}</span>, 
+            <span translate>error</span>: <span class="font-italic" translate>{{error.result.msg}}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <form  [formGroup]="itemForm"  *ngIf="!importMode" (submit)="onItemFormSubmit()">
   <fieldset  [disabled]="(category&&!app.categories.r.m)||(!category&&!app.categories.r.a)" >
     <div class="row">

@@ -15,6 +15,17 @@ import { Category } from '../../services/category.service';
 export class CategoryComponent implements OnInit {
   public category: Category|null = null;
   public itemForm: FormGroup;
+  public importOptions: any = {
+    fields:[
+      {name: 'seasonId', src: 'value', value: '1', validators: ['required']},
+      {name: 'name', src: 0, validators: ['required']},
+      {name: 'ageFrom', src: 'value', value: '0', validators: ['required']},
+      {name: 'ageTo', src: 'value', value: '0', validators: ['required']},
+    ],
+    delitmer: '\\t',
+  };
+  public multiAddErrors: any = [];
+  public parsedItems: any = {items:[],errors:[]};
 
   constructor(
     public route: ActivatedRoute,
@@ -77,5 +88,15 @@ export class CategoryComponent implements OnInit {
      });
   }
 
+  public importItems(items) {
+    this.app.categories.addMultiple(items)
+      .subscribe(res=>{
+        this.multiAddErrors = res.added.filter(item=>!item.id);
+        this.app.categories.get()
+          .subscribe()
+        if(this.multiAddErrors.length===0) this.router.navigate(['categories']);
+      });
+
+  }
 
 }

@@ -70,7 +70,7 @@ export function myDBConfig():DBConfig {
         ]
       },
       {
-        store: 'race',
+        store: 'races',
         storeConfig: { keyPath: 'id', autoIncrement: true },
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
@@ -87,7 +87,7 @@ export function myDBConfig():DBConfig {
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },
           { name: 'regDate', keypath: 'regDate', options: { unique: false } },
-          { name: 'num', keypath: 'num', options: { unique: true } },
+          { name: 'num', keypath: 'num', options: { unique: false } },
           { name: 'name1', keypath: 'name1', options: { unique: false } },
           { name: 'name2', keypath: 'name2', options: { unique: false } },
           { name: 'name3', keypath: 'name3', options: { unique: false } },
@@ -106,7 +106,7 @@ export function myDBConfig():DBConfig {
           { name: 'type', keypath: 'type', options: { unique: false } },
           { name: 'raceId', keypath: 'raceId', options: { unique: false } },
           { name: 'competitorId', keypath: 'competitorId', options: { unique: false } },
-          { name: 't', keypath: 't', options: { unique: true } },
+          { name: 't', keypath: 't', options: { unique: false } },
           { name: 'desc', keypath: 'desc', options: { unique: false } },
           { name: 'd', keypath: 'd', options: { unique: false } },
         ]

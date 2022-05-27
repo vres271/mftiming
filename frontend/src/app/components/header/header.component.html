@@ -9,18 +9,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item "  ><a class="nav-link" routerLink="/race" [routerLinkActive]="'active'" href="" translate>Race</a></li>
       <li class="nav-item "  *ngIf="r&&r.competitors"><a class="nav-link" routerLink="/competitors" [routerLinkActive]="'active'" href="" translate>Competitors</a></li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate>
-          Administration
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngIf="r&&r.users" routerLink="/users" [routerLinkActive]="'active'" href="" translate>Users</a>
-          <!-- <a class="dropdown-item" *ngIf="r&&r.seasons" routerLink="/seasons" [routerLinkActive]="'active'" href="" translate>Seasons</a> -->
-          <a class="dropdown-item" *ngIf="r&&r.category" routerLink="/categories" [routerLinkActive]="'active'" href="" translate>Categories</a>
-          <!-- <a class="dropdown-item" *ngIf="r&&r.race" routerLink="/race" [routerLinkActive]="'active'" href="" translate>Race</a> -->
-          <a class="dropdown-item" *ngIf="r&&r.log" routerLink="/log" [routerLinkActive]="'active'" href="" translate>Log</a>
-        </div>
-      </li>      
+      <li class="nav-item "  *ngIf="r&&r.category"><a class="nav-link" routerLink="/categories" [routerLinkActive]="'active'" href="" translate>Categories</a></li>
       <app-nav-trash *ngIf="r&&r.trash" [app]="app"></app-nav-trash>
       <app-nav-appevts-log [app]="app"></app-nav-appevts-log>
     </ul>

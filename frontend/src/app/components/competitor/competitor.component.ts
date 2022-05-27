@@ -18,6 +18,7 @@ export class CompetitorComponent implements OnInit {
   public importOptions: any = {
     fields:[
       {name: 'regDate', src: 0, validators: ['required']},
+      {name: 'num', src: 8},
       {name: 'name1', src: 1, validators: ['required']},
       {name: 'name2', src: 2, validators: ['required']},
       {name: 'name3', src: 3, validators: ['required']},

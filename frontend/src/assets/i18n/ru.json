@@ -12,6 +12,10 @@
   ,"Settings":"Настройки"
   ,"Accounts":"Аккаунты"
 
+  ,"Race":"Гонки"
+  ,"Competitors":"Участники"
+  ,"Categories":"Категории"
+
   ,"items":"items"
   ,"All":"Все"
   ,"main":"Основное"
@@ -75,6 +79,9 @@
   }
   ,"type":{
     "user":"пользователь"
+    ,"race":"Гонка"
+    ,"competitor":"Участник"
+    ,"category":"Категория"
     ,"ugroup":"группа"
     ,"reciever":"ресивер"
     ,"tag":"метка"
@@ -182,6 +189,16 @@
     ,"categoryName":"Категория"
     ,"team":"Команда"
     ,"desc":"Доп."
+    ,"d":"Удален"
+
+  }
+
+  ,"categories":{
+    "accountId":"accountId"
+    ,"seasonId":"Сезон"
+    ,"name":"Имя"
+    ,"ageFrom":"Мин возраст"
+    ,"ageTo":"Макс возраст"
     ,"d":"Удален"
 
   }

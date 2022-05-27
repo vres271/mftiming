@@ -8,6 +8,7 @@ import { CoreService } from '../services/core.service';
 import { CompetitorsService } from '../services/competitors.service';
 import { CategoriesService } from '../services/categories.service';
 import { RacesService } from '../services/races.service';
+import { GoService } from '../services/go.service';
 
 import { UsersService } from '../services/users.service';
 import { UserGroupsService } from '../services/user-groups.service';
@@ -55,6 +56,7 @@ export class AppService {
     public categories: CategoriesService,
     public competitors: CompetitorsService,
     public races: RacesService,
+    public go: GoService,
 
     public log: LogService,
 

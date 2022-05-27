@@ -1,0 +1,17 @@
+<div *ngIf="!app.go.race">
+  <h4>Select race:</h4>
+    <table  class="mt-2 table" id="items-table">
+      <tr *ngFor="let item of app.races.items">
+        <td><a class="nav-link" routerLink="/go/{{item.id}}"  href="">{{item.name}}</a></td>
+      </tr>
+    </table>
+</div>
+
+<div *ngIf="app.go.race">
+  <h5>{{app.go.race.name}}</h5>
+  <div class="row" >
+    <div class="col-md-6">1</div>
+    <div class="col-md-6">2</div>
+  </div>
+</div>
+

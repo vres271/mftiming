@@ -106,6 +106,7 @@ import { RTQueueComponent } from './components/rtqueue/rtqueue.component';
 import { ItemsImportComponent } from './components/common/items-import/items-import.component';
 import { RacesComponent } from './components/races/races.component';
 import { RaceComponent } from './components/race/race.component';
+import { GoComponent } from './components/go/go.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -154,6 +155,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ItemsImportComponent,
     RacesComponent,
     RaceComponent,
+    GoComponent,
   ],
   imports: [
     BrowserModule,

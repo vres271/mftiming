@@ -7,6 +7,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryComponent } from './components/category/category.component';
 import { RacesComponent } from './components/races/races.component';
 import { RaceComponent } from './components/race/race.component';
+import { GoComponent } from './components/go/go.component';
 
 
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -39,6 +40,8 @@ const routes: Routes = [
   { path: 'races',   component: RacesComponent },
   { path: 'race/:raceId',   component: RaceComponent },
   { path: 'race',   component: RaceComponent },
+  { path: 'go/:raceId',   component: GoComponent },
+  { path: 'go',   component: GoComponent },
 
 
   { path: 'login',   component: SignInComponent },

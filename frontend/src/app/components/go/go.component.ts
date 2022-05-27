@@ -14,7 +14,7 @@ import { Race } from '../../services/race.service';
   styleUrls: ['./go.component.scss']
 })
 export class GoComponent implements OnInit {
-  public newEvent: Object|null = null;
+  public newEvent: any|null = null;
 
   constructor(
     public route: ActivatedRoute,
@@ -30,22 +30,19 @@ export class GoComponent implements OnInit {
       .pipe(
         switchMap(()=>this.route.params),
         tap(params=>{
-          this.app.go.race = this.app.races._index.id[params['raceId']]
+          if(params['raceId']) {
+            this.app.go.race = this.app.races._index.id[params['raceId']]
 
-          this.newEvent = {
-            accountId: 0,
-            eventType:1,
-            raceId: this.app.go.race.id,
-            competitorId:0,
-            t:0,
-            desc:'',
-            d:0,      
+            this.newEvent = {
+              accountId: 0,
+              eventType:1,
+              raceId: this.app.go.race.id,
+              competitorId:0,
+              t:0,
+              desc:'',
+              d:0,      
+            }
           }
-          let newEvent:any = this.newEvent;
-
-          const interval = setInterval(function() {
-            newEvent.t = (new Date).getTime();
-          }, 100)
 
         }),
       ).subscribe(()=>{})
@@ -66,6 +63,7 @@ export class GoComponent implements OnInit {
   }
 
   public onFormSubmit = ()=>{
+    this.newEvent.t = 1*this.app.go.t;
     this.app.events.add(this.newEvent)
       .subscribe(res=>{
         this.app.events.get()

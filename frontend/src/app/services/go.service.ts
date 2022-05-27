@@ -10,8 +10,13 @@ import { Race } from '../services/race.service';
 
 export class GoService {
   public race: Race|null = null;
+  public t: number = (new Date()).getTime();
+  public tIntervalId: any = 0;
 
   constructor() {
+    this.tIntervalId = setInterval(()=>{
+      this.t = (new Date()).getTime();
+    },10)
   }
 
 

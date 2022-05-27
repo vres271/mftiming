@@ -41,6 +41,7 @@ export class Event extends Item{
 export class EventService extends ItemService {
   
   public _itemType: string = 'events';
+  public eventTypes: string[] = ['','lap','start','finish'];
   public _item: Event;
   constructor(public api: APIService) {
     super(api)

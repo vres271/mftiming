@@ -8,22 +8,41 @@
 </div>
 
 <div *ngIf="app.go.race" class="">
-  <h5>{{app.go.race.name}}</h5>
   <div class="row" >
-    <div class="col-md-6">
+    <div class="col-md-6" >
       <div 
         *ngFor="let item of app.events.items | orderBy: ['-t']; index as i;" 
         [ngStyle]="{'margin-top': delayH(item, app.events.items, i)}"
         class="row reg"
         >
-        <div class="col-md-1"><h4>{{item.competitorNum}}</h4></div>
-        <div class="col-md-6">{{item.competitorName}}<br><small>{{item.t|date:'HH:mm:ss.SSS'}}</small></div>
-        <div class="col-md-5">{{item.categoryName}}</div>
+        <div class="col-md-1"><h3>{{item.competitorNum}}</h3></div>
+        <div class="col-md-6">
+          {{item.competitorName}}<br>
+          <small>
+            <!-- {{item.t|date:'HH:mm:ss.SSS'}}  -->
+            <!-- {{(app.go.t-item.t-4*3600000)|date:'HH:mm:ss.SSS'}} -->
+            {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}
+          </small>
+          <h4 *ngIf="item.eventType==2">Start Race</h4>
+          <h4 *ngIf="item.eventType==3">Finish Race</h4>
+        </div>
+        <div class="col-md-5">
+          {{item.categoryName}}
+        </div>
       </div>
     </div>
-    <div class="col-md-6">{{app.go.t|date:'HH:mm:ss.SSS'}}
+    <div class="col-md-6">
+      <h5>
+        {{app.go.race.name}} 
+        <span *ngIf="app.go.start"> | {{app.go.start.t|date:'HH:mm:ss.SSS'}}</span>
+        <span *ngIf="app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
+        <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
+      </h5>
       <form  (submit)="onFormSubmit()">
         <fieldset>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="newEvent.eventType" [ngModelOptions]="{standalone: true}" placeholder="eventType">
+          </div>
           <div class="form-group">
             <input type="text" class="form-control" [(ngModel)]="newEvent.competitorId" [ngModelOptions]="{standalone: true}" placeholder="competitorId">
           </div>

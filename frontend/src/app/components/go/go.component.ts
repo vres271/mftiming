@@ -42,6 +42,8 @@ export class GoComponent implements OnInit {
               desc:'',
               d:0,      
             }
+
+            this.app.go.init();
           }
 
         }),
@@ -54,8 +56,8 @@ export class GoComponent implements OnInit {
       if(items[i-1]) {
         m = items[i-1].t - item.t;
       } else {
-        m = 0;
-        //m = (new Date).getTime() - item.t;
+        //m = 0;
+        m = this.app.go.t - item.t;
       }
       return parseInt(String(m/1000))+'px'
     }

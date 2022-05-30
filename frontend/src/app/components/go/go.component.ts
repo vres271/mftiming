@@ -15,6 +15,7 @@ import { Race } from '../../services/race.service';
 })
 export class GoComponent implements OnInit {
   public newEvent: any|null = null;
+  public filter: any|null = {competitorName:''};
 
   constructor(
     public route: ActivatedRoute,
@@ -43,7 +44,9 @@ export class GoComponent implements OnInit {
               d:0,      
             }
 
-            this.app.go.init();
+            this.app.go.get();
+          } else {
+            this.app.go.reset();
           }
 
         }),
@@ -69,7 +72,9 @@ export class GoComponent implements OnInit {
     this.app.events.add(this.newEvent)
       .subscribe(res=>{
         this.app.events.get()
-          .subscribe(()=>{})
+          .subscribe(()=>{
+            this.app.go.get();
+          })
       });
 
   }

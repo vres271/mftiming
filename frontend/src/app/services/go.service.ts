@@ -16,6 +16,7 @@ export class GoService {
 
   public start:any|null = null;
   public finish:any|null = null;
+  public raceEvents: any|null = null;
 
   constructor(
     public events: EventsService
@@ -25,15 +26,25 @@ export class GoService {
     },10)
   }
 
-  public init() {
+  public get() {
+
+    this.raceEvents = this.events.items.filter(item=>1*item.raceId===1*this.race.id)
+
     let startEvents = this.events.items.filter(item=>(1*item.eventType===2));
     if(startEvents) this.start = startEvents[0];
 
     let finishEvents = this.events.items.filter(item=>(1*item.eventType===3));
     if(finishEvents) this.finish = finishEvents[0];
-    console.log(this.events.items)
+    
   }
 
+
+  public reset() {
+    this.race = null;
+    this.start = null;
+    this.finish = null;
+    this.raceEvents = null;
+  }
 
 }
 

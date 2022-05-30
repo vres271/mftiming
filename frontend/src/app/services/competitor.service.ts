@@ -30,6 +30,10 @@ export class Competitor extends Item{
     return this.name1+' '+this.name2+' '+this.name3;
   }
 
+  public get fullNameNum() : string {
+    return this.num+' '+this.name1+' '+this.name2+' '+this.name3;
+  }
+
   public get categoryName() : string {
     return (this._parent.app&&this._parent.app.categories._index&&this._parent.app.categories._index.id&&this._parent.app.categories._index.id[this.categoryId])?this._parent.app.categories._index.id[this.categoryId].name:'';
   }

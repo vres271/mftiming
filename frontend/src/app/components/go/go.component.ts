@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
@@ -16,6 +16,7 @@ import { Race } from '../../services/race.service';
 export class GoComponent implements OnInit {
   public newEvent: any|null = null;
   public filter: any|null = {competitorName:''};
+  @Input('result') result: {items:any[]} = {items:[]};
 
   constructor(
     public route: ActivatedRoute,
@@ -45,6 +46,20 @@ export class GoComponent implements OnInit {
             }
 
             this.app.go.get();
+
+            // const iid = setInterval(()=>{
+            //   const elem = document.getElementById('recontainer');
+            //   if(elem) {
+            //     const resizeObserver = new ResizeObserver((e:any) => {
+            //       // console.log(e[0].target.offsetHeight)
+            //       console.log(elem.offsetHeight)
+            //     }); 
+            //     resizeObserver.observe(elem);
+            //     window.clearInterval(iid);
+            //     return;
+            //   }
+            // },100)
+
           } else {
             this.app.go.reset();
           }
@@ -54,7 +69,7 @@ export class GoComponent implements OnInit {
   }
 
   public delayH = (item, items, i)=>{
-    if(item&&items) {
+    if(item&&items&&item.eventType!=3) {
       let m = 0;
       if(items[i-1]) {
         m = items[i-1].t - item.t;
@@ -67,7 +82,9 @@ export class GoComponent implements OnInit {
     return '';
   }
 
-  public onFormSubmit = ()=>{
+  public onFormSubmit = (eventType, competitorId)=>{
+    this.newEvent.eventType = eventType;
+    this.newEvent.competitorId = competitorId;
     this.newEvent.t = 1*this.app.go.t;
     this.app.events.add(this.newEvent)
       .subscribe(res=>{

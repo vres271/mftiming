@@ -30,12 +30,19 @@ export class GoService {
 
     this.raceEvents = this.events.items.filter(item=>1*item.raceId===1*this.race.id)
 
-    let startEvents = this.events.items.filter(item=>(1*item.eventType===2));
+    let startEvents = this.raceEvents.filter(item=>(1*item.eventType===2));
     if(startEvents) this.start = startEvents[0];
 
-    let finishEvents = this.events.items.filter(item=>(1*item.eventType===3));
+    let finishEvents = this.raceEvents.filter(item=>(1*item.eventType===3));
     if(finishEvents) this.finish = finishEvents[0];
-    
+
+    let compLaps = {};
+    this.raceEvents.forEach(item=>{
+      if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
+      compLaps[item.competitorId]++;
+      item._lap = compLaps[item.competitorId];
+    })
+
   }
 
 

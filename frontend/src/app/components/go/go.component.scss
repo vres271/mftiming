@@ -10,3 +10,8 @@
     background: rgba(0,20,30,.1)
   }
 }
+
+.scrolled{
+  overflow-y: auto;
+  max-height: 500px;  
+}

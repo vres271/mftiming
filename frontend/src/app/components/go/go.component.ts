@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, Validatio
 import { iif, of } from 'rxjs';
 import { mergeMap , tap, switchMap} from 'rxjs/operators';
 import { AppService } from '../../services/app.service';
-import {  faBan,  } from '@fortawesome/free-solid-svg-icons';
+import {  faBan, faSave } from '@fortawesome/free-solid-svg-icons';
 import { GoService } from '../../services/go.service';
 import { Race } from '../../services/race.service';
 
@@ -22,6 +22,7 @@ export class GoComponent implements OnInit {
     fullNameNum: '',
   };
   faBan = faBan;
+  faSave = faSave;
   @Input('result') result: {items:any[]} = {items:[]};
   @Input('editEventFilterresult') editEventFilterresult: {items:any[]} = {items:[]};
 
@@ -95,6 +96,14 @@ export class GoComponent implements OnInit {
           this.app.go.get();
         });
     }
+  }
+
+  public saveEvent(item:any) {
+    item.save()
+      .subscribe(()=>{
+        this.editEventId=0;
+        this.app.go.get();
+      });
   }
 
   public delayH = (item, items, i)=>{

@@ -28,21 +28,32 @@ export class GoService {
 
   public get() {
 
-    this.raceEvents = this.events.items.filter(item=>1*item.raceId===1*this.race.id)
+    this.raceEvents = this.events.items.filter(item=>1*item.raceId===1*this.race.id).sort((a,b)=>(a.t-b.t))
 
     let compLaps = {};
+    let compLapsT = {};
     this.raceEvents.forEach(item=>{
+
+      if(item.eventType===2) {this.start=item}
+      if(item.eventType===3) {this.finish=item}
 
       if(item.eventType===1&&item.competitorId) {
         if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
         compLaps[item.competitorId]++;
         item._lap = compLaps[item.competitorId];
+
+        if(!compLapsT[item.competitorId] && this.start) {
+          item._lapT = item.t - this.start.t; 
+        } else {
+          item._lapT = item.t - compLapsT[item.competitorId];
+        }
+        compLapsT[item.competitorId]=item.t;
       }
 
-      if(item.eventType===2) {this.start=item}
-      if(item.eventType===3) {this.finish=item}
 
     })
+
+    this.raceEvents = this.raceEvents.sort((a,b)=>(b.t-a.t))
 
   }
 

@@ -32,25 +32,38 @@
               <option value="100">1/100</option>
             </select>
           </div>
+          <div class="form-group mr-1">
+            <select class="form-control" [(ngModel)]="s.eventsLimit" [ngModelOptions]="{standalone: true}" placeholder="Кол-во">
+              <option value="10000">10000</option>
+              <option value="1000">1000</option>
+              <option value="100">100</option>
+              <option value="50">50</option>
+              <option value="20">20</option>
+            </select>
+          </div>
         </form>
         <div class="scrolled">
           <div 
-            *ngFor="let item of app.go.raceEvents  | orderBy: ['-t']| myFilter: s.eventsFilter; index as i;" 
-            [ngStyle]="{'margin-top': delayH(item, app.go.raceEvents, i)}"
+            *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
             class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"
             (dblclick)="switchEditEventForm(item)"
+            [ngStyle]="s.eventsTimeScale?{'margin-top': delayH(item, app.go.raceEvents, i)}:{}"
             >
-            <div class="col-md-1"><h3>{{item.competitorNum}}</h3></div>
+            <div class="col-md-1">
+              <h3>{{item.competitorNum}}</h3>
+              <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
+            </div>
             <div class="col-md-5">
               <div *ngIf="editEventId!==item.id">{{item.competitorName}}</div>
               <div *ngIf="editEventId===item.id">
                 <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
-                <select class="form-control" [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+                <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
                   <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
                 </select>
               </div>
               <small>
                 {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}
+                <span *ngIf="item._lapT">{{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</span>
               </small>
               <h4 *ngIf="item.eventType==2">Start Race</h4>
               <h4 *ngIf="item.eventType==3">Finish Race</h4>
@@ -70,7 +83,7 @@
         <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
         <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
       </h5>
-      <form  (submit)="onFormSubmit(1,result.items[0].id)" >
+      <form  (submit)="app.go.start&&onFormSubmit(1,result.items[0].id)" >
         <fieldset>
           <div class="row">
             <div class="col-md-6">
@@ -81,7 +94,7 @@
             <div class="col-md-6 text-right">
               <div class="form-group">
                 <!-- <button class="btn btn-primary btn-lg mr-2" type="submit">Register lap</button> -->
-                <button class="btn btn-primary btn-lg mr-2"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
+                <button class="btn btn-primary btn-lg mr-2" [disabled]="!app.go.start"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
                 <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.start" type="button" (click)="onFormSubmit(2,0);" >Start</button>
                 <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish||!app.go.start" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
               </div>
@@ -92,7 +105,7 @@
       <table class="table">
         <tr 
           *ngFor="let item of app.competitors.items | myFilter:{fullNameNum:s.filter.competitorName} | slice:0:10 | asResult : result; index as i;"  
-          (click)="onFormSubmit(1,item.id);"
+          (click)="app.go.start&&onFormSubmit(1,item.id);"
           class="clickable" 
           >
           <td width="40px">{{item.num}}</td>

@@ -11,12 +11,6 @@
   <div class="row"  id="recontainer" >
     <div class="col-md-7 ">
       <div >
-        <h5>
-          {{app.go.race.name}} 
-          <span *ngIf="app.go.start"> | {{app.go.start.t|date:'HH:mm:ss.SSS'}}</span>
-          <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
-          <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
-        </h5>
         <form class="form-inline mb-2">
           <div class="form-group mr-1">
             <button type="button" (click)="resetEventsFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>
@@ -39,8 +33,6 @@
             </select>
           </div>
         </form>
-        <hr>
-
         <div class="scrolled">
           <div 
             *ngFor="let item of app.go.raceEvents  | orderBy: ['-t']| myFilter: s.eventsFilter; index as i;" 
@@ -72,6 +64,12 @@
       </div>
     </div>
     <div class="col-md-5">
+      <h5>
+        {{app.go.race.name}} 
+        <span *ngIf="app.go.start"> | {{app.go.start.t|date:'HH:mm:ss.SSS'}}</span>
+        <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
+        <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
+      </h5>
       <form  (submit)="onFormSubmit(1,result.items[0].id)" >
         <fieldset>
           <div class="row">

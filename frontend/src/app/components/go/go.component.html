@@ -17,18 +17,38 @@
           <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
           <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
         </h5>
+        <form class="form-inline mb-2">
+          <div class="form-group mr-1">
+            <input type="text" class="form-control" [(ngModel)]="eventsFilter.competitorNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник">
+          </div>
+          <div class="form-group mr-1">
+            <input type="text" class="form-control" [(ngModel)]="eventsFilter.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Категория">
+          </div>
+          <div class="form-group mr-1">
+            <input type="text" class="form-control" [(ngModel)]="eventsFilter._lap" [ngModelOptions]="{standalone: true}" placeholder="Круг">
+          </div>
+          <div class="form-group mr-1">
+            <select class="form-control" [(ngModel)]="eventsTimeScale" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+              <option value="">0</option>
+              <option value="10000">1/10000</option>
+              <option value="1000">1/1000</option>
+              <option value="100">1/100</option>
+            </select>
+          </div>
+        </form>
         <hr>
+
         <div class="scrolled">
           <div 
-            *ngFor="let item of app.go.raceEvents | orderBy: ['-t']; index as i;" 
+            *ngFor="let item of app.go.raceEvents  | orderBy: ['-t']| myFilter: eventsFilter; index as i;" 
             [ngStyle]="{'margin-top': delayH(item, app.go.raceEvents, i)}"
-            class="row reg"
+            class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"
             >
             <div class="col-md-1"><h3>{{item.competitorNum}}</h3></div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               {{item.competitorName}}<br>
               <small>
-                {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}} {{item._lap}}
+                {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}
               </small>
               <h4 *ngIf="item.eventType==2">Start Race</h4>
               <h4 *ngIf="item.eventType==3">Finish Race</h4>
@@ -36,6 +56,7 @@
             <div class="col-md-5">
               {{item.categoryName}}
             </div>
+            <div class="col-md-1"><small *ngIf="item.eventType==1">{{item._lap}} круг</small></div>
           </div>
         </div>
       </div>
@@ -53,7 +74,7 @@
               <div class="form-group">
                 <!-- <button class="btn btn-primary btn-lg mr-2" type="submit">Register lap</button> -->
                 <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.start" type="button" (click)="onFormSubmit(2,0);" >Start</button>
-                <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
+                <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish||!app.go.start" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
               </div>
             </div>
           </div>

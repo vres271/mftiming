@@ -32,6 +32,10 @@ export class Event extends Item{
     return this.competitor?this.competitor.num:'';
   }
 
+  public get competitorNameNum() : string {
+    return this.competitor?this.competitor.fullNameNum:'';
+  }
+
   public get categoryName() : string {
     return this.competitor?this.competitor.categoryName:'';
   }

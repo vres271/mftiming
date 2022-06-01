@@ -16,6 +16,12 @@ import { Race } from '../../services/race.service';
 export class GoComponent implements OnInit {
   public newEvent: any|null = null;
   public filter: any|null = {competitorName:''};
+  public eventsFilter: any|null = {
+    competitorNameNum:'',
+    categoryName:'',
+    _lap:'',
+  };
+  public eventsTimeScale: number = 1000;
   @Input('result') result: {items:any[]} = {items:[]};
 
   constructor(
@@ -69,6 +75,7 @@ export class GoComponent implements OnInit {
   }
 
   public delayH = (item, items, i)=>{
+    if(!this.eventsTimeScale) return '';
     if(item&&items&&item.eventType!=3) {
       let m = 0;
       if(items[i-1]) {
@@ -77,7 +84,7 @@ export class GoComponent implements OnInit {
         //m = 0;
         m = this.app.go.t - item.t;
       }
-      return parseInt(String(m/1000))+'px'
+      return parseInt(String(m/this.eventsTimeScale))+'px'
     }
     return '';
   }

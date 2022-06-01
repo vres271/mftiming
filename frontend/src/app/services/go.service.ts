@@ -38,9 +38,11 @@ export class GoService {
 
     let compLaps = {};
     this.raceEvents.forEach(item=>{
-      if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
-      compLaps[item.competitorId]++;
-      item._lap = compLaps[item.competitorId];
+      if(item.eventType===1) {
+        if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
+        compLaps[item.competitorId]++;
+        item._lap = compLaps[item.competitorId];
+      }
     })
 
   }

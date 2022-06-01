@@ -12,6 +12,17 @@ export class StateService {
     limit: 10
   };
   public items: object = {
+    go:{
+      eventsFilter: {
+        competitorNameNum: '',
+        categoryName: '',
+        _lap: '',
+      }
+      ,eventsTimeScale: 10000
+      ,filter: {
+        competitorName:''
+      }
+    },
     users:{
       filter: {
         name: '',

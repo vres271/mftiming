@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, Validatio
 import { iif, of } from 'rxjs';
 import { mergeMap , tap, switchMap} from 'rxjs/operators';
 import { AppService } from '../../services/app.service';
+import {  faBan,  } from '@fortawesome/free-solid-svg-icons';
 import { GoService } from '../../services/go.service';
 import { Race } from '../../services/race.service';
 
@@ -15,14 +16,14 @@ import { Race } from '../../services/race.service';
 })
 export class GoComponent implements OnInit {
   public newEvent: any|null = null;
-  public filter: any|null = {competitorName:''};
-  public eventsFilter: any|null = {
-    competitorNameNum:'',
-    categoryName:'',
-    _lap:'',
+  public s: any;
+  public editEventId: number = 0;
+  public editEventFilter: any = {
+    fullNameNum: '',
   };
-  public eventsTimeScale: number = 1000;
+  faBan = faBan;
   @Input('result') result: {items:any[]} = {items:[]};
+  @Input('editEventFilterresult') editEventFilterresult: {items:any[]} = {items:[]};
 
   constructor(
     public route: ActivatedRoute,
@@ -33,7 +34,7 @@ export class GoComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.s = this.app.state.items['go'];
     this.app.ifAppReady()
       .pipe(
         switchMap(()=>this.route.params),
@@ -74,8 +75,30 @@ export class GoComponent implements OnInit {
       ).subscribe(()=>{})
   }
 
+  public resetEventsFilter() {
+    this.s.eventsFilter = {
+        fullNameNum: '',
+      }
+  }
+
+  public setEditCopetitorId(item:any) {
+    item.competitorId=this.editEventFilterresult.items[0]?this.editEventFilterresult.items[0].id:0
+  }
+
+  public switchEditEventForm(item:any) {
+    if(this.editEventId!==item.id) {
+      this.editEventId=item.id;
+    } else {
+      item.save()
+        .subscribe(()=>{
+          this.editEventId=0;
+          this.app.go.get();
+        });
+    }
+  }
+
   public delayH = (item, items, i)=>{
-    if(!this.eventsTimeScale) return '';
+    if(!this.s.eventsTimeScale) return '';
     if(item&&items&&item.eventType!=3) {
       let m = 0;
       if(items[i-1]) {
@@ -84,7 +107,7 @@ export class GoComponent implements OnInit {
         //m = 0;
         m = this.app.go.t - item.t;
       }
-      return parseInt(String(m/this.eventsTimeScale))+'px'
+      return parseInt(String(m/this.s.eventsTimeScale))+'px'
     }
     return '';
   }

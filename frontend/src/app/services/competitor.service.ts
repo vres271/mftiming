@@ -19,6 +19,7 @@ export class Competitor extends Item{
   public team: string;
   public desc: string;
   public d: string;
+  public _lastT: number = 0;
 
 
 

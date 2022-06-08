@@ -9,39 +9,42 @@
 
 <div *ngIf="app.go.race">
   <div class="row"  id="recontainer" >
-    <div class="col-md-7 ">
+    <div class="col-xl-7 col-sm-6">
       <div >
-        <form class="form-inline mb-2">
-          <div class="form-group mr-1">
-            <button type="button" (click)="resetEventsFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>
+        <form class=" mb-2">
+          <div class="form-row">
+            <div class="col-1">
+              <button type="button" (click)="resetEventsFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.competitorNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Категория">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter._lap" [ngModelOptions]="{standalone: true}" placeholder="Круг">
+            </div>
+            <div class="col">
+              <select class="form-control" [(ngModel)]="s.eventsTimeScale" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+                <option value="">0</option>
+                <option value="10000">1/10000</option>
+                <option value="1000">1/1000</option>
+                <option value="100">1/100</option>
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-control" [(ngModel)]="s.eventsLimit" [ngModelOptions]="{standalone: true}" placeholder="Кол-во">
+                <option value="10000">10000</option>
+                <option value="1000">1000</option>
+                <option value="100">100</option>
+                <option value="50">50</option>
+                <option value="20">20</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group mr-1">
-            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.competitorNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник">
-          </div>
-          <div class="form-group mr-1">
-            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Категория">
-          </div>
-          <div class="form-group mr-1">
-            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter._lap" [ngModelOptions]="{standalone: true}" placeholder="Круг">
-          </div>
-          <div class="form-group mr-1">
-            <select class="form-control" [(ngModel)]="s.eventsTimeScale" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
-              <option value="">0</option>
-              <option value="10000">1/10000</option>
-              <option value="1000">1/1000</option>
-              <option value="100">1/100</option>
-            </select>
-          </div>
-          <div class="form-group mr-1">
-            <select class="form-control" [(ngModel)]="s.eventsLimit" [ngModelOptions]="{standalone: true}" placeholder="Кол-во">
-              <option value="10000">10000</option>
-              <option value="1000">1000</option>
-              <option value="100">100</option>
-              <option value="50">50</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-        </form>
+        </form>        
+
         <div class="scrolled">
           <div 
             *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
@@ -71,45 +74,45 @@
             <div class="col-md-5">
               {{item.categoryName}}
             </div>
-            <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}} круг</small></div>
+            <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}}</small></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-xl-5 col-sm-6">
       <h5>
         {{app.go.race.name}} 
         <span *ngIf="app.go.start"> | {{app.go.start.t|date:'HH:mm:ss.SSS'}}</span>
         <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
         <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
       </h5>
-      <form  (submit)="app.go.start&&onFormSubmit(1,result.items[0].id)" >
-        <fieldset>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control form-control-lg" [(ngModel)]="s.filter.competitorName" [ngModelOptions]="{standalone: true}" placeholder="Фильтр">
-              </div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div class="form-group">
-                <!-- <button class="btn btn-primary btn-lg mr-2" type="submit">Register lap</button> -->
-                <button class="btn btn-primary btn-lg mr-2" [disabled]="!app.go.start"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
-                <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.start" type="button" (click)="onFormSubmit(2,0);" >Start</button>
-                <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish||!app.go.start" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
-              </div>
+
+      <form  (submit)="app.go.start&&onFormSubmit(1,result.items[0].id)" class=" mb-2 ">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control form-control-lg   mr-2" [(ngModel)]="s.filter.competitorName" [ngModelOptions]="{standalone: true}" placeholder="Фильтр">
+          </div>
+          <!-- <button class="btn btn-primary btn-lg mr-2" type="submit">Register lap</button> -->
+          <div class="col">
+            <div style="width:285px;">
+              <button class="btn btn-primary btn-lg mr-2" [disabled]="!app.go.start"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
+              <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.start" type="button" (click)="onFormSubmit(2,0);" >Start</button>
+              <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish||!app.go.start" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
             </div>
           </div>
-        </fieldset>
+        </div>
       </form>
       <table class="table">
         <tr 
-          *ngFor="let item of app.competitors.items | myFilter:{fullNameNum:s.filter.competitorName} | slice:0:10 | asResult : result; index as i;"  
+          *ngFor="let item of app.competitors.items | myFilter:{fullNameNum:s.filter.competitorName} | orderBy : ['-_lastT']  | slice:0:10 | asResult : result; index as i;"  
           (click)="app.go.start&&onFormSubmit(1,item.id);"
           class="clickable" 
           >
           <td width="40px">{{item.num}}</td>
           <td>{{item.fullName}}</td>
+          <td><span *ngIf="item._lastT" >{{(item._t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</span></td>
+          <!-- <td><span *ngIf="item._lastT" >{{(item._lastT-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span></td> -->
+          <td><small *ngIf="item._lap">{{item._lap}}</small></td>
         </tr>
       </table>
     </div>

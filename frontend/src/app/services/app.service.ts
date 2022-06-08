@@ -91,6 +91,7 @@ export class AppService {
     this.rtqueue.app = this;
     this.trash.trashTypes = ['tags','recievers','competitors','categories','races','events','users','ugroups'];
     this.state.createDefaults(['tags','recievers','competitors','categories','races','events','users','ugroups','log','trash','distributions','accounts','rtqueue']);
+    this.go.app = this;
   }
 
   public onAppReady(): Observable<Event> {

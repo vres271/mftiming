@@ -13,6 +13,7 @@ export class GoService {
   public race: Race|null = null;
   public t: number = (new Date()).getTime();
   public tIntervalId: any = 0;
+  public app:any = null;
 
   public start:any|null = null;
   public finish:any|null = null;
@@ -48,6 +49,12 @@ export class GoService {
           item._lapT = item.t - compLapsT[item.competitorId];
         }
         compLapsT[item.competitorId]=item.t;
+
+        if(item.competitor) {
+          item.competitor._lastT = this.t-item.t;
+          item.competitor._lap = item._lap;
+          item.competitor._t = item.t;
+        }
       }
 
 

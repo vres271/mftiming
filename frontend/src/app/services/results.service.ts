@@ -20,12 +20,22 @@ export class ResultsService {
     this.items={};
     this.raceEvents = this.app.events.items.filter(item=>1*item.raceId===1*this.race.id).sort((a,b)=>(a.t-b.t))
 
+    let compLapsT = {};
     this.raceEvents.forEach(item=>{
       if(item.eventType===2) {this.start=item}
       if(item.eventType===3) {this.finish=item}
       if(item.eventType===1) {
         if(!this.items[item.competitorId]) this.items[item.competitorId] = {events:[],competitor:item.competitor};
-        this.items[item.competitorId].events.push(item)
+
+        if(!compLapsT[item.competitorId] && this.start) {
+          item._lapT = item.t - this.start.t; 
+        } else {
+          item._lapT = item.t - compLapsT[item.competitorId];
+        }
+        compLapsT[item.competitorId]=item.t;
+
+        this.items[item.competitorId].events.push(item);
+        this.items[item.competitorId].t = item.t;
       }
     })
 
@@ -33,7 +43,8 @@ export class ResultsService {
       this.items2.push(this.items[key]);
     }
 
-    console.log(this.items2)
+    this.items2.sort((a,b)=>(a.t-b.t))
+
 
   }
 }

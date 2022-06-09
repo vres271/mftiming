@@ -39,6 +39,7 @@ import { RacesService } from './services/races.service';
 import { RaceService } from './services/race.service';
 import { EventsService } from './services/events.service';
 import { EventService } from './services/event.service';
+import { ResultsService } from './services/results.service';
 
 
 
@@ -109,6 +110,7 @@ import { ItemsImportComponent } from './components/common/items-import/items-imp
 import { RacesComponent } from './components/races/races.component';
 import { RaceComponent } from './components/race/race.component';
 import { GoComponent } from './components/go/go.component';
+import { ResultsComponent } from './components/results/results.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -158,6 +160,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RacesComponent,
     RaceComponent,
     GoComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -195,6 +198,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RaceService,   
     EventsService,
     EventService,   
+    ResultsService,   
      
     UserGroupService,
     TagsService,

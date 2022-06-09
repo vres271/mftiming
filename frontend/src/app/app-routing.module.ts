@@ -27,7 +27,8 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { AccountComponent } from './components/account/account.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { RTQueueComponent } from './components/rtqueue/rtqueue.component';
- 
+import { ResultsComponent } from './components/results/results.component';
+
 
 const routes: Routes = [
   { path: '',   component: HomeComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'race',   component: RaceComponent },
   { path: 'go/:raceId',   component: GoComponent },
   { path: 'go',   component: GoComponent },
+  { path: 'results/:raceId',   component: ResultsComponent },
 
 
   { path: 'login',   component: SignInComponent },

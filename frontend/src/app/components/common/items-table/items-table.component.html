@@ -22,7 +22,7 @@
             href="" 
             [routerLink]="linkPath(item, fieldName)" 
             title="{{'Edit'|translate}}"
-            >{{item[fieldName]}}</a>
+            >{{options.fields[fieldName].staticValue?options.fields[fieldName].staticValue:item[fieldName]}}</a>
           <span 
             *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='icon' && options.fields[fieldName].expr(item)" 
             [title]="options.fields[fieldName].title" 

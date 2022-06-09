@@ -1,1 +1,8 @@
-<p>results works!</p>
+<table  class=" table " >
+  <tr *ngFor="let item of app.results.items2  " >
+    <td>{{item.competitor.num}}</td>
+    <td>{{item.competitor.fullName}}</td>
+    <td *ngFor="let event of item.events">{{(event.t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</td>
+    <!-- <td>{{(item.t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</td> -->
+  </tr>
+</table>

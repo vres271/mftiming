@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemService, Item } from '../services/item.service';
-import { APIService } from '../services/api.service';
 import { Race } from '../services/race.service';
 import { EventsService } from '../services/events.service';
 
@@ -22,6 +20,7 @@ export class GoService {
   constructor(
     public events: EventsService
     ) {
+    if(this.tIntervalId) clearInterval(this.tIntervalId);
     this.tIntervalId = setInterval(()=>{
       this.t = (new Date()).getTime();
     },10)

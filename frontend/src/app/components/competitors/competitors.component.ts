@@ -7,7 +7,7 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./competitors.component.scss']
 })
 export class CompetitorsComponent implements OnInit {
-  public contolsOptions = {
+  public controlsOptions = {
     clearBtn: true
   }
   public tableOptions = {

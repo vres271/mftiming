@@ -7,6 +7,9 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
+  public controlsOptions = {
+    clearBtn: true
+  }
   public tableOptions = {
     fieldNames:[
       // 'accountId',

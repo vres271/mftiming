@@ -15,6 +15,7 @@ export class Event extends Item{
   public t: number;
   public desc: string;
   public d: number;
+  public categoryIds: number[];
 
   constructor(item_, public _parent) {
     super(item_,_parent);
@@ -39,6 +40,15 @@ export class Event extends Item{
   public get categoryName() : string {
     return this.competitor?this.competitor.categoryName:'';
   }
+
+  // public get categoriesList() : string {
+  //   return this.categoryIds.join(',');
+  // }
+
+  // public set categoriesList(value:any) {
+  //   console.log(value)
+  //   //this.categoryIds = value.split(',').map((str:string)=>parseInt(str));
+  // }
 
 }
 

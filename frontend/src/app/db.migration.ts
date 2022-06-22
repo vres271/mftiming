@@ -18,6 +18,10 @@ const migrationFactory =()=>{
      const store = transaction.objectStore('users');
      store.createIndex('root', 'root', { unique: false });
     },
+    10: (db:any, transaction:any) => {
+     const store = transaction.objectStore('events');
+     store.createIndex('categoryIds', 'categoryIds', { unique: false });
+    },
 
   };
 }
@@ -25,7 +29,7 @@ const migrationFactory =()=>{
 export function myDBConfig():DBConfig { 
   return{
     name: 'MyDb',
-    version: 9,
+    version: 10,
     objectStoresMeta: [
       {
         store: 'accounts',

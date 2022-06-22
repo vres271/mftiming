@@ -51,6 +51,7 @@ export class GoComponent implements OnInit {
               t:0,
               desc:'',
               d:0,      
+              categoryIds:[],      
             }
 
             this.app.go.get();

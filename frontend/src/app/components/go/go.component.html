@@ -57,12 +57,25 @@
               <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
             </div>
             <div class="col-md-5">
-              <div *ngIf="editEventId!==item.id">{{item.competitorName}}</div>
+              <div *ngIf="editEventId!==item.id">{{item.competitorName}} </div>
               <div *ngIf="editEventId===item.id">
-                <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
-                <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
-                  <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
-                </select>
+                <div *ngIf="item.eventType===1">
+                  <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
+                  <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+                    <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
+                  </select>
+                </div>
+                <div  *ngIf="item.eventType===2"  class="form-group">
+                  <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">
+                    <option [value]="category.id" *ngFor="let category of app.categories.items">{{category.name}}</option>
+                  </select>                    
+                </div> {{item._t}} {{item._t2}}
+                <div *ngIf="item.eventType===1" class="form-group">
+                  <input type="time" step="1" class="form-control" [(ngModel)]="item._t" [ngModelOptions]="{standalone: true}" >
+                </div>                   
+                <div *ngIf="item.eventType===2" class="form-group">
+                  <input type="datetime-local" step="1" class="form-control" [(ngModel)]="item._t2" [ngModelOptions]="{standalone: true}" >
+                </div>                   
               </div>
               <small>
                 {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}

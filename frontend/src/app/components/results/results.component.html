@@ -5,7 +5,7 @@
     </tr>
     <tr>
       <td width="40px">{{i+1}}</td>
-      <td width="400px">{{item.competitor.fullName}} <br><small>{{item.competitor.categoryName}}</small></td>
+      <td width="400px">{{item.competitor.fullName}}</td>
       <td width="80px">{{item.competitor.num}}</td>
       <td width="100px">{{(item.events[item.events.length-1].t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</td>
       <td *ngFor="let event of item.events" width="100px">

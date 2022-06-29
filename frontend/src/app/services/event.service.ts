@@ -41,6 +41,10 @@ export class Event extends Item{
     return this.competitor?this.competitor.categoryName:'';
   }
 
+  public get categoryId() : string {
+    return this.competitor?this.competitor.categoryId:'';
+  }
+
   // public get categoriesList() : string {
   //   return this.categoryIds.join(',');
   // }

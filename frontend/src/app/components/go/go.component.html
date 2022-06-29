@@ -57,7 +57,7 @@
               <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
             </div>
             <div class="col-md-5">
-              <div *ngIf="editEventId!==item.id">{{item.competitorName}} </div>
+              <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
               <div *ngIf="editEventId===item.id">
                 <div *ngIf="item.eventType===1">
                   <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
@@ -78,14 +78,19 @@
                 </div>                   
               </div>
               <small>
-                {{(item.t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}
+                {{(item.t-app.go.getStart.t-4*3600000)|date:'HH:mm:ss.SSS'}}
                 <span *ngIf="item._lapT">{{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</span>
               </small>
-              <h4 *ngIf="item.eventType==2">Start Race</h4>
+              <h4 *ngIf="item.eventType==2">Start Race </h4>
               <h4 *ngIf="item.eventType==3">Finish Race</h4>
+              <small> {{item.t|date:'HH:mm:ss.SSS'}}</small>
+              <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
             </div>
             <div class="col-md-5">
               {{item.categoryName}}
+              <div *ngIf="item.eventType==2">
+                <div *ngFor="let categoryId of item.categoryIds"><small>{{app.categories._index.id[categoryId].name}}</small></div>
+              </div>
             </div>
             <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}}</small></div>
           </div>
@@ -95,12 +100,12 @@
     <div class="col-xl-5 col-sm-6">
       <h5>
         {{app.go.race.name}} 
-        <span *ngIf="app.go.start"> | {{app.go.start.t|date:'HH:mm:ss.SSS'}}</span>
+        <span *ngIf="app.go.getStart()"> | {{app.go.getStart().t|date:'HH:mm:ss.SSS'}}</span>
         <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
-        <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span>
+        <!-- <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span> -->
       </h5>
 
-      <form  (submit)="app.go.start&&onFormSubmit(1,result.items[0].id)" class=" mb-2 ">
+      <form  (submit)="app.go.getStart()&&onFormSubmit(1,result.items[0].id)" class=" mb-2 ">
         <div class="form-row">
           <div class="col">
             <input type="text" class="form-control form-control-lg   mr-2" [(ngModel)]="s.filter.competitorName" [ngModelOptions]="{standalone: true}" placeholder="Фильтр">
@@ -108,9 +113,9 @@
           <!-- <button class="btn btn-primary btn-lg mr-2" type="submit">Register lap</button> -->
           <div class="col">
             <div style="width:285px;">
-              <button class="btn btn-primary btn-lg mr-2" [disabled]="!app.go.start"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
-              <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.start" type="button" (click)="onFormSubmit(2,0);" >Start</button>
-              <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish||!app.go.start" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
+              <button class="btn btn-primary btn-lg mr-2" [disabled]="!app.go.getStart()"  type="button" (click)="onFormSubmit(1,0);" >Пустое</button>
+              <button class="btn btn-primary btn-lg mr-2"  type="button" (click)="onFormSubmit(2,0);" >Start</button>
+              <button class="btn btn-primary btn-lg mr-2" [disabled]="app.go.finish" type="button" (click)=" onFormSubmit(3,0);" >Finish</button>
             </div>
           </div>
         </div>
@@ -118,12 +123,14 @@
       <table class="table">
         <tr 
           *ngFor="let item of app.competitors.items | myFilter:{fullNameNum:s.filter.competitorName} | orderBy : ['-_lastT']  | slice:0:10 | asResult : result; index as i;"  
-          (click)="app.go.start&&onFormSubmit(1,item.id);"
+          (click)="app.go.getStart()&&onFormSubmit(1,item.id);"
           class="clickable" 
           >
           <td width="40px">{{item.num}}</td>
           <td>{{item.fullName}}</td>
-          <td><span *ngIf="item._lastT" >{{(item._t-app.go.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</span></td>
+          <td><span *ngIf="item._lastT" >{{(item._t-app.go.getStart(item.categoryId).t-4*3600000)|date:'HH:mm:ss.SSS'}}</span></td>
+          
+
           <!-- <td><span *ngIf="item._lastT" >{{(item._lastT-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span></td> -->
           <td><small *ngIf="item._lap">{{item._lap}}</small></td>
         </tr>

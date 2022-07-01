@@ -7,10 +7,10 @@
     </table>
 </div>
 
-<div *ngIf="app.go.race">
-  <div class="row"  id="recontainer" >
+<div *ngIf="app.go.race" style="height: 100%">
+  <div class="row"  id="recontainer" style="height: 100%">
     <div class="col-xl-7 col-sm-6">
-      <div >
+      <div style="height: 100%" id="scroledCnt">
         <form class=" mb-2">
           <div class="form-row">
             <div class="col-1">
@@ -45,7 +45,7 @@
           </div>
         </form>        
 
-        <div class="scrolled">
+        <div class="scrolled" id="scrolledTarget" >
           <div 
             *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
             class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"

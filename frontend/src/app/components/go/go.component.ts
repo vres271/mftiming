@@ -56,18 +56,18 @@ export class GoComponent implements OnInit {
 
             this.app.go.get();
 
-            // const iid = setInterval(()=>{
-            //   const elem = document.getElementById('recontainer');
-            //   if(elem) {
-            //     const resizeObserver = new ResizeObserver((e:any) => {
-            //       // console.log(e[0].target.offsetHeight)
-            //       console.log(elem.offsetHeight)
-            //     }); 
-            //     resizeObserver.observe(elem);
-            //     window.clearInterval(iid);
-            //     return;
-            //   }
-            // },100)
+            const iid = setInterval(()=>{
+              const elem = document.getElementById('scroledCnt');
+              const targetElem = document.getElementById('scrolledTarget');
+              if(elem) {
+                const resizeObserver = new ResizeObserver((e:any) => {
+                  targetElem.style.maxHeight = (elem.offsetHeight-200)+'px';
+                }); 
+                resizeObserver.observe(elem);
+                window.clearInterval(iid);
+                return;
+              }
+            },100)
 
           } else {
             this.app.go.reset();

@@ -9,7 +9,7 @@ import { CompetitorsService } from '../services/competitors.service';
 import { CategoriesService } from '../services/categories.service';
 import { RacesService } from '../services/races.service';
 import { GoService } from '../services/go.service';
-import { EventsService } from '../services/events.service';
+import { RaceEventsService } from '../services/raceevents.service';
 import { ResultsService } from '../services/results.service';
 
 import { UsersService } from '../services/users.service';
@@ -34,7 +34,7 @@ export class AppService {
     competitors: 'competitor',
     categories: 'category',
     races: 'race',
-    events: 'event',
+    raceevents: 'raceevent',
 
     ugroups: 'user-group',
     recievers: 'reciever',
@@ -53,7 +53,7 @@ export class AppService {
     public categories: CategoriesService,
     public competitors: CompetitorsService,
     public races: RacesService,
-    public events: EventsService,
+    public raceevents: RaceEventsService,
     public go: GoService,
     public results: ResultsService,
 
@@ -69,12 +69,12 @@ export class AppService {
     this.competitors.app = this;
     this.categories.app = this;
     this.races.app = this;
-    this.events.app = this;
+    this.raceevents.app = this;
     this.log.app = this;
     this.trash.app = this;
     this.accounts.app = this;
-    this.trash.trashTypes = ['competitors','categories','races','events','users','ugroups'];
-    this.state.createDefaults(['competitors','categories','races','events','users','ugroups','log','trash','accounts']);
+    this.trash.trashTypes = ['competitors','categories','races','raceevents','users','ugroups'];
+    this.state.createDefaults(['competitors','categories','races','raceevents','users','ugroups','log','trash','accounts']);
     this.go.app = this;
     this.results.app = this;
   }
@@ -105,13 +105,13 @@ export class AppService {
           this.ref.set(this.core.ref);
         }),
         tap(_=>{this.ready = false;}),
-        tap(_=>{this.core.createRightsAliases([this.users,this.log,this.competitors,this.categories,this.races,this.events])}),
+        tap(_=>{this.core.createRightsAliases([this.users,this.log,this.competitors,this.categories,this.races,this.raceevents])}),
         switchMap(_=>this.users.get()),
         switchMap(_=>this.ugroups.get().pipe(
           switchMap(_=>this.competitors.get()),
           switchMap(_=>this.categories.get()),
           switchMap(_=>this.races.get()),
-          switchMap(_=>this.events.get()),
+          switchMap(_=>this.raceevents.get()),
           )),
         //tap(_=>{this.rtqueue.get().subscribe()}),
         tap(_=>{ this.APPEvents.startAutoRefresh().subscribe()}),

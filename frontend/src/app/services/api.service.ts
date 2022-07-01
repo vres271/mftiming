@@ -57,7 +57,7 @@ export class APIService {
           sid :'123',       
         }).pipe(delay(1000))
       }
-    } else if (svc==='users'||svc==='log'||svc==='competitors'||svc==='categories'||svc==='races'||svc==='events') {
+    } else if (svc==='users'||svc==='log'||svc==='competitors'||svc==='categories'||svc==='races'||svc==='raceevents') {
       if(type==='GET') {
         if(!getParams[0]) {
           return from(this.dbService.getAll(svc))

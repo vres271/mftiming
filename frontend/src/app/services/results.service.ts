@@ -24,7 +24,7 @@ export class ResultsService {
   public get() {
     this.items2=[];
     this.items={};
-    this.raceEvents = this.app.events.items.filter(item=>1*item.raceId===1*this.race.id).sort((a,b)=>(a.t-b.t))
+    this.raceEvents = this.app.raceevents.items.filter(item=>1*item.raceId===1*this.race.id).sort((a,b)=>(a.t-b.t))
 
     let compLapsT = {};
     this.raceEvents.forEach(item=>{

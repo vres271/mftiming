@@ -37,8 +37,8 @@ import { CategoriesService } from './services/categories.service';
 import { CategoryService } from './services/category.service';
 import { RacesService } from './services/races.service';
 import { RaceService } from './services/race.service';
-import { EventsService } from './services/events.service';
-import { EventService } from './services/event.service';
+import { RaceEventsService } from './services/raceevents.service';
+import { RaceEventService } from './services/raceevent.service';
 import { ResultsService } from './services/results.service';
 
 
@@ -153,8 +153,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CategoryService,  
     RacesService,
     RaceService,   
-    EventsService,
-    EventService,   
+    RaceEventsService,
+    RaceEventService,   
     ResultsService,   
      
     UserGroupService,

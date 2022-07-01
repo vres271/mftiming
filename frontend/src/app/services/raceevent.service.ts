@@ -7,7 +7,7 @@ import { APIService } from '../services/api.service';
   providedIn: 'root'
 })
 
-export class Event extends Item{
+export class RaceEvent extends Item{
   public accountId: number;
   public eventType: number;
   public raceId: number;
@@ -56,17 +56,17 @@ export class Event extends Item{
 
 }
 
-export class EventService extends ItemService {
+export class RaceEventService extends ItemService {
   
-  public _itemType: string = 'events';
+  public _itemType: string = 'raceevents';
   public eventTypes: string[] = ['','lap','start','finish'];
-  public _item: Event;
+  public _item: RaceEvent;
   constructor(public api: APIService) {
     super(api)
   }
 
   public create(item_,parent) {
-   return new Event(item_,parent)
+   return new RaceEvent(item_,parent)
   }
 
 

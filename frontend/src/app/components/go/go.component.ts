@@ -126,9 +126,9 @@ export class GoComponent implements OnInit {
     this.newEvent.eventType = eventType;
     this.newEvent.competitorId = competitorId;
     this.newEvent.t = 1*this.app.go.t;
-    this.app.events.add(this.newEvent)
+    this.app.raceevents.add(this.newEvent)
       .subscribe(res=>{
-        this.app.events.get()
+        this.app.raceevents.get()
           .subscribe(()=>{
             this.app.go.get();
           })

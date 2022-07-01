@@ -19,7 +19,7 @@ const migrationFactory =()=>{
      store.createIndex('root', 'root', { unique: false });
     },
     10: (db:any, transaction:any) => {
-     const store = transaction.objectStore('events');
+     const store = transaction.objectStore('raceevents');
      store.createIndex('categoryIds', 'categoryIds', { unique: false });
     },
     11: (db:any, transaction:any) => {
@@ -107,7 +107,7 @@ export function myDBConfig():DBConfig {
         ]
       },
       {
-        store: 'events',
+        store: 'raceevents',
         storeConfig: { keyPath: 'id', autoIncrement: true },
         storeSchema: [
           { name: 'accountId', keypath: 'accountId', options: { unique: false } },

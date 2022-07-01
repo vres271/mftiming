@@ -17,10 +17,11 @@ export class CategoryComponent implements OnInit {
   public itemForm: FormGroup;
   public importOptions: any = {
     fields:[
-      {name: 'seasonId', src: 'value', value: '1', validators: ['required']},
+      {name: 'seasonId', src: 'value', value: '1', validators: []},
       {name: 'name', src: 0, validators: ['required']},
-      {name: 'ageFrom', src: 'value', value: '0', validators: ['required']},
-      {name: 'ageTo', src: 'value', value: '0', validators: ['required']},
+      {name: 'ageFrom', src: 'value', value: '0', validators: []},
+      {name: 'ageTo', src: 'value', value: '0', validators: []},
+      {name: 'pos', src: 'value', value: '0', validators: []},
     ],
     delitmer: '\\t',
   };
@@ -56,6 +57,7 @@ export class CategoryComponent implements OnInit {
       name: ['', [Validators.required]],
       ageFrom: ['', [Validators.required,]],
       ageTo: ['', [Validators.required,]],
+      pos: ['', [Validators.required,]],
     });
   }
 

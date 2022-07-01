@@ -14,6 +14,7 @@ export class Category extends Item{
   public name: string;
   public ageFrom: number;
   public ageTo: number;
+  public pos: number;
   public d: string;
 
   constructor(item_, public _parent) {

@@ -17,6 +17,7 @@ export class CategoriesComponent implements OnInit {
       'name',
       'ageFrom',
       'ageTo',
+      'pos',
       // 'd',    
     ],
     fields:{

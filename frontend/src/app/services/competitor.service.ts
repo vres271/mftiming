@@ -38,6 +38,9 @@ export class Competitor extends Item{
   public get categoryName() : string {
     return (this._parent.app&&this._parent.app.categories._index&&this._parent.app.categories._index.id&&this._parent.app.categories._index.id[this.categoryId])?this._parent.app.categories._index.id[this.categoryId].name:'';
   }
+  public get category() : any|null {
+    return (this._parent.app&&this._parent.app.categories._index&&this._parent.app.categories._index.id&&this._parent.app.categories._index.id[this.categoryId])?this._parent.app.categories._index.id[this.categoryId]:null;
+  }
 
 
 }

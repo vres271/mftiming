@@ -1,5 +1,5 @@
 <table  class=" table " >
-  <ng-container *ngFor="let item of app.results.items2 ; index as i; ">
+  <ng-container *ngFor="let item of app.results.items2 | orderBy : ['pos'] ; index as i; ">
     <tr *ngIf="!app.results.items2[i-1]||item.competitor.categoryId!==app.results.items2[i-1].competitor.categoryId">
       <th colspan="99">{{item.competitor.categoryName}}</th>
     </tr>
@@ -7,9 +7,9 @@
       <td width="40px">{{i+1}}</td>
       <td width="400px">{{item.competitor.fullName}}</td>
       <td width="80px">{{item.competitor.num}}</td>
-      <td width="100px">{{(item.events[item.events.length-1].t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</td>
+      <td width="100px">{{(item.events[item.events.length-1].t-app.results.getStart(item.categoryId).t-4*3600000)|date:'HH:mm:ss.SSS'}}</td>
       <td *ngFor="let event of item.events" width="100px">
-        {{(event.t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}<br>
+        {{(event.t-app.results.getStart(item.categoryId).t-4*3600000)|date:'HH:mm:ss.SSS'}}<br>
         {{(event._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}
       </td>
       <!-- <td>{{(item.t-app.results.start.t-4*3600000)|date:'HH:mm:ss.SSS'}}</td> -->

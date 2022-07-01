@@ -22,6 +22,10 @@ const migrationFactory =()=>{
      const store = transaction.objectStore('events');
      store.createIndex('categoryIds', 'categoryIds', { unique: false });
     },
+    11: (db:any, transaction:any) => {
+     const store = transaction.objectStore('categories');
+     store.createIndex('pos', 'pos', { unique: false });
+    },
 
   };
 }

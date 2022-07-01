@@ -13,20 +13,6 @@ import { GoComponent } from './components/go/go.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
-import { UserGroupsComponent } from './components/user-groups/user-groups.component';
-import { UserGroupComponent } from './components/user-group/user-group.component';
-import { TagsComponent } from './components/tags/tags.component';
-import { TagComponent } from './components/tag/tag.component';
-import { RecieversComponent } from './components/recievers/recievers.component';
-import { RecieverComponent } from './components/reciever/reciever.component';
-import { LogComponent } from './components/log/log.component';
-import { TrashComponent } from './components/trash/trash.component';
-import { CommandsComponent } from './components/commands/commands.component';
-import { DistributionsComponent } from './components/distributions/distributions.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { AccountComponent } from './components/account/account.component';
-import { AccountsComponent } from './components/accounts/accounts.component';
-import { RTQueueComponent } from './components/rtqueue/rtqueue.component';
 import { ResultsComponent } from './components/results/results.component';
 
 
@@ -50,28 +36,6 @@ const routes: Routes = [
   { path: 'users',   component: UsersComponent },
   { path: 'user',   component: UserComponent },
   { path: 'user/:userId',   component: UserComponent },
-  { path: 'user-groups',   component: UserGroupsComponent },
-  { path: 'user-group',   component: UserGroupComponent },
-  { path: 'user-group/:userGroupId',   component: UserGroupComponent },
-  { path: 'tags',   component: TagsComponent },
-  { path: 'tag',   component: TagComponent },
-  { path: 'tag/:tagId',   component: TagComponent },
-  { path: 'recievers',   component: RecieversComponent },
-  { path: 'reciever',   component: RecieverComponent },
-  { path: 'reciever/:recieverId',   component: RecieverComponent },
-  { path: 'log',   component: LogComponent },
-  { path: 'log/:objectType/:objectId',   component: LogComponent },
-  { path: 'trash',   component: TrashComponent },
-  { path: 'trash/:objectType',   component: TrashComponent },
-  { path: 'trash/:objectType/:objectId',   component: TrashComponent },
-  { path: 'commands',   component: CommandsComponent },
-  { path: 'distributions',   component: DistributionsComponent },
-  { path: 'settings',   component: SettingsComponent },
-  { path: 'settings/:settingsType',   component: SettingsComponent },
-  { path: 'accounts',   component: AccountsComponent },
-  { path: 'account',   component: AccountComponent },
-  { path: 'account/:accountId',   component: AccountComponent },
-  { path: 'rtqueue',   component: RTQueueComponent },
 ];
 
 @NgModule({

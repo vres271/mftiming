@@ -7,96 +7,93 @@
     </table>
 </div>
 
-<div *ngIf="app.go.race" style="height: 100%">
-  <div class="row"  id="recontainer" style="height: 100%">
+<div *ngIf="app.go.race" >
+  <div class="row"  id="recontainer" >
     <div class="col-xl-7 col-sm-6">
-      <div style="height: 100%" id="scroledCnt">
-        <form class=" mb-2">
-          <div class="form-row">
-            <div class="col-1">
-              <button type="button" (click)="resetEventsFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.competitorNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Категория">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" [(ngModel)]="s.eventsFilter._lap" [ngModelOptions]="{standalone: true}" placeholder="Круг">
-            </div>
-            <div class="col">
-              <select class="form-control" [(ngModel)]="s.eventsTimeScale" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
-                <option value="">0</option>
-                <option value="10000">1/10000</option>
-                <option value="1000">1/1000</option>
-                <option value="100">1/100</option>
-              </select>
-            </div>
-            <div class="col">
-              <select class="form-control" [(ngModel)]="s.eventsLimit" [ngModelOptions]="{standalone: true}" placeholder="Кол-во">
-                <option value="10000">10000</option>
-                <option value="1000">1000</option>
-                <option value="100">100</option>
-                <option value="50">50</option>
-                <option value="20">20</option>
-              </select>
-            </div>
+      <form class=" mb-2">
+        <div class="form-row">
+          <div class="col-1">
+            <button type="button" (click)="resetEventsFilter()" class="btn btn-light"><fa-icon  [icon]="faBan" class="grey" title="Reset filters"></fa-icon></button>
           </div>
-        </form>        
-
-        <div class="scrolled" id="scrolledTarget" >
-          <div 
-            *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
-            class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"
-            (dblclick)="switchEditEventForm(item)"
-            [ngStyle]="s.eventsTimeScale?{'margin-top': delayH(item, app.go.raceEvents, i)}:{}"
-            >
-            <div class="col-md-1">
-              <h3>{{item.competitorNum}}</h3>
-              <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
-            </div>
-            <div class="col-md-5">
-              <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
-              <div *ngIf="editEventId===item.id">
-                <div *ngIf="item.eventType===1">
-                  <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
-                  <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
-                    <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
-                  </select>
-                </div>
-                <div  *ngIf="item.eventType===2"  class="form-group">
-                  <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">
-                    <option [value]="category.id" *ngFor="let category of app.categories.items">{{category.name}}</option>
-                  </select>                    
-                </div> {{item._t}} {{item._t2}}
-                <div *ngIf="item.eventType===1" class="form-group">
-                  <input type="time" step="1" class="form-control" [(ngModel)]="item._t" [ngModelOptions]="{standalone: true}" >
-                </div>                   
-                <div *ngIf="item.eventType===2" class="form-group">
-                  <input type="datetime-local" step="1" class="form-control" [(ngModel)]="item._t2" [ngModelOptions]="{standalone: true}" >
-                </div>                   
-              </div>
-              <small>
-                {{(item.t-app.go.getStart.t-4*3600000)|date:'HH:mm:ss.SSS'}}
-                <span *ngIf="item._lapT">{{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</span>
-              </small>
-              <h4 *ngIf="item.eventType==2">Start Race </h4>
-              <h4 *ngIf="item.eventType==3">Finish Race</h4>
-              <small> {{item.t|date:'HH:mm:ss.SSS'}}</small>
-              <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
-            </div>
-            <div class="col-md-5">
-              {{item.categoryName}}
-              <div *ngIf="item.eventType==2">
-                <div *ngFor="let categoryId of item.categoryIds"><small>{{app.categories._index.id[categoryId].name}}</small></div>
-              </div>
-            </div>
-            <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}}</small></div>
+          <div class="col">
+            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.competitorNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Категория">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" [(ngModel)]="s.eventsFilter._lap" [ngModelOptions]="{standalone: true}" placeholder="Круг">
+          </div>
+          <div class="col">
+            <select class="form-control" [(ngModel)]="s.eventsTimeScale" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+              <option value="">0</option>
+              <option value="10000">1/10000</option>
+              <option value="1000">1/1000</option>
+              <option value="100">1/100</option>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-control" [(ngModel)]="s.eventsLimit" [ngModelOptions]="{standalone: true}" placeholder="Кол-во">
+              <option value="10000">10000</option>
+              <option value="1000">1000</option>
+              <option value="100">100</option>
+              <option value="50">50</option>
+              <option value="20">20</option>
+            </select>
           </div>
         </div>
+      </form>        
+      <div id="scrolledTarget">
+        <div 
+          *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
+          class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"
+          (dblclick)="switchEditEventForm(item)"
+          [ngStyle]="s.eventsTimeScale?{'margin-top': delayH(item, app.go.raceEvents, i)}:{}"
+        >
+        <div class="col-md-1">
+          <h3>{{item.competitorNum}}</h3>
+          <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
+        </div>
+        <div class="col-md-5">
+          <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
+          <div *ngIf="editEventId===item.id">
+            <div *ngIf="item.eventType===1">
+              <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
+              <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+                <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
+              </select>
+            </div>
+            <div  *ngIf="item.eventType===2"  class="form-group">
+              <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">
+                <option [value]="category.id" *ngFor="let category of app.categories.items">{{category.name}}</option>
+              </select>                    
+            </div> {{item._t}} {{item._t2}}
+            <div *ngIf="item.eventType===1" class="form-group">
+              <input type="time" step="1" class="form-control" [(ngModel)]="item._t" [ngModelOptions]="{standalone: true}" >
+            </div>                   
+            <div *ngIf="item.eventType===2" class="form-group">
+              <input type="datetime-local" step="1" class="form-control" [(ngModel)]="item._t2" [ngModelOptions]="{standalone: true}" >
+            </div>                   
+          </div>
+          <small>
+            {{(item.t-app.go.getStart.t-4*3600000)|date:'HH:mm:ss.SSS'}}
+            <span *ngIf="item._lapT">{{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</span>
+          </small>
+          <h4 *ngIf="item.eventType==2">Start Race </h4>
+          <h4 *ngIf="item.eventType==3">Finish Race</h4>
+          <small> {{item.t|date:'HH:mm:ss.SSS'}}</small>
+          <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
+        </div>
+        <div class="col-md-5">
+          {{item.categoryName}}
+          <div *ngIf="item.eventType==2">
+            <div *ngFor="let categoryId of item.categoryIds"><small>{{app.categories._index.id[categoryId].name}}</small></div>
+          </div>
+        </div>
+        <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}}</small></div>
       </div>
     </div>
+  </div>
     <div class="col-xl-5 col-sm-6">
       <h5>
         {{app.go.race.name}} 

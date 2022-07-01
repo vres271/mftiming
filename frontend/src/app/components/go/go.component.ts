@@ -57,11 +57,12 @@ export class GoComponent implements OnInit {
             this.app.go.get();
 
             const iid = setInterval(()=>{
-              const elem = document.getElementById('scroledCnt');
+              //const elem = document.getElementById('scroledCnt');
+              const elem = document.body;
               const targetElem = document.getElementById('scrolledTarget');
               if(elem) {
                 const resizeObserver = new ResizeObserver((e:any) => {
-                  targetElem.style.maxHeight = (elem.offsetHeight-200)+'px';
+                  targetElem.style.maxHeight = (elem.clientHeight-140)+'px';
                 }); 
                 resizeObserver.observe(elem);
                 window.clearInterval(iid);

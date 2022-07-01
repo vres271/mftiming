@@ -18,6 +18,8 @@ export class ResultsComponent implements OnInit {
 
   ) { }
 
+  public res = 0;
+
   ngOnInit() {
     this.app.ifAppReady()
       .pipe(

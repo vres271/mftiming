@@ -41,7 +41,6 @@ export class ResultsService {
       if(item.eventType===3) {this.finish=item}
       if(item.eventType===1) {
         if(!this.items[item.competitorId]) this.items[item.competitorId] = {events:[],competitor:item.competitor};
-
         if(!compLapsT[item.competitorId] && this.getStart(item.categoryId)) {
           item._lapT = item.t - this.getStart(item.categoryId).t; 
         } else {
@@ -56,11 +55,22 @@ export class ResultsService {
       }
     })
 
+
     for(let key in this.items) {
       this.items2.push(this.items[key]);
     }
 
-    this.items2.sort((a,b)=>(a.t-b.t))
+    let res = 0;
+    let last_categoryId = 0;
+    let firstT = 0;
+    this.items2.sort((a,b)=>(a.t-b.t)).forEach(item=>{
+      if(item.competitor.categoryId !== last_categoryId) res = 0;
+      item.res = ++res;
+      last_categoryId = item.competitor.categoryId;
+      if(res===1) firstT = item.t;
+      item.firstT = firstT;
+    })
+    
 
 
   }

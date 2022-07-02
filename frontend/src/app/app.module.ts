@@ -25,6 +25,7 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { AsResultPipe } from './pipes/as-result.pipe';
 import { InListFilterPipe } from './pipes/in-list-filter.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { OrderBySelectValue } from './pipes/order-by-select_value.pipe';
 
 import { ItemService } from './services/item.service';
 import { ItemsService } from './services/items.service';
@@ -108,6 +109,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CategoryComponent,
     InputTreeComponent,
     OrderByPipe,
+    OrderBySelectValue,
     NavTrashComponent,
     ItemsControlsComponent,
     ItemsTableComponent,

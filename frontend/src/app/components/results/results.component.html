@@ -1,5 +1,5 @@
 <table  class=" table " >
-  <ng-container *ngFor="let item of app.results.items2 | orderBy : ['pos','categoryId','t'] ; index as i; ">
+  <ng-container *ngFor="let item of app.results.items2 | orderBy : ['pos'] ; index as i; ">
     <tr *ngIf="!app.results.items2[i-1]||item.competitor.categoryId!==app.results.items2[i-1].competitor.categoryId">
       <th colspan="99">{{item.competitor.categoryName}}</th>
     </tr>

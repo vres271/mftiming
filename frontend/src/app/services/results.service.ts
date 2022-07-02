@@ -51,7 +51,8 @@ export class ResultsService {
 
         this.items[item.competitorId].events.push(item);
         this.items[item.competitorId].t = item.t;
-        this.items[item.competitorId].pos = item.competitor.category.pos||0;
+        this.items[item.competitorId].pos = 1*item.competitor.category.pos||0;
+        this.items[item.competitorId].categoryId = item.categoryId;
       }
     })
 
@@ -71,7 +72,7 @@ export class ResultsService {
       item.firstT = firstT;
     })
     
-
+    console.log(this.items2)
 
   }
 }

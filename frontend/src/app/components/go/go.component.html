@@ -43,24 +43,28 @@
           </div>
         </div>
       </form>        
+      <!-- <div class="" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | orderBySelectValue: 'id' : 10 ">{{competitor.id}} {{competitor.fullNameNum}}</div> -->
       <div id="scrolledTarget">
         <div 
           *ngFor="let item of app.go.raceEvents  | myFilter: s.eventsFilter| slice:0:s.eventsLimit; index as i;" 
           class="row reg {{item.eventType==2?'start':''}} {{item.eventType==3?'finish':''}}"
-          (dblclick)="switchEditEventForm(item)"
+          (dblclick)="switchEditEventForm(item, false)"
           [ngStyle]="s.eventsTimeScale?{'margin-top': delayH(item, app.go.raceEvents, i)}:{}"
         >
         <div class="col-md-1">
           <h3>{{item.competitorNum}}</h3>
-          <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
+          <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary btn-block"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
+          <button *ngIf="editEventId===item.id" type="button" (click)="switchEditEventForm(item, false)" class="btn btn-light mt-1 btn-block"><fa-icon  [icon]="faTimes"  title="Cancel"></fa-icon></button>
         </div>
         <div class="col-md-5">
           <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
           <div *ngIf="editEventId===item.id">
             <div *ngIf="item.eventType===1">
-              <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Участник" (keyup)="setEditCopetitorId(item)">
+              <div class="input-group-sm">
+                <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Фильтр по участнику" (keyup)="setEditCopetitorId(item)">
+              </div>
               <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
-                <option value="{{competitor.id}}" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter | slice:0:10| asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
+                <option [value]="competitor.id" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter |  asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
               </select>
             </div>
             <div  *ngIf="item.eventType===2"  class="form-group">

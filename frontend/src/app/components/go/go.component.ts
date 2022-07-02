@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, Validatio
 import { iif, of } from 'rxjs';
 import { mergeMap , tap, switchMap} from 'rxjs/operators';
 import { AppService } from '../../services/app.service';
-import {  faBan, faSave } from '@fortawesome/free-solid-svg-icons';
+import {  faBan, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { GoService } from '../../services/go.service';
 import { Race } from '../../services/race.service';
 
@@ -23,6 +23,7 @@ export class GoComponent implements OnInit {
   };
   faBan = faBan;
   faSave = faSave;
+  faTimes = faTimes;
   @Input('result') result: {items:any[]} = {items:[]};
   @Input('editEventFilterresult') editEventFilterresult: {items:any[]} = {items:[]};
 
@@ -61,7 +62,7 @@ export class GoComponent implements OnInit {
               const elem = document.body;
               const targetElem = document.getElementById('scrolledTarget');
               if(elem) {
-                const resizeObserver = new ResizeObserver((e:any) => {
+                const resizeObserver = new (window as any).ResizeObserver((e:any) => {
                   targetElem.style.maxHeight = (elem.clientHeight-140)+'px';
                 }); 
                 resizeObserver.observe(elem);
@@ -88,15 +89,21 @@ export class GoComponent implements OnInit {
     item.competitorId=this.editEventFilterresult.items[0]?this.editEventFilterresult.items[0].id:0
   }
 
-  public switchEditEventForm(item:any) {
+  public switchEditEventForm(item:any, save:boolean=false) {
     if(this.editEventId!==item.id) {
       this.editEventId=item.id;
     } else {
-      item.save()
+      if(save) {
+        item.save()
         .subscribe(()=>{
           this.editEventId=0;
           this.app.go.get();
         });
+      } else {
+        this.editEventId=0;
+        this.app.raceevents.get(item.id)
+          .subscribe(()=>this.app.go.get())
+      }
     }
   }
 

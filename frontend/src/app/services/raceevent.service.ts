@@ -45,6 +45,15 @@ export class RaceEvent extends Item{
     return this.competitor?this.competitor.categoryId:'';
   }
 
+  public get datetime(): string {
+    //return (new Date(this.t)).toTimeString().substring(0,5)
+    return (new Date(this.t+4*3600000)).toISOString().slice(0,23);
+  }
+
+  public set datetime(value:string) {
+    this.t = (new Date(value)).valueOf()
+  }
+
   // public get categoriesList() : string {
   //   return this.categoryIds.join(',');
   // }

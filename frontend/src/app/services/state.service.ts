@@ -18,7 +18,7 @@ export class StateService {
         categoryName: '',
         _lap: '',
       }
-      ,eventsTimeScale: 10000
+      ,eventsTimeScale: 0
       ,eventsLimit: 50
       ,filter: {
         competitorName:''

@@ -56,6 +56,8 @@ export class GoService {
         if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
         compLaps[item.competitorId]++;
         item._lap = compLaps[item.competitorId];
+        item._raceT = item.t - this.getStart(item.categoryId).t;
+
 
         if(!compLapsT[item.competitorId] && this.getStart(item.categoryId)) {
           item._lapT = item.t - this.getStart(item.categoryId).t; 

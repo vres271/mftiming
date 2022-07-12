@@ -46,7 +46,6 @@ export class RaceEvent extends Item{
   }
 
   public get datetime(): string {
-    //return (new Date(this.t)).toTimeString().substring(0,5)
     return (new Date(this.t+4*3600000)).toISOString().slice(0,23);
   }
 
@@ -54,6 +53,27 @@ export class RaceEvent extends Item{
     this.t = (new Date(value)).valueOf()
   }
 
+  public get raceTime(): string {
+    return this._parent&&this._parent.app.go&&this.categoryId?( new Date(this.t - this._parent.app.go.getStart(this.categoryId).t ) ).toISOString().slice(11,23):'';
+  }
+
+  public set raceTime(value:string) {
+    let s = new Date('1970-01-01T'+value + 'Z').getTime();
+    let newT = this._parent.app.go.getStart(this.categoryId).t + s;
+    if(!newT) return;
+    this.t = newT;
+  }
+
+  public get raceTimeFirst(): string {
+    return this._parent&&this._parent.app.go&&this.categoryId?( new Date(this.t - this._parent.app.go.getStart().t ) ).toISOString().slice(11,23):'';
+  }
+
+  public set raceTimeFirst(value:string) {
+    let s = new Date('1970-01-01T'+value + 'Z').getTime();
+    let newT = this._parent.app.go.getStart().t + s;
+    if(!newT) return;
+    this.t = newT;
+  }
   // public get categoriesList() : string {
   //   return this.categoryIds.join(',');
   // }

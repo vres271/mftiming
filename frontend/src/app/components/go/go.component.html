@@ -53,14 +53,12 @@
         >
         <div class="col-md-1">
           <h3>{{item.competitorNum}}</h3>
-          <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary btn-block"><fa-icon  [icon]="faSave"  title="Save"></fa-icon></button>
-          <button *ngIf="editEventId===item.id" type="button" (click)="switchEditEventForm(item, false)" class="btn btn-light mt-1 btn-block"><fa-icon  [icon]="faTimes"  title="Cancel"></fa-icon></button>
         </div>
         <div class="col-md-5">
           <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
           <div *ngIf="editEventId===item.id">
-            <div *ngIf="item.eventType===1">
-              <div class="input-group-sm">
+            <div *ngIf="item.eventType===1" class="mt-1">
+              <div class="input-group-sm" style="width: 170px;">
                 <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Фильтр по участнику" (keyup)="setEditCopetitorId(item)">
               </div>
               <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
@@ -71,27 +69,37 @@
               <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">
                 <option [value]="category.id" *ngFor="let category of app.categories.items">{{category.name}}</option>
               </select>                    
-            </div> t: {{item.t}} datetime: {{item.datetime}}
+            </div> 
+            <div  class="form-group">
+              <label>Абсолютное время</label>
+              <input type="datetime-local" min="{{app.go.getStart(item.categoryId).t|date:'yyyy-MM-ddTHH:mm:ss'}}" max="{{app.go.t|date:'yyyy-MM-ddT23:59:59'}}" class="form-control" [(ngModel)]="item.datetime" [ngModelOptions]="{standalone: true}" >
+            </div>
             <div *ngIf="item.eventType===1" class="form-group">
-              <!-- <input type="text"  class="form-control" [(ngModel)]="item.time" [ngModelOptions]="{standalone: true}" > -->
-              <!-- <input type="time" step="1" class="form-control" [(ngModel)]="item.time" [ngModelOptions]="{standalone: true}" > -->
-              <input type="datetime-local"  class="form-control" [(ngModel)]="item.datetime" [ngModelOptions]="{standalone: true}" >
-            </div>                   
-            <div *ngIf="item.eventType===2" class="form-group">
-              <input type="datetime-local"  class="form-control" [(ngModel)]="item._t2" [ngModelOptions]="{standalone: true}" >
-            </div>                   
+              <label>Время со старта категории</label>
+              <input type="time" class="form-control" [(ngModel)]="item.raceTime" [ngModelOptions]="{standalone: true}" >
+            </div>
+            <div *ngIf="item.eventType===1" class="form-group">
+              <label>Время с первого старта</label>
+              <input type="time" class="form-control" [(ngModel)]="item.raceTimeFirst" [ngModelOptions]="{standalone: true}"  >
+            </div>
+            <small class="grey">t: {{item.t}} datetime: {{item.datetime}} raceTime: {{item.raceTime}}</small>
+            <!-- <div *ngIf="item.eventType===2" class="form-group"> -->
+              <!-- <input type="datetime-local"  class="form-control" [(ngModel)]="item._t2" [ngModelOptions]="{standalone: true}" > -->
+            <!-- </div> -->
           </div>
           <h4 *ngIf="item.eventType==2">Start Race </h4>
           <h4 *ngIf="item.eventType==3">Finish Race</h4>
-          <small class="mr-3">
-            {{(item.t-app.go.getStart.t-4*3600000)|date:'HH:mm:ss.SSS'}}
-            <span *ngIf="item._lapT">{{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</span>
-          </small>
-          <small class="mr-3"> {{item.t|date:'HH:mm:ss.SSS'}}</small>
-          <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
+          <small *ngIf="item._raceT" class="mr-3" >race: {{(item._raceT-4*3600000)|date:'HH:mm:ss.SSS'}}</small>
+          <small *ngIf="item._lapT" class="mr-3" >lap: {{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</small>
+          <small class="mr-3">abs: {{item.t|date:'HH:mm:ss.SSS'}}</small>
+          <div class="form-group mt-2">
+            <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary mr-1"><fa-icon  [icon]="faSave"  title="Save"></fa-icon> Сохранить</button>
+            <button *ngIf="editEventId===item.id" type="button" (click)="switchEditEventForm(item, false)" class="btn btn-light "><fa-icon  [icon]="faTimes"  title="Cancel"></fa-icon> Отменить</button>
+          </div>
         </div>
-        <div class="col-md-5">
-          {{item.categoryName}}
+        <div class="col-md-5" >
+          <div>{{item.categoryName}}</div>
+          <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
           <div *ngIf="item.eventType==2">
             <div *ngFor="let categoryId of item.categoryIds"><small>{{app.categories._index.id[categoryId].name}}</small></div>
           </div>
@@ -102,7 +110,7 @@
   </div>
     <div class="col-xl-5 col-sm-6">
       <h5>
-        {{app.go.race.name}} 
+        <a routerLink="/results/{{app.go.race.id}}" >{{app.go.race.name}} </a>
         <span *ngIf="app.go.getStart()"> | {{app.go.getStart().t|date:'HH:mm:ss.SSS'}}</span>
         <span *ngIf="app.go.finish"> | {{app.go.finish.t|date:'HH:mm:ss.SSS'}}</span>
         <!-- <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span> -->

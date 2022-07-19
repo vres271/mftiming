@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, Validatio
 import { iif, of } from 'rxjs';
 import { mergeMap , tap, switchMap} from 'rxjs/operators';
 import { AppService } from '../../services/app.service';
-import {  faBan, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {  faBan, faSave, faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { GoService } from '../../services/go.service';
 import { Race } from '../../services/race.service';
 
@@ -24,6 +24,7 @@ export class GoComponent implements OnInit {
   faBan = faBan;
   faSave = faSave;
   faTimes = faTimes;
+  faTrashAlt = faTrashAlt;
   @Input('result') result: {items:any[]} = {items:[]};
   @Input('editEventFilterresult') editEventFilterresult: {items:any[]} = {items:[]};
 
@@ -43,20 +44,8 @@ export class GoComponent implements OnInit {
         tap(params=>{
           if(params['raceId']) {
             this.app.go.race = this.app.races._index.id[params['raceId']]
-
-            this.newEvent = {
-              accountId: 0,
-              eventType:1,
-              raceId: this.app.go.race.id,
-              competitorId:0,
-              t:0,
-              desc:'',
-              d:0,      
-              categoryIds:[],      
-            }
-
+            this.createNewEvent();
             this.app.go.get();
-
             const iid = setInterval(()=>{
               //const elem = document.getElementById('scroledCnt');
               const elem = document.body;
@@ -77,6 +66,19 @@ export class GoComponent implements OnInit {
 
         }),
       ).subscribe(()=>{})
+  }
+
+  private createNewEvent = ()=>{
+    this.newEvent = {
+      accountId: 0,
+      eventType:1,
+      raceId: this.app.go.race.id,
+      competitorId:0,
+      t:0,
+      desc:'',
+      d:0,      
+      categoryIds:[],      
+    }
   }
 
   public resetEventsFilter() {
@@ -115,6 +117,15 @@ export class GoComponent implements OnInit {
       });
   }
 
+  public delEvent(item:any) {
+    item.del()
+      .subscribe(()=>{
+        this.app.raceevents.get().subscribe(()=>{
+          this.app.go.get();
+        });
+      });
+  }
+
   public delayH = (item, items, i)=>{
     if(!this.s.eventsTimeScale) return '';
     if(item&&items&&item.eventType!=3) {
@@ -130,15 +141,21 @@ export class GoComponent implements OnInit {
     return '';
   }
 
-  public onFormSubmit = (eventType, competitorId)=>{
+  public onFormSubmit = (eventType, competitorId=0)=>{
     this.newEvent.eventType = eventType;
     this.newEvent.competitorId = competitorId;
     this.newEvent.t = 1*this.app.go.t;
+
+    if(!competitorId) {
+      this.newEvent.desc += ' ['+this.s.filter.competitorName+']';
+    }
     this.app.raceevents.add(this.newEvent)
       .subscribe(res=>{
         this.app.raceevents.get()
           .subscribe(()=>{
             this.app.go.get();
+            this.createNewEvent();
+            this.s.filter.competitorName = '';
           })
       });
 

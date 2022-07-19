@@ -55,7 +55,10 @@
           <h3>{{item.competitorNum}}</h3>
         </div>
         <div class="col-md-5">
-          <div *ngIf="editEventId!==item.id"><b>{{item.competitorName}}</b> </div>
+          <div *ngIf="editEventId!==item.id">
+            <b>{{item.competitorName}}</b> 
+          </div>
+          <div *ngIf="item.desc">{{item.desc}}</div>
           <div *ngIf="editEventId===item.id">
             <div *ngIf="item.eventType===1" class="mt-1">
               <div class="input-group-sm" style="width: 170px;">
@@ -90,21 +93,27 @@
           <h4 *ngIf="item.eventType==2">Start Race </h4>
           <h4 *ngIf="item.eventType==3">Finish Race</h4>
           <small *ngIf="item._raceT" class="mr-3" >race: {{(item._raceT-4*3600000)|date:'HH:mm:ss.SSS'}}</small>
-          <small *ngIf="item._lapT" class="mr-3" >lap: {{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</small>
+          <small *ngIf="item._lapT" class="mr-3" >lap {{item._lap}} : {{(item._lapT-4*3600000)|date:'HH:mm:ss.SSS'}}</small>
           <small class="mr-3">abs: {{item.t|date:'HH:mm:ss.SSS'}}</small>
           <div class="form-group mt-2">
             <button *ngIf="editEventId===item.id" type="button" (click)="saveEvent(item)" class="btn btn-primary mr-1"><fa-icon  [icon]="faSave"  title="Save"></fa-icon> Сохранить</button>
             <button *ngIf="editEventId===item.id" type="button" (click)="switchEditEventForm(item, false)" class="btn btn-light "><fa-icon  [icon]="faTimes"  title="Cancel"></fa-icon> Отменить</button>
           </div>
         </div>
-        <div class="col-md-5" >
+        <div class="col-md-4" >
           <div>{{item.categoryName}}</div>
           <small *ngIf="item.eventType==1"> start: {{app.go.getStart(item.categoryId).t|date:'HH:mm:ss.SSS'}}</small>
           <div *ngIf="item.eventType==2">
             <div *ngFor="let categoryId of item.categoryIds"><small>{{app.categories._index.id[categoryId].name}}</small></div>
           </div>
         </div>
-        <div class="col-md-1"><small *ngIf="item._lap">{{item._lap}}</small></div>
+        <div class="col-md-2 text-right">
+          <span class="tomato pointer" *ngIf="!item._delDialog" (click)="item._delDialog = true" title="{{'Del'|translate}}"><fa-icon [icon]="faTrashAlt"></fa-icon></span>
+          <div *ngIf="item._delDialog" class="mt-2">
+            <button type="button" (click)="delEvent(item)" class="btn btn-danger btn-sm">Del</button>
+            <button type="button" (click)="item._delDialog = false" class="btn btn-outline-secondary btn-sm ml-1">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -116,7 +125,7 @@
         <!-- <span *ngIf="app.go.start && !app.go.start"> | {{(app.go.t-app.go.start.t-4*3600000 )|date:'HH:mm:ss.SSS'}}</span> -->
       </h5>
 
-      <form  (submit)="app.go.getStart()&&onFormSubmit(1,result.items[0].id)" class=" mb-2 ">
+      <form  (submit)="app.go.getStart()&&onFormSubmit(1,result.items[0]?result.items[0].id:0)" class=" mb-2 ">
         <div class="form-row">
           <div class="col">
             <input type="text" class="form-control form-control-lg   mr-2" [(ngModel)]="s.filter.competitorName" [ngModelOptions]="{standalone: true}" placeholder="Фильтр">
@@ -130,12 +139,17 @@
             </div>
           </div>
         </div>
+        <div class="form-row mt-1">
+          <div class="col">
+            <textarea name="" [(ngModel)]="newEvent.desc" [ngModelOptions]="{standalone: true}" class="form-control"   rows="1" placeholder="Дополнительно"></textarea>
+          </div>
+        </div>
       </form>
       <table class="table">
         <tr 
           *ngFor="let item of app.competitors.items | myFilter:{fullNameNum:s.filter.competitorName} | orderBy : ['-_lastT']  | slice:0:10 | asResult : result; index as i;"  
           (click)="app.go.getStart()&&onFormSubmit(1,item.id);"
-          class="clickable" 
+          class="clickable {{(i===0&&s.filter.competitorName)?'table-primary':''}}" 
           >
           <td width="40px">{{item.num}}</td>
           <td>{{item.fullName}}</td>

@@ -5,9 +5,15 @@
   background: hsl(200deg, 0%, 100% , 100%);
   &.start{
     background: hsl(100deg, 90%, 37%, 41%);
+    .silver{
+      color: white;
+    }
   }
   &.finish{
-    background: hsl(33deg ,100%, 50% , 38%)
+    background: hsl(33deg ,100%, 50% , 38%);
+    .silver{
+      color: white;
+    }
   }
 }
 

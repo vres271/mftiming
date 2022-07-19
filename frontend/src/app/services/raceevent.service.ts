@@ -65,7 +65,7 @@ export class RaceEvent extends Item{
   }
 
   public get raceTimeFirst(): string {
-    return this._parent&&this._parent.app.go&&this.categoryId?( new Date(this.t - this._parent.app.go.getStart().t ) ).toISOString().slice(11,23):'';
+    return this._parent&&this._parent.app.go?( new Date(this.t - this._parent.app.go.getStart().t ) ).toISOString().slice(11,23):'';
   }
 
   public set raceTimeFirst(value:string) {

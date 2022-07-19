@@ -58,29 +58,32 @@
           <div *ngIf="editEventId!==item.id">
             <span class="pointer silver" (click)="switchEditEventForm(item, false)" title="{{'Edit'|translate}}"><fa-icon [icon]="faEdit"></fa-icon></span>
             <b> {{item.competitorName}}</b> 
+            <div *ngIf="item.desc">{{item.desc}}</div>
           </div>
-          <div *ngIf="item.desc">{{item.desc}}</div>
           <div *ngIf="editEventId===item.id">
             <div *ngIf="item.eventType===1" class="mt-1">
               <div class="input-group-sm" style="width: 170px;">
                 <input type="text" class="form-control" [(ngModel)]="editEventFilter.fullNameNum" [ngModelOptions]="{standalone: true}" placeholder="Фильтр по участнику" (keyup)="setEditCopetitorId(item)">
               </div>
               <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
+                <option [value]="0"></option>
                 <option [value]="competitor.id" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter |  asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
               </select>
-              <label>Дополнительно</label>
-              <textarea name="" [(ngModel)]="item.desc" [ngModelOptions]="{standalone: true}" class="form-control"   rows="1" ></textarea>
             </div>
             <div  *ngIf="item.eventType===2"  class="form-group">
               <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">
                 <option [value]="category.id" *ngFor="let category of app.categories.items">{{category.name}}</option>
               </select>                    
             </div> 
+            <div>
+              <label>Дополнительно</label>
+              <textarea name="" [(ngModel)]="item.desc" [ngModelOptions]="{standalone: true}" class="form-control"   rows="1" ></textarea>
+            </div>
             <div  class="form-group">
               <label>Абсолютное время</label>
               <input type="datetime-local" min="{{app.go.getStart(item.categoryId).t|date:'yyyy-MM-ddTHH:mm:ss'}}" max="{{app.go.t|date:'yyyy-MM-ddT23:59:59'}}" class="form-control" [(ngModel)]="item.datetime" [ngModelOptions]="{standalone: true}" >
             </div>
-            <div *ngIf="item.eventType===1" class="form-group">
+            <div *ngIf="item.eventType===1 && 1*item.competitorId" class="form-group">
               <label>Время со старта категории</label>
               <input type="time" class="form-control" [(ngModel)]="item.raceTime" [ngModelOptions]="{standalone: true}" >
             </div>

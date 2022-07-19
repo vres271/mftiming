@@ -4,13 +4,13 @@
   border-radius: 5px;
   background: hsl(200deg, 0%, 100% , 100%);
   &.start{
-    background: hsl(100deg, 90%, 37%, 41%);
+    background: hsl(100deg 42% 64%);
     .silver{
       color: white;
     }
   }
   &.finish{
-    background: hsl(33deg ,100%, 50% , 38%);
+    background: hsl(33deg 89% 71%);
     .silver{
       color: white;
     }
@@ -33,4 +33,10 @@
   overflow-y: auto;
   max-height: 200px;  
   background: hsla(200deg, 3%, 90% , 100%);
+}
+.scroll-bg{
+  background-image: url(/assets/images/ring.svg);
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: 30px;
 }

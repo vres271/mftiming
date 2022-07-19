@@ -56,7 +56,8 @@
         </div>
         <div class="col-md-5">
           <div *ngIf="editEventId!==item.id">
-            <b>{{item.competitorName}}</b> 
+            <span class="pointer silver" (click)="switchEditEventForm(item, false)" title="{{'Edit'|translate}}"><fa-icon [icon]="faEdit"></fa-icon></span>
+            <b> {{item.competitorName}}</b> 
           </div>
           <div *ngIf="item.desc">{{item.desc}}</div>
           <div *ngIf="editEventId===item.id">
@@ -67,6 +68,8 @@
               <select class="form-control"  [(ngModel)]="item.competitorId" [ngModelOptions]="{standalone: true}" placeholder="Масштаб времени">
                 <option [value]="competitor.id" *ngFor="let competitor of app.competitors.items | myFilter: editEventFilter |  asResult : editEventFilterresult;">{{competitor.fullNameNum}}</option>
               </select>
+              <label>Дополнительно</label>
+              <textarea name="" [(ngModel)]="item.desc" [ngModelOptions]="{standalone: true}" class="form-control"   rows="1" ></textarea>
             </div>
             <div  *ngIf="item.eventType===2"  class="form-group">
               <select multiple size="10" [(ngModel)]="item.categoryIds" [ngModelOptions]="{standalone: true}" class="form-control">

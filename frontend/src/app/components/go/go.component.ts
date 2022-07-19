@@ -146,7 +146,7 @@ export class GoComponent implements OnInit {
     this.newEvent.competitorId = competitorId;
     this.newEvent.t = 1*this.app.go.t;
 
-    if(!competitorId) {
+    if(!competitorId && this.s.filter.competitorName) {
       this.newEvent.desc += ' ['+this.s.filter.competitorName+']';
     }
     this.app.raceevents.add(this.newEvent)

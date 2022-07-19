@@ -52,26 +52,29 @@ export class GoService {
       }
       if(item.eventType===3) {this.finish=item}
 
-      if(item.eventType===1&&item.competitorId) {
-        if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
-        compLaps[item.competitorId]++;
-        item._lap = compLaps[item.competitorId];
+      if(item.eventType===1) {
+        if(item.competitorId) {
+          if(!compLaps[item.competitorId]) compLaps[item.competitorId]=0;
+          compLaps[item.competitorId]++;
+          item._lap = compLaps[item.competitorId];
+
+
+          if(!compLapsT[item.competitorId] && this.getStart(item.categoryId)) {
+            item._lapT = item.t - this.getStart(item.categoryId).t; 
+          } else {
+            item._lapT = item.t - compLapsT[item.competitorId];
+          }
+          compLapsT[item.competitorId]=item.t;
+
+          if(item.competitor) {
+            item.competitor._lastT = this.t-item.t;
+            item.competitor._lap = item._lap;
+            item.competitor._t = item.t;
+          }
+        }
         item._raceT = item.t - this.getStart(item.categoryId).t;
-
-
-        if(!compLapsT[item.competitorId] && this.getStart(item.categoryId)) {
-          item._lapT = item.t - this.getStart(item.categoryId).t; 
-        } else {
-          item._lapT = item.t - compLapsT[item.competitorId];
-        }
-        compLapsT[item.competitorId]=item.t;
-
-        if(item.competitor) {
-          item.competitor._lastT = this.t-item.t;
-          item.competitor._lap = item._lap;
-          item.competitor._t = item.t;
-        }
       }
+
 
 
     })

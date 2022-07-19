@@ -2,7 +2,7 @@
   border: 1px solid rgba(0,0,0,.1);
   margin: 2px;
   border-radius: 5px;
-  background: hsl(200deg, 94%, 45% , 20%);
+  background: hsl(200deg, 0%, 100% , 100%);
   &.start{
     background: hsl(100deg, 90%, 37%, 41%);
   }
@@ -26,5 +26,5 @@
 #scrolledTarget{
   overflow-y: auto;
   max-height: 200px;  
-  
+  background: hsla(200deg, 3%, 90% , 100%);
 }

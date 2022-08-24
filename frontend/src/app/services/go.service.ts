@@ -33,7 +33,7 @@ export class GoService {
   }
 
   public get() {
-
+    this.finish = null;
     this.raceEvents = this.events.items.filter(item=>1*item.raceId===1*this.race.id).sort((a,b)=>(a.t-b.t))
 
     let compLaps = {};
@@ -50,6 +50,7 @@ export class GoService {
         }
         
       }
+
       if(item.eventType===3) {this.finish=item}
 
       if(item.eventType===1) {

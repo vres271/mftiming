@@ -47,29 +47,31 @@ export class ResultsService {
           item._lapT = item.t - compLapsT[item.competitorId];
         }
         compLapsT[item.competitorId]=item.t;
-        item.pos = item.competitor.category.pos||0;
+        item.pos = (item.competitor&&item.competitor.category&&item.competitor.category.pos)||0;
 
         this.items[item.competitorId].events.push(item);
         this.items[item.competitorId].t = item.t;
-        this.items[item.competitorId].pos = 1*item.competitor.category.pos||0;
+        this.items[item.competitorId].pos = 1*(item.competitor&&item.competitor.category&&item.competitor.category.pos)||0;
         this.items[item.competitorId].categoryId = item.categoryId;
       }
     })
 
 
     for(let key in this.items) {
-      this.items2.push(this.items[key]);
+      if(this.items[key].competitor) this.items2.push(this.items[key]);
     }
 
     let res = 0;
     let last_categoryId = 0;
     let firstT = 0;
     this.items2.sort((a,b)=>(a.t-b.t)).forEach(item=>{
-      if(item.competitor.categoryId !== last_categoryId) res = 0;
-      item.res = ++res;
-      last_categoryId = item.competitor.categoryId;
-      if(res===1) firstT = item.t;
-      item.firstT = firstT;
+      if(item.competitor) {
+        if(item.competitor.categoryId !== last_categoryId) res = 0;
+        item.res = ++res;
+        last_categoryId = item.competitor.categoryId;
+        if(res===1) firstT = item.t;
+        item.firstT = firstT;
+      }
     })
     
     console.log(this.items2)

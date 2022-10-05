@@ -1,9 +1,9 @@
 <table  class=" table " >
   <ng-container *ngFor="let item of app.results.items2 | orderBy : ['pos'] ; index as i; ">
-    <tr *ngIf="!app.results.items2[i-1]||item.competitor.categoryId!==app.results.items2[i-1].competitor.categoryId">
+    <tr *ngIf="(item.competitor) && (!app.results.items2[i-1]||item.competitor.categoryId!==app.results.items2[i-1].competitor.categoryId)">
       <th colspan="99">{{item.competitor.categoryName}}</th>
     </tr>
-    <tr>
+    <tr  *ngIf="item.competitor">
       <td width="40px">{{item.res}}</td>
       <td width="400px">{{item.competitor.fullName}}</td>
       <td width="80px">{{item.competitor.num}}</td>

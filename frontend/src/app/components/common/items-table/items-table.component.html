@@ -26,6 +26,7 @@
           <span 
             *ngIf="options.fields&&options.fields[fieldName]&&options.fields[fieldName].type==='icon' && options.fields[fieldName].expr(item)" 
             [title]="options.fields[fieldName].title" 
+            (click)="options.fields[fieldName].onclick?options.fields[fieldName].onclick(item, options.fields[fieldName]):null"
             style="white-space: nowrap;">
             <fa-icon [icon]="options.fields[fieldName].icon" class="{{options.fields[fieldName].classes}}"></fa-icon>
             <sup *ngIf="options.fields[fieldName].badge">

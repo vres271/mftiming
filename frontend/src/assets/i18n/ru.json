@@ -189,8 +189,16 @@
     ,"categoryName":"Категория"
     ,"team":"Команда"
     ,"desc":"Доп."
+    ,"toJSON":"JSON"
     ,"d":"Удален"
 
+  }
+
+  ,"races":{
+    "name":"Название",	
+    "go":"",	
+    "results":"", 
+    "toJSON":"JSON"
   }
 
   ,"categories":{
@@ -200,6 +208,7 @@
     ,"ageFrom":"Мин возраст"
     ,"ageTo":"Макс возраст"
     ,"d":"Удален"
+    ,"toJSON":"JSON"
 
   }
 

@@ -4,12 +4,19 @@
     "description": "Засекаем время на гонках",
     "manifest_version": 2,
     "browser_action": {
-        "default_popup": "index.html",
+        "default_popup": "extension/open.html",
         "default_icon": {               
             "16": "favicon.png",  
             "24": "favicon.png",  
             "32": "favicon.png"   
         }    
     },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+    "icons": { 
+        "16": "favicon.png",  
+        "24": "favicon.png",  
+        "32": "favicon.png",
+        "128": "favicon.png"   
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self' ",
+    "permissions": [  "tabs"      ]    
 }

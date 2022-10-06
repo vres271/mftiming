@@ -27,6 +27,7 @@
               "src/favicon.ico",
               "src/favicon.png",
               "src/assets",
+              "src/extension",
               "src/manifest.json"
             ],
             "styles": [
